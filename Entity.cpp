@@ -12,7 +12,8 @@ Entity::Entity(string InputName, int InputHP, int InputSTR, int InputDEF,
   Resistance = InputResistance;
   isAlive = true;
 }
-
+// TakeDamage function decreasing the health of the entity by the specified
+// damage. Damage is halfed if entity is resistant to the damage type.
 void Entity::takeDamage(int Damage, string DamageType) {
   int InputDamage = Damage;
   // If the Target is resistant to the damage type, it will take half the total
@@ -26,11 +27,14 @@ void Entity::takeDamage(int Damage, string DamageType) {
     isAlive = false;
   }
 }
-
+// Triggers the Targets TakeDamage Function, as this is a melee attack it
+// deals damage equal to the strength stat, and the damage type is BluntForce.
 void Entity::MeleeAttack(Entity* Target) {
   Target->takeDamage(strength, "BluntForce");
 }
 
+// Triggers the Targets TakeDamage Function, as this is a magic attack it deals
+// damage equal to the magic stat, and the damage type is Magic.
 void Entity::MagicAttack(Entity* Target) { Target->takeDamage(magic, "Magic"); }
 
 // If you need a comment to explain a Getter/Setter, please seek help.
