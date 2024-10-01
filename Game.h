@@ -8,7 +8,7 @@
 // Include classes
 #include "Location.h"
 
-
+// Namespace
 using namespace std;
 
 class Game {
