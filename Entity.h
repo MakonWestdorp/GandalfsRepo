@@ -12,7 +12,7 @@ class Entity {
 
  private:
   std::string name, Resistance;
-  int healthPoints, strength, defence;
+  int healthPoints, strength, defence, magic;
   bool isAlive;
 };
 #endif
