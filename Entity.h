@@ -2,7 +2,13 @@
 #define ENTITY_H
 #include <string>
 using namespace std;
+// Forward declaring Unit Test class to allow the Entity.h file to set the
+// UnitTest class as a friend, giving the Unit Test class access to the setters
+// and getters
+class UnitTest;
 class Entity {
+  friend class UnitTest;
+
  public:
   Entity();
   Entity(string Name, int HP, int STR, int DEF, int MAG, string Resistance);
@@ -10,6 +16,7 @@ class Entity {
   void MeleeAttack(Entity* Target);
   void MagicAttack(Entity* Target);
 
+ protected:
   int getHP();
   int getSTR();
   int getDEF();

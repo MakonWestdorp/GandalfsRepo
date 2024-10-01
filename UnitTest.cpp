@@ -2,7 +2,11 @@
 
 #include <iostream>
 using namespace std;
-void UnitTest::StartTests() { EntityTakeDamage(); }
+void UnitTest::StartTests() {
+  EntityTakeDamage();
+  EntityMeleeAttack();
+  EntityMagicAttack();
+}
 void UnitTest::EntityTakeDamage() {
   Entity Gandalf = Entity("Gandalf", 15, 4, 7, 35, "Magic");
   Gandalf.takeDamage(2, "Magic");

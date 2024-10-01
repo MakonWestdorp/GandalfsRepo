@@ -10,14 +10,18 @@ Entity::Entity(string InputName, int InputHP, int InputSTR, int InputDEF,
   strength = InputSTR;
   magic = InputMAG;
   Resistance = InputResistance;
+  isAlive = true;
 }
 
 void Entity::takeDamage(int Damage, string DamageType) {
   int InputDamage = Damage;
+  // If the Target is resistant to the damage type, it will take half the total
+  // damage
   if (DamageType == Resistance) {
     InputDamage = InputDamage / 2;
   }
   healthPoints = healthPoints - InputDamage;
+  // Check to see if Target is dead.
   if (healthPoints <= 0) {
     isAlive = false;
   }
@@ -29,6 +33,7 @@ void Entity::MeleeAttack(Entity* Target) {
 
 void Entity::MagicAttack(Entity* Target) { Target->takeDamage(magic, "Magic"); }
 
+// If you need a comment to explain a Getter/Setter, please seek help.
 int Entity::getHP() { return healthPoints; }
 
 int Entity::getSTR() { return strength; }
