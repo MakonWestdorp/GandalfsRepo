@@ -7,5 +7,7 @@ class UnitTest {
 
  private:
   void EntityTakeDamage();
+  void EntityMeleeAttack();
+  void EntityMagicAttack();
 };
 #endif

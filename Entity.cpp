@@ -28,3 +28,27 @@ void Entity::MeleeAttack(Entity* Target) {
 }
 
 void Entity::MagicAttack(Entity* Target) { Target->takeDamage(magic, "Magic"); }
+
+int Entity::getHP() { return healthPoints; }
+
+int Entity::getSTR() { return strength; }
+
+int Entity::getDEF() { return defence; }
+
+int Entity::getMAG() { return magic; }
+
+string Entity::getName() { return name; }
+
+string Entity::getRes() { return Resistance; }
+
+void Entity::setHP(int InputHP) { healthPoints = InputHP; }
+
+void Entity::setSTR(int InputSTR) { strength = InputSTR; }
+
+void Entity::setDEF(int InputDEF) { defence = InputDEF; }
+
+void Entity::setMAG(int InputMAG) { magic = InputMAG; }
+
+void Entity::setName(string InputName) { name = InputName; }
+
+void Entity::setRes(string InputName) { Resistance = InputName; }
