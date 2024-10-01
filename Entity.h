@@ -10,6 +10,20 @@ class Entity {
   void MeleeAttack(Entity* Target);
   void MagicAttack(Entity* Target);
 
+  int getHP();
+  int getSTR();
+  int getDEF();
+  int getMAG();
+  string getName();
+  string getRes();
+
+  void setHP(int InputHP);
+  void setSTR(int InputSTR);
+  void setDEF(int InputDEF);
+  void setMAG(int InputMAG);
+  void setName(string InputName);
+  void setRes(string InputName);
+
  private:
   std::string name, Resistance;
   int healthPoints, strength, defence, magic;
