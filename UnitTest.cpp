@@ -2,11 +2,14 @@
 
 #include <iostream>
 using namespace std;
+// Start tests
 void UnitTest::StartTests() {
   EntityTakeDamage();
   EntityMeleeAttack();
   EntityMagicAttack();
 }
+
+// Entity test functions
 void UnitTest::EntityTakeDamage() {
   Entity Gandalf = Entity("Gandalf", 15, 4, 7, 35, "Magic");
   Gandalf.takeDamage(2, "Magic");
@@ -53,4 +56,34 @@ void UnitTest::EntityMagicAttack() {
   if (Sauron.getHP() != 1) {
     cout << "EntityMeleeAttack Non-Resistance attack failed" << endl;
   };
+}
+
+// Location test functions
+void UnitTest::LocationTravel()
+{ 
+  // Descriptions
+  string forestDescription = "In a dark, mist-shrouded forest teeming with fearsome monsters, \n hidden treasures glimmer among ancient ruins, luring the brave and foolish alike."; 
+  string townDescription = "The medieval town bustles with life, its cobblestone streets \n winding past stone shops beneath the shadow of a towering castle";
+
+  // Create locations
+  Location Forest("Forest",forestDescription,"");
+  Location Town("Town",townDescription,"");
+
+  // Create temporary game
+  Game LocationTest(0,Forest,true);
+
+  /*
+    Runs a short test that
+    - Outputs current locations name
+    - Shows the Forest
+    - Travels to the Town
+    - Shows the town
+    - Output current locations mae
+  */
+  Location currentLocation = LocationTest.viewCurrentLocation();
+  cout << currentLocation.getName() << endl;
+  Forest.showLocation();
+  Forest.travelToLocation(Town); 
+  Town.showLocation();
+  
 }

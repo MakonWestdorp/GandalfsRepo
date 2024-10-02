@@ -3,9 +3,19 @@
 
 #include <iostream>
 #include <string> 
+
+#include "Game.h"
+
 using namespace std; 
 
-class Location : public Game {
+/*
+    An abstract class for the locations of the game
+    Forward declaring Unit test to allow for test functions to access location functions
+*/
+
+class UnitTest; 
+class Location{
+    friend class UnitTest; 
     private:
         // Variables describing a location
         string name; 
@@ -15,7 +25,9 @@ class Location : public Game {
         Location(); // Default constructor 
         Location(string name, string description, string asciiDescription); // Constructor 
         void showLocation(); // Displays the locations details 
-        void travelToLocation(string destination); // Changes the location 
+        bool travelToLocation(Location destination); // Changes the location 
+        string getName(); // Returns the name
+
 };
 
 #endif 

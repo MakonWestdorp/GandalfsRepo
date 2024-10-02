@@ -11,12 +11,17 @@
 // Namespace
 using namespace std;
 
-// Forward Declaring Entity class to allow Game to declare Entity as a friend
-// class give access to bossesDefeated variable
+/*
+  Forward Declaring Entity class to allow Game to declare Entity as a friend
+  class give access to bossesDefeated variable
+  Forward declaring Unit testing class to give it access to the game functions
+*/
+
 class Entity;
 class Game {
-  // declaring Entity as a Friend Class
+  // Declaring Entity and Unit test as a Friend Class
   friend class Entity;
+  friend class UnitTest;
 
  private:
   // Variables for keeping track of the game
@@ -36,10 +41,10 @@ class Game {
   bool loadGame();              // Loads the game
   void endGame();               // Ends the game if the player dies
  public:
-  bool travelToLocation(Location destination);        // Switches location
-  bool travelToShop();                                // Switches to a shop
-  void setCurrentLocation(Location currentLocation);  // Sets current location
-  Location viewCurrentLocation();  // Returns current location
+  void travelToLocation(Location destination);        // Switches location
+  void travelToShop();                                // Switches to a shop
+  void setCurrentLocation(Location location);         // Sets the location
+  Location viewCurrentLocation();                     // Returns current location
 };
 
 #endif
