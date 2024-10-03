@@ -9,6 +9,7 @@ class Forest : public Location {
     private:
     public:
         Forest();
+        Forest(string name, string description, string asciiDescription);
 }; 
 
 #endif
