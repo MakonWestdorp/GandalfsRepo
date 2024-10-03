@@ -6,6 +6,9 @@
 #include "Game.h"
 #include "BaseItem.h"
 #include "Shop.h"
+#include "Town.h"
+#include "Forest.h"
+#include "Arena.h"
 
 class UnitTest {
  public:
@@ -13,6 +16,7 @@ class UnitTest {
   void StartEntityTests();
   void StartLocationTests();
   void StartShopTests();
+  void StartTownTests();
 
  private:
   // Entity class tests
@@ -25,6 +29,9 @@ class UnitTest {
 
   // Shop class tests
   void BasicShopTest();
+
+  // Town Class tests
+  void FirstTownTest(); 
 
 };
 #endif

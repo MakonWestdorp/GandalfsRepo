@@ -7,6 +7,9 @@
 #include "Entity.h"
 #include "Shop.h"
 #include "BaseItem.h"
+#include "Town.h"
+#include "Forest.h"
+#include "Arena.h"
 
 int main() {
     UnitTest test; 
@@ -15,7 +18,7 @@ int main() {
 
     cout << divider << endl << "Select which test to run" << endl << divider << endl << "1. All tests" 
          << endl << "2. Entity Tests" << endl << "3. Location Tests" << endl << "4. Shop Tests" 
-         << endl << divider << endl;
+         << endl << "5. Town tests" << endl << divider << endl;
 
     cin >> testSelector; 
     cout << "Test begin" << endl; 
@@ -32,6 +35,9 @@ int main() {
             break;
         case 4:
             test.StartShopTests();
+            break;
+        case 5:
+            test.StartTownTests();
             break;
         default: 
             break;

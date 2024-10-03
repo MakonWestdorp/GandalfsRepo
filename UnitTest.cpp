@@ -23,6 +23,11 @@ void UnitTest::StartShopTests() {
   BasicShopTest();
 }
 
+void UnitTest::StartTownTests()
+{
+  FirstTownTest();
+}
+
 // Entity test functions
 void UnitTest::EntityTakeDamage() {
   Entity Gandalf = Entity("Gandalf", 15, 4, 7, 35, "Magic");
@@ -84,11 +89,13 @@ void UnitTest::LocationTravel() {
       "past stone shops beneath the shadow of a towering castle";
 
   // Create locations
-  Location Forest("Forest", forestDescription, "");
-  Location Town("Town", townDescription, "");
+  Location *Forest = new Location("Forest", forestDescription, "");
+  Location *Town = new Location("Town", townDescription, "");
 
   // Create temporary game
-  Game LocationTest(0, Forest, true);
+  Game LocationTest;
+
+  int cashOnHand = 0; // Needed to call function
 
   /*
     Runs a short test that
@@ -98,11 +105,12 @@ void UnitTest::LocationTravel() {
     - Shows the town
     - Output current locations mae
   */
-  cout << LocationTest.viewCurrentLocation().getName() << endl;
-  LocationTest.viewCurrentLocation().showLocation();
-  LocationTest.viewCurrentLocation().travelToLocation(LocationTest, Town);
-  cout << LocationTest.viewCurrentLocation().getName() << endl;
-  LocationTest.viewCurrentLocation().showLocation();
+  LocationTest.setCurrentLocation(Forest);
+  cout << LocationTest.viewCurrentLocation()->getName() << endl;
+  LocationTest.viewCurrentLocation()->showLocation(LocationTest,cashOnHand);
+  LocationTest.viewCurrentLocation()->travelToLocation(LocationTest, Town);
+  cout << LocationTest.viewCurrentLocation()->getName() << endl;
+  LocationTest.viewCurrentLocation()->showLocation(LocationTest,cashOnHand);
 }
 
 void UnitTest::BasicShopTest()
@@ -163,5 +171,18 @@ void UnitTest::BasicShopTest()
    // Test shop interface
   while (WeaponsShop.showShopInterface(cashOnHand) == true) {
   
+  }
+}
+
+void UnitTest::FirstTownTest()
+{ 
+  Game game; 
+  int cashOnHand = 50;
+  game.initialiseLocations();
+  game.initialiseShops();
+  game.setCurrentLocation(game.viewLocations()[0]);
+
+  while(game.isGameRunning() == true) {
+    game.viewCurrentLocation()->showLocation(game,cashOnHand);
   }
 }
