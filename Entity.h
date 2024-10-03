@@ -10,12 +10,17 @@ class Entity {
   friend class UnitTest;
 
  public:
+  // Default Constructor for Entity. Enemies will use Default constructor, so
+  // the "Stats" and Names will be randomised.
   Entity();
+  // Specific Constructor for players.
   Entity(string Name, int HP, int STR, int DEF, int MAG, string Resistance);
+  // The attack/recieve attack functions.
   void takeDamage(int Damage, string DamageType);
   void MeleeAttack(Entity* Target);
   void MagicAttack(Entity* Target);
 
+  // Getters and Setters. Only used in UnitTest class.
  protected:
   int getHP();
   int getSTR();
