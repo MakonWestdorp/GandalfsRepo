@@ -19,6 +19,7 @@ class Entity {
   void takeDamage(int Damage, string DamageType);
   void MeleeAttack(Entity* Target);
   void MagicAttack(Entity* Target);
+  // Random name generator for Enemies
 
   // Getters and Setters. Only used in UnitTest class.
  protected:

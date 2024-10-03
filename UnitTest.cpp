@@ -35,11 +35,11 @@ void UnitTest::EntityMeleeAttack() {
   Entity* PtrToGandalf = &Gandalf;
   Entity* PtrToSauron = &Sauron;
   Sauron.MeleeAttack(PtrToGandalf);
-  if (Gandalf.getHP() != 7) {
+  if (Gandalf.getHP() != 15 - Sauron.getSTR()) {
     cout << "EntityMeleeAttack Non-Resistance attack failed" << endl;
   };
   Gandalf.MeleeAttack(PtrToSauron);
-  if (Sauron.getHP() != 11) {
+  if (Sauron.getHP() != 15 - 0.5 * Gandalf.getSTR()) {
     cout << "EntityMeleeAttack Resistance attack failed" << endl;
   };
 }

@@ -6,9 +6,9 @@
 #include <string>
 
 // Include classes
-#include "UnitTest.h"
 #include "Entity.h"
 #include "Location.h"
+#include "UnitTest.h"
 
 // Namespace
 using namespace std;
@@ -21,12 +21,13 @@ using namespace std;
 
 class Location;
 class Entity;
-class UnitTest; 
+class UnitTest;
 class Game {
   // Declaring Entity and Unit test as a Friend Class
   friend class Entity;
   friend class UnitTest;
   friend class Location;
+
  private:
   // Variables for keeping track of the game
   int bossesDefeated;
@@ -45,10 +46,12 @@ class Game {
   bool loadGame();              // Loads the game
   void endGame();               // Ends the game if the player dies
  public:
-  void travel(Location destination);        // Switches location
-  void travelToShop();                                // Switches to a shop
-  void setCurrentLocation(Location location);         // Sets the location
-  Location viewCurrentLocation();                     // Returns current location
+  void travel(Location destination);           // Switches location
+  void travelToShop();                         // Switches to a shop
+  void setCurrentLocation(Location location);  // Sets the location
+  Location viewCurrentLocation();              // Returns current location
+  int getNumBosses();
+  void setNumBosses(int InputNumBosses);
 };
 
 #endif
