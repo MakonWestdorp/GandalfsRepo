@@ -11,6 +11,7 @@ class Arena : public Location {
     private:
     public:
         Arena();
+        Arena(string name, string description, string asciiDescription);
 };
 
 #endif
