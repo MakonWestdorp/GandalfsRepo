@@ -4,10 +4,14 @@
 #include "Entity.h"
 #include "Location.h"
 #include "Game.h"
+#include "BaseItem.h"
+#include "Shop.h"
 
 class UnitTest {
  public:
-  void StartTests();
+  void StartEntityTests();
+  void StartLocationTests();
+  void StartShopTests();
 
  private:
   // Entity class tests
@@ -17,6 +21,9 @@ class UnitTest {
 
   // Location class tests
   void LocationTravel();
+
+  // Shop class tests
+  void BasicShopTest();
 
 };
 #endif

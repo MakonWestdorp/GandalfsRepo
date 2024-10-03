@@ -4,11 +4,11 @@
 // Include libraries
 #include <iostream>
 #include <string> 
+#include "BaseItem.h"
 
 using namespace std; 
 
 // Temporary forward declare as BaseItem class does not yet exist
-class BaseItem; 
 
 class Shop {
     private:
@@ -25,11 +25,11 @@ class Shop {
         Shop(); // Default Constructor 
         Shop(BaseItem *inventory, int *prices, bool *forSaleStatus, string shopName, 
              string shopKeeperName, string description, string asciiDescription); // Constructor 
-        BaseItem* viewInventory(); // Returns inventory
-        int* viewPrices(); // Returns prices
-        bool* viewForSaleStatus(); // Returns for sale statuses 
+        BaseItem *viewInventory(); // Returns inventory
+        int *viewPrices(); // Returns prices
+        bool *viewForSaleStatus(); // Returns for sale statuses 
         string purchaseItem(int itemNumber); // Allows user to purchase item
-        void showShopInterface(); // Shows the shop interface and items
+        bool showShopInterface(); // Shows the shop interface and items
         void updateShop(BaseItem *inventory, int *prices, bool *forSaleStatus); // Updates inventory
 
 

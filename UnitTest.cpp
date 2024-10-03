@@ -3,11 +3,18 @@
 #include <iostream>
 using namespace std;
 // Start tests
-void UnitTest::StartTests() {
+void UnitTest::StartEntityTests() {
   EntityTakeDamage();
   EntityMeleeAttack();
   EntityMagicAttack();
+}
+
+void UnitTest::StartLocationTests() {
   LocationTravel();
+}
+
+void UnitTest::StartShopTests() {
+  BasicShopTest();
 }
 
 // Entity test functions
@@ -90,4 +97,66 @@ void UnitTest::LocationTravel() {
   LocationTest.viewCurrentLocation().travelToLocation(LocationTest, Town);
   cout << LocationTest.viewCurrentLocation().getName() << endl;
   LocationTest.viewCurrentLocation().showLocation();
+}
+
+void UnitTest::BasicShopTest()
+{
+  // Create inventory
+  BaseItem *inventory = new BaseItem[5]; 
+  inventory[0] = BaseItem("Big Sword");
+  inventory[1] = BaseItem("Small Sword");
+  inventory[2] = BaseItem("Legendary Sword");
+  inventory[3] = BaseItem("Fire Sword");
+  inventory[4] = BaseItem("Ancient Sword");
+
+  int *prices = new int[5]; 
+  prices[0] = 10;
+  prices[1] = 5;
+  prices[2] = 100;
+  prices[3] = 30;
+  prices[4] = 60; 
+
+  bool *forSaleStatus = new bool[5]; 
+  forSaleStatus[0] = true;
+  forSaleStatus[1] = true;
+  forSaleStatus[2] = true;
+  forSaleStatus[3] = true;
+  forSaleStatus[4] = true;
+
+  // Create shop
+  string shopDescription = "Steel & Sorcery offers finely crafted blades, \nfrom master-forged steel to rare enchanted swords";
+  Shop WeaponsShop(inventory,prices,forSaleStatus,"Steel & Sorcery","Timmy",shopDescription,"");
+
+  // Test shop interface
+  while (WeaponsShop.showShopInterface() == true) {
+    cout << "True" << endl; 
+  }
+
+  // Create new inventory
+  inventory[0] = BaseItem("Bigger Sword");
+  inventory[1] = BaseItem("Smaller Sword");
+  inventory[2] = BaseItem("Gods Sword");
+  inventory[3] = BaseItem("Blazing Sword");
+  inventory[4] = BaseItem("The Origin Sword");
+  
+  prices[0] = 20;
+  prices[1] = 2;
+  prices[2] = 200;
+  prices[3] = 60;
+  prices[4] = 120; 
+
+  forSaleStatus[0] = true;
+  forSaleStatus[1] = true;
+  forSaleStatus[2] = true;
+  forSaleStatus[3] = true;
+  forSaleStatus[4] = true;
+
+  WeaponsShop.updateShop(inventory,prices,forSaleStatus);
+
+   // Test shop interface
+  while (WeaponsShop.showShopInterface() == true) {
+    cout << "True" << endl; 
+  }
+
+  cout << "Test complete" << endl; 
 }
