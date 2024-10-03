@@ -45,33 +45,41 @@ void Town::showLocation(Game &game, int &cashOnHand)
          << endl << "8. Save and Leave Game" << endl << divider << endl;
     cin >> userDecision; 
     cout << divider << endl; 
-    sleep_for(seconds(5));
     switch (userDecision) {
         case 1:
+            sleep_for(seconds(1));
             enterShop(game.viewShops()[0],cashOnHand);
             break;
         case 2:
+            sleep_for(seconds(1));
             enterShop(game.viewShops()[1],cashOnHand);
             break;
         case 3:
+            sleep_for(seconds(1));
             enterShop(game.viewShops()[2],cashOnHand);
             break;
         case 4:
+            sleep_for(seconds(1));
             enterShop(game.viewShops()[3],cashOnHand);
             break;
         case 5:
+            sleep_for(seconds(1));
             travelToLocation(game,game.viewLocations()[1]);
             break;
         case 6:
+            sleep_for(seconds(1));
             travelToLocation(game,game.viewLocations()[2]);
             break;
         case 7:
+            sleep_for(seconds(1));
             cout << "N/A" << endl << divider << endl;
             break;
         case 8: 
+            sleep_for(seconds(1));
             game.endGame();
             break;
         default: 
+            sleep_for(seconds(1));
             cout << "You seem lost. Perhaps you should stay where you are" << endl << divider << endl;
             break;
     }

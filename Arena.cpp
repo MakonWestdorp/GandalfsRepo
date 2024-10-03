@@ -36,13 +36,14 @@ void Arena::showLocation(Game &game, int &cashOnHand)
     cout << "1. Travel to Town" << endl << divider << endl;
     cin >> userDecision; 
     cout << divider << endl;
-    sleep_for(seconds(5));
     
     switch (userDecision) {
         case 1:
+            sleep_for(seconds(1));
             travelToLocation(game,game.viewLocations()[0]);
             break;
         default:
+            sleep_for(seconds(1));
             cout << "You seem lost. Perhaps you should stay where you are" << endl << divider << endl;
             break;
     }

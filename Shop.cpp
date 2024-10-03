@@ -111,15 +111,15 @@ bool Shop::showShopInterface(int &cashOnHand)
 
     if (userDecision <= inventorySize && userDecision > 0) {
         cout << purchaseItem(userDecision,cashOnHand) << endl << divider << endl; 
-        sleep_for(seconds(5));
+        sleep_for(seconds(2));
         return true; // User will stay in the shop
     } else if (userDecision == count) {
         cout << "Have a good day!" << endl << divider << endl; 
-        sleep_for(seconds(5));
+        sleep_for(seconds(2));
         return false; // User will leave
     } else {
         cout << "I think you mispoke" << endl << divider << endl;
-        sleep_for(seconds(5));
+        sleep_for(seconds(2));
         return true; // User will stay
     }
      
