@@ -2,6 +2,12 @@
 
 #include <iostream>
 using namespace std;
+void UnitTest::StartAllTests()
+{
+  void StartEntityTests();
+  void StartLocationTests();
+  void StartShopTests();
+}
 // Start tests
 void UnitTest::StartEntityTests() {
   EntityTakeDamage();
@@ -128,8 +134,9 @@ void UnitTest::BasicShopTest()
   Shop WeaponsShop(inventory,prices,forSaleStatus,"Steel & Sorcery","Timmy",shopDescription,"");
 
   // Test shop interface
-  while (WeaponsShop.showShopInterface() == true) {
-    cout << "True" << endl; 
+  int cashOnHand = 50;
+  while (WeaponsShop.showShopInterface(cashOnHand) == true) {
+  
   }
 
   // Create new inventory
@@ -154,9 +161,7 @@ void UnitTest::BasicShopTest()
   WeaponsShop.updateShop(inventory,prices,forSaleStatus);
 
    // Test shop interface
-  while (WeaponsShop.showShopInterface() == true) {
-    cout << "True" << endl; 
+  while (WeaponsShop.showShopInterface(cashOnHand) == true) {
+  
   }
-
-  cout << "Test complete" << endl; 
 }

@@ -28,8 +28,8 @@ class Shop {
         BaseItem *viewInventory(); // Returns inventory
         int *viewPrices(); // Returns prices
         bool *viewForSaleStatus(); // Returns for sale statuses 
-        string purchaseItem(int itemNumber); // Allows user to purchase item
-        bool showShopInterface(); // Shows the shop interface and items
+        string purchaseItem(int itemNumber, int &cashOnHand); // Allows user to purchase item
+        bool showShopInterface(int &cashOnHand); // Shows the shop interface and items
         void updateShop(BaseItem *inventory, int *prices, bool *forSaleStatus); // Updates inventory
 
 

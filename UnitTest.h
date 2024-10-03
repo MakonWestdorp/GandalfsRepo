@@ -9,6 +9,7 @@
 
 class UnitTest {
  public:
+  void StartAllTests();
   void StartEntityTests();
   void StartLocationTests();
   void StartShopTests();

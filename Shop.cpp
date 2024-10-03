@@ -51,9 +51,8 @@ bool *Shop::viewForSaleStatus()
     return this->forSaleStatus;
 }
 
-string Shop::purchaseItem(int itemNumber)
+string Shop::purchaseItem(int itemNumber, int &cashOnHand)
 {
-    int cashOnHand = 10; // Temporary variable as player class does not yet exist
 
     // Checking if item exists
     if (itemNumber > inventorySize) { 
@@ -84,7 +83,7 @@ string Shop::purchaseItem(int itemNumber)
 
 }
 
-bool Shop::showShopInterface()
+bool Shop::showShopInterface(int &cashOnHand)
 {
     // Divider to seperate elements of the visual
     string divider = "+------------------------------------------------------------------+";
@@ -94,8 +93,9 @@ bool Shop::showShopInterface()
     cout << endl << endl << endl << endl << endl << endl; 
 
     // Show shop visuals 
-    cout << divider << endl << this->shopName << "  :  " << this->shopKeeperName << endl 
-         << divider << endl << this->description << endl << divider << endl; 
+    cout << divider << endl << this->shopName << "   |   Shop Keeper : " << this->shopKeeperName 
+         << "   |   Cash on hand : " << cashOnHand << endl << divider << endl << this->description 
+         << endl << divider << endl; 
 
     // Show shop options
     for (count = 0; count < inventorySize; count++) {
@@ -110,7 +110,7 @@ bool Shop::showShopInterface()
     cout << divider << endl; 
 
     if (userDecision <= inventorySize && userDecision > 0) {
-        cout << purchaseItem(userDecision) << endl << divider << endl; 
+        cout << purchaseItem(userDecision,cashOnHand) << endl << divider << endl; 
         sleep_for(seconds(5));
         return true; // User will stay in the shop
     } else if (userDecision == count) {
