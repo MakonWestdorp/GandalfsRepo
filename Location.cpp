@@ -15,7 +15,7 @@ Location::Location(string name, string description, string asciiDescription)
     this->asciiDescription = asciiDescription;   
 }
 
-void Location::showLocation()
+void Location::showLocation(Game &game, int &cashOnHand)
 {   
     // Divider to seperate elements of the visual
     string divider = "+------------------------------------------------------------------+"; 
@@ -30,9 +30,11 @@ void Location::showLocation()
     
 }
 
-void Location::travelToLocation(Game& game, Location destination)
-{
+void Location::travelToLocation(Game& game, Location *destination)
+{   
+    int cashOnHand = 0; // Temporary -Needed for function call
     game.travel(destination);
+    game.viewCurrentLocation()->showLocation(game,cashOnHand);
 }
 
 string Location::getName()

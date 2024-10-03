@@ -23,8 +23,8 @@ class Location {
     public:
         Location(); // Default constructor 
         Location(string name, string description, string asciiDescription); // Constructor 
-        void showLocation(); // Displays the locations details 
-        void travelToLocation(Game& game, Location destination); // Changes the location 
+        virtual void showLocation(Game &game, int &cashOnHand); // Displays the locations details 
+        virtual void travelToLocation(Game &game, Location *destination); // Changes the location 
         string getName(); // Returns the name
 
 };

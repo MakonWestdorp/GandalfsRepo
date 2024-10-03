@@ -10,6 +10,9 @@
 #include "Location.h"
 #include "UnitTest.h"
 #include "Shop.h"
+#include "Town.h"
+#include "Forest.h"
+#include "Arena.h"
 
 // Namespace
 using namespace std;
@@ -32,27 +35,41 @@ class Game {
  private:
   // Variables for keeping track of the game
   int bossesDefeated;
-  Location currentLocation;
-  bool playerAlive;
+  Location *currentLocation;
+  bool playerAlive, gameRunning;
+
+  // Shops
+  Shop *Shops;
+  Shop WeaponShop;
+  Shop MagicShop;
+  Shop ArmourShop;
+  Shop GeneralShop;
+
+  // Locations
+  Location **Locations;
+  Town TownName;
+  Forest ForestName;
+  Arena ArenaName;
 
  protected:
   Game();  // Default constructor
-  Game(int bossesDefeated, Location location, bool playerAlive);  // Constructor
-  bool initialiseShops();       // Initialises shops
-  bool initialiseLocations();   // Initialises locations
+  void initialiseShops();       // Initialises shops
+  void initialiseLocations();   // Initialises locations
   void playTutorial();          // Plays the tutorial
   void openCharacterCreator();  // Runs the character creator
+ public:
   bool saveGame();              // Saves the game
   void exitGame();              // Exits the game
   bool loadGame();              // Loads the game
   void endGame();               // Ends the game if the player dies
- public:
-  void travel(Location destination);           // Switches location
-  void travelToShop(Shop shopName);                         // Switches to a shop
-  void setCurrentLocation(Location location);  // Sets the location
-  Location viewCurrentLocation();              // Returns current location
+  void travel(Location *destination);           // Switches location
+  void setCurrentLocation(Location *location);  // Sets the location
+  Location *viewCurrentLocation();              // Returns current location
+  Shop *viewShops(); // Returns list of shops
+  Location **viewLocations(); // Returns list of locations
   int getNumBosses();
   void setNumBosses(int InputNumBosses);
+  bool isGameRunning(); // Returns true if the game is still run, false if not
 };
 
 #endif
