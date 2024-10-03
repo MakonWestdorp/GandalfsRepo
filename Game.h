@@ -9,6 +9,7 @@
 #include "Entity.h"
 #include "Location.h"
 #include "UnitTest.h"
+#include "Shop.h"
 
 // Namespace
 using namespace std;
@@ -47,7 +48,7 @@ class Game {
   void endGame();               // Ends the game if the player dies
  public:
   void travel(Location destination);           // Switches location
-  void travelToShop();                         // Switches to a shop
+  void travelToShop(Shop shopName);                         // Switches to a shop
   void setCurrentLocation(Location location);  // Sets the location
   Location viewCurrentLocation();              // Returns current location
   int getNumBosses();

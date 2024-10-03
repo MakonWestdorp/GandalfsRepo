@@ -34,7 +34,7 @@ void Game::endGame() {}
 // Public functions
 void Game::travel(Location destination) { this->currentLocation = destination; }
 
-void Game::travelToShop() {}
+void Game::travelToShop(Shop shopName) {}
 
 void Game::setCurrentLocation(Location location) {
   this->currentLocation = location;
