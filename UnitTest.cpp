@@ -50,27 +50,31 @@ void UnitTest::EntityMagicAttack() {
   Entity* PtrToSauron = &Sauron;
   Sauron.MagicAttack(PtrToGandalf);
   if (Gandalf.getHP() != 10) {
-    cout << "EntityMeleeAttack Resistance attack failed" << endl;
+    cout << "EntityMagicAttack Resistance attack failed" << endl;
   };
   Gandalf.MagicAttack(PtrToSauron);
   if (Sauron.getHP() != 1) {
-    cout << "EntityMeleeAttack Non-Resistance attack failed" << endl;
+    cout << "EntityMagicAttack Non-Resistance attack failed" << endl;
   };
 }
 
 // Location test functions
-void UnitTest::LocationTravel()
-{ 
+void UnitTest::LocationTravel() {
   // Descriptions
-  string forestDescription = "In a dark, mist-shrouded forest teeming with fearsome monsters, \n hidden treasures glimmer among ancient ruins, luring the brave and foolish alike."; 
-  string townDescription = "The medieval town bustles with life, its cobblestone streets \n winding past stone shops beneath the shadow of a towering castle";
+  string forestDescription =
+      "In a dark, mist-shrouded forest teeming with fearsome monsters, \n "
+      "hidden treasures glimmer among ancient ruins, luring the brave and "
+      "foolish alike.";
+  string townDescription =
+      "The medieval town bustles with life, its cobblestone streets \n winding "
+      "past stone shops beneath the shadow of a towering castle";
 
   // Create locations
-  Location Forest("Forest",forestDescription,"");
-  Location Town("Town",townDescription,"");
+  Location Forest("Forest", forestDescription, "");
+  Location Town("Town", townDescription, "");
 
   // Create temporary game
-  Game LocationTest(0,Forest,true);
+  Game LocationTest(0, Forest, true);
 
   /*
     Runs a short test that
@@ -83,7 +87,6 @@ void UnitTest::LocationTravel()
   Location currentLocation = LocationTest.viewCurrentLocation();
   cout << currentLocation.getName() << endl;
   Forest.showLocation();
-  Forest.travelToLocation(Town); 
+  Forest.travelToLocation(Town);
   Town.showLocation();
-  
 }
