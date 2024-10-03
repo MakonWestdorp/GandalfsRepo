@@ -1,4 +1,5 @@
 #include "Game.h"
+#include "Location.h"
 
 // Protected functions
 Game::Game()
@@ -52,7 +53,7 @@ void Game::endGame()
 }
 
 // Public functions
-void Game::travelToLocation(Location destination)
+void Game::travel(Location destination)
 {
     this->currentLocation = destination; 
 }

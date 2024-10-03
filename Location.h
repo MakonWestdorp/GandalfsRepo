@@ -4,8 +4,6 @@
 #include <iostream>
 #include <string> 
 
-#include "Game.h"
-
 using namespace std; 
 
 /*
@@ -14,7 +12,8 @@ using namespace std;
 */
 
 class UnitTest; 
-class Location{
+class Game;
+class Location {
     friend class UnitTest; 
     private:
         // Variables describing a location
@@ -25,7 +24,7 @@ class Location{
         Location(); // Default constructor 
         Location(string name, string description, string asciiDescription); // Constructor 
         void showLocation(); // Displays the locations details 
-        bool travelToLocation(Location destination); // Changes the location 
+        void travelToLocation(Game& game, Location destination); // Changes the location 
         string getName(); // Returns the name
 
 };

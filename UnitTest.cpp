@@ -7,6 +7,7 @@ void UnitTest::StartTests() {
   EntityTakeDamage();
   EntityMeleeAttack();
   EntityMagicAttack();
+  LocationTravel();
 }
 
 // Entity test functions
@@ -80,10 +81,9 @@ void UnitTest::LocationTravel()
     - Shows the town
     - Output current locations mae
   */
-  Location currentLocation = LocationTest.viewCurrentLocation();
-  cout << currentLocation.getName() << endl;
-  Forest.showLocation();
-  Forest.travelToLocation(Town); 
-  Town.showLocation();
-  
+  cout << LocationTest.viewCurrentLocation().getName() << endl;
+  LocationTest.viewCurrentLocation().showLocation(); 
+  LocationTest.viewCurrentLocation().travelToLocation(LocationTest,Town);
+  cout << LocationTest.viewCurrentLocation().getName() << endl;
+  LocationTest.viewCurrentLocation().showLocation();
 }

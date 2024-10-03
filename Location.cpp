@@ -1,4 +1,5 @@
 #include "Location.h"
+#include "Game.h"
 
 Location::Location()
 {
@@ -29,9 +30,9 @@ void Location::showLocation()
     
 }
 
-bool Location::travelToLocation(Location destination)
+void Location::travelToLocation(Game& game, Location destination)
 {
-    Game::travelToLocation(destination);
+    game.travel(destination);
 }
 
 string Location::getName()
