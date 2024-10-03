@@ -7,6 +7,7 @@ void UnitTest::StartTests() {
   EntityTakeDamage();
   EntityMeleeAttack();
   EntityMagicAttack();
+  LocationTravel();
 }
 
 // Entity test functions
@@ -50,11 +51,11 @@ void UnitTest::EntityMagicAttack() {
   Entity* PtrToSauron = &Sauron;
   Sauron.MagicAttack(PtrToGandalf);
   if (Gandalf.getHP() != 10) {
-    cout << "EntityMagicAttack Resistance attack failed" << endl;
+    cout << "EntityMeleeAttack Resistance attack failed" << endl;
   };
   Gandalf.MagicAttack(PtrToSauron);
   if (Sauron.getHP() != 1) {
-    cout << "EntityMagicAttack Non-Resistance attack failed" << endl;
+    cout << "EntityMeleeAttack Non-Resistance attack failed" << endl;
   };
 }
 
@@ -84,9 +85,9 @@ void UnitTest::LocationTravel() {
     - Shows the town
     - Output current locations mae
   */
-  Location currentLocation = LocationTest.viewCurrentLocation();
-  cout << currentLocation.getName() << endl;
-  Forest.showLocation();
-  Forest.travelToLocation(Town);
-  Town.showLocation();
+  cout << LocationTest.viewCurrentLocation().getName() << endl;
+  LocationTest.viewCurrentLocation().showLocation();
+  LocationTest.viewCurrentLocation().travelToLocation(LocationTest, Town);
+  cout << LocationTest.viewCurrentLocation().getName() << endl;
+  LocationTest.viewCurrentLocation().showLocation();
 }
