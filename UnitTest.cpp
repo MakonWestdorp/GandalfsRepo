@@ -2,8 +2,7 @@
 
 #include <iostream>
 using namespace std;
-void UnitTest::StartAllTests()
-{
+void UnitTest::StartAllTests() {
   void StartEntityTests();
   void StartLocationTests();
   void StartShopTests();
@@ -15,18 +14,11 @@ void UnitTest::StartEntityTests() {
   EntityMagicAttack();
 }
 
-void UnitTest::StartLocationTests() {
-  LocationTravel();
-}
+void UnitTest::StartLocationTests() { LocationTravel(); }
 
-void UnitTest::StartShopTests() {
-  BasicShopTest();
-}
+void UnitTest::StartShopTests() { BasicShopTest(); }
 
-void UnitTest::StartTownTests()
-{
-  FirstTownTest();
-}
+void UnitTest::StartTownTests() { FirstTownTest(); }
 
 // Entity test functions
 void UnitTest::EntityTakeDamage() {
@@ -50,8 +42,8 @@ void UnitTest::EntityTakeDamage() {
 void UnitTest::EntityMeleeAttack() {
   Entity Gandalf = Entity("Gandalf", 15, 4, 8, 15, "Magic");
   Entity Sauron = Entity("Sauron", 15, 4, 8, 10, "BluntForce");
-  Entity* PtrToGandalf = &Gandalf;
-  Entity* PtrToSauron = &Sauron;
+  Entity *PtrToGandalf = &Gandalf;
+  Entity *PtrToSauron = &Sauron;
   Sauron.MeleeAttack(PtrToGandalf);
   if (Gandalf.getHP() != 15 - Sauron.getSTR()) {
     cout << "EntityMeleeAttack Non-Resistance attack failed" << endl;
@@ -65,8 +57,8 @@ void UnitTest::EntityMeleeAttack() {
 void UnitTest::EntityMagicAttack() {
   Entity Gandalf = Entity("Gandalf", 15, 4, 8, 14, "Magic");
   Entity Sauron = Entity("Sauron", 15, 4, 8, 10, "BluntForce");
-  Entity* PtrToGandalf = &Gandalf;
-  Entity* PtrToSauron = &Sauron;
+  Entity *PtrToGandalf = &Gandalf;
+  Entity *PtrToSauron = &Sauron;
   Sauron.MagicAttack(PtrToGandalf);
   if (Gandalf.getHP() != 10) {
     cout << "EntityMeleeAttack Resistance attack failed" << endl;
@@ -95,7 +87,7 @@ void UnitTest::LocationTravel() {
   // Create temporary game
   Game LocationTest;
 
-  int cashOnHand = 0; // Needed to call function
+  int cashOnHand = 0;  // Needed to call function
 
   /*
     Runs a short test that
@@ -107,30 +99,29 @@ void UnitTest::LocationTravel() {
   */
   LocationTest.setCurrentLocation(Forest);
   cout << LocationTest.viewCurrentLocation()->getName() << endl;
-  LocationTest.viewCurrentLocation()->showLocation(LocationTest,cashOnHand);
+  LocationTest.viewCurrentLocation()->showLocation(LocationTest, cashOnHand);
   LocationTest.viewCurrentLocation()->travelToLocation(LocationTest, Town);
   cout << LocationTest.viewCurrentLocation()->getName() << endl;
-  LocationTest.viewCurrentLocation()->showLocation(LocationTest,cashOnHand);
+  LocationTest.viewCurrentLocation()->showLocation(LocationTest, cashOnHand);
 }
 
-void UnitTest::BasicShopTest()
-{
+void UnitTest::BasicShopTest() {
   // Create inventory
-  BaseItem *inventory = new BaseItem[5]; 
+  BaseItem *inventory = new BaseItem[5];
   inventory[0] = BaseItem("Big Sword");
   inventory[1] = BaseItem("Small Sword");
   inventory[2] = BaseItem("Legendary Sword");
   inventory[3] = BaseItem("Fire Sword");
   inventory[4] = BaseItem("Ancient Sword");
 
-  int *prices = new int[5]; 
+  int *prices = new int[5];
   prices[0] = 10;
   prices[1] = 5;
   prices[2] = 100;
   prices[3] = 30;
-  prices[4] = 60; 
+  prices[4] = 60;
 
-  bool *forSaleStatus = new bool[5]; 
+  bool *forSaleStatus = new bool[5];
   forSaleStatus[0] = true;
   forSaleStatus[1] = true;
   forSaleStatus[2] = true;
@@ -138,13 +129,15 @@ void UnitTest::BasicShopTest()
   forSaleStatus[4] = true;
 
   // Create shop
-  string shopDescription = "Steel & Sorcery offers finely crafted blades, \nfrom master-forged steel to rare enchanted swords";
-  Shop WeaponsShop(inventory,prices,forSaleStatus,"Steel & Sorcery","Timmy",shopDescription,"");
+  string shopDescription =
+      "Steel & Sorcery offers finely crafted blades, \nfrom master-forged "
+      "steel to rare enchanted swords";
+  Shop WeaponsShop(inventory, prices, forSaleStatus, "Steel & Sorcery", "Timmy",
+                   shopDescription, "");
 
   // Test shop interface
   int cashOnHand = 50;
   while (WeaponsShop.showShopInterface(cashOnHand) == true) {
-  
   }
 
   // Create new inventory
@@ -153,12 +146,12 @@ void UnitTest::BasicShopTest()
   inventory[2] = BaseItem("Gods Sword");
   inventory[3] = BaseItem("Blazing Sword");
   inventory[4] = BaseItem("The Origin Sword");
-  
+
   prices[0] = 20;
   prices[1] = 2;
   prices[2] = 200;
   prices[3] = 60;
-  prices[4] = 120; 
+  prices[4] = 120;
 
   forSaleStatus[0] = true;
   forSaleStatus[1] = true;
@@ -166,23 +159,30 @@ void UnitTest::BasicShopTest()
   forSaleStatus[3] = true;
   forSaleStatus[4] = true;
 
-  WeaponsShop.updateShop(inventory,prices,forSaleStatus);
+  WeaponsShop.updateShop(inventory, prices, forSaleStatus);
 
-   // Test shop interface
+  // Test shop interface
   while (WeaponsShop.showShopInterface(cashOnHand) == true) {
-  
   }
 }
 
-void UnitTest::FirstTownTest()
-{ 
-  Game game; 
+void UnitTest::FirstTownTest() {
+  Game game;
   int cashOnHand = 50;
   game.initialiseLocations();
   game.initialiseShops();
   game.setCurrentLocation(game.viewLocations()[0]);
 
-  while(game.isGameRunning() == true) {
-    game.viewCurrentLocation()->showLocation(game,cashOnHand);
+  while (game.isGameRunning() == true) {
+    game.viewCurrentLocation()->showLocation(game, cashOnHand);
   }
+}
+
+void UnitTest::BaseItemNameGeneratorTest() {
+  BaseItem Item1 = BaseItem();
+  BaseItem Item2 = BaseItem();
+  BaseItem Item3 = BaseItem();
+  cout << "Item1 name: " << Item1.getName() << endl;
+  cout << "Item2 name: " << Item2.getName() << endl;
+  cout << "Item3 name: " << Item3.getName() << endl;
 }

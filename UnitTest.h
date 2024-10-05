@@ -1,14 +1,14 @@
 #ifndef UNITTEST_H
 #define UNITTEST_H
 
-#include "Entity.h"
-#include "Location.h"
-#include "Game.h"
+#include "Arena.h"
 #include "BaseItem.h"
+#include "Entity.h"
+#include "Forest.h"
+#include "Game.h"
+#include "Location.h"
 #include "Shop.h"
 #include "Town.h"
-#include "Forest.h"
-#include "Arena.h"
 
 class UnitTest {
  public:
@@ -31,7 +31,8 @@ class UnitTest {
   void BasicShopTest();
 
   // Town Class tests
-  void FirstTownTest(); 
-
+  void FirstTownTest();
+  // Base Item tests
+  void BaseItemNameGeneratorTest();
 };
 #endif

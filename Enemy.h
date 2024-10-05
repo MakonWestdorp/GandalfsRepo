@@ -1,5 +1,6 @@
 #ifndef ENEMY_H
 #define ENEMY_H
+#include "BaseItem.h"
 #include "Entity.h"
 class Enemy : public Entity {
  public:
@@ -8,5 +9,7 @@ class Enemy : public Entity {
   void MagicAttack(Entity* Target);
 
  private:
+  BaseItem RandomItemForEnemy();
+  BaseItem Inventory = RandomItemForEnemy()
 };
 #endif

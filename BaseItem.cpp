@@ -5,9 +5,7 @@ BaseItem::BaseItem() { name = nameRandomiser(); }
 BaseItem::BaseItem(string inputName) { name = inputName; }
 
 string BaseItem::getName() { return name; }
-string getRandomElement(const string elements[], int size) {
-  return elements[rand() % size];
-}
+
 string BaseItem::nameRandomiser() {
   // 1% chance for a rare prefix
   bool isRare = (rand() % 100) < 1;
@@ -44,4 +42,8 @@ string BaseItem::nameRandomiser() {
   }
 
   return itemName;
+}
+
+string BaseItem::getRandomElement(const string elements[], int size) {
+  return elements[rand() % size];
 }
