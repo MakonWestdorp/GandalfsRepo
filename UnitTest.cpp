@@ -20,6 +20,8 @@ void UnitTest::StartShopTests() { BasicShopTest(); }
 
 void UnitTest::StartTownTests() { FirstTownTest(); }
 
+void UnitTest::StartBaseItemTests() { BaseItemNameGeneratorTest(); }
+
 // Entity test functions
 void UnitTest::EntityTakeDamage() {
   Entity Gandalf = Entity("Gandalf", 15, 4, 7, 35, "Magic");

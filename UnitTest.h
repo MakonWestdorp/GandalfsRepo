@@ -17,6 +17,7 @@ class UnitTest {
   void StartLocationTests();
   void StartShopTests();
   void StartTownTests();
+  void StartBaseItemTests();
 
  private:
   // Entity class tests
