@@ -10,6 +10,6 @@ class Enemy : public Entity {
 
  private:
   BaseItem RandomItemForEnemy();
-  BaseItem Inventory = RandomItemForEnemy()
+  BaseItem Inventory = RandomItemForEnemy();
 };
 #endif

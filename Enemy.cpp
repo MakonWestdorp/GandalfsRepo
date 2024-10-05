@@ -13,4 +13,5 @@ BaseItem Enemy::RandomItemForEnemy() {
   } else {
     RandomItem;  // Handheld Item
   };
+  return RandomItem;
 }

@@ -55,6 +55,6 @@ int main() {
   }
 
   cout << endl << "Test's Complete" << endl << divider;
-
+  cout << endl;
   return 0;
 }
