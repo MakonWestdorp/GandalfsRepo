@@ -1,6 +1,11 @@
 #include "BaseItem.h"
 
-BaseItem::BaseItem() { name = nameRandomiser(); }
+#include "Game.h"
+BaseItem::BaseItem() {
+  int numBosses = Game::getNumBosses();
+  DamageOrBuff = (rand() % numBosses * 5) + numBosses;
+  name = nameRandomiser();
+}
 
 BaseItem::BaseItem(string inputName) { name = inputName; }
 

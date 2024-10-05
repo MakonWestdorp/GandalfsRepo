@@ -6,13 +6,13 @@
 #include <string>
 
 // Include classes
+#include "Arena.h"
 #include "Entity.h"
+#include "Forest.h"
 #include "Location.h"
-#include "UnitTest.h"
 #include "Shop.h"
 #include "Town.h"
-#include "Forest.h"
-#include "Arena.h"
+#include "UnitTest.h"
 
 // Namespace
 using namespace std;
@@ -52,24 +52,26 @@ class Game {
   Arena ArenaName;
 
  protected:
-  Game();  // Default constructor
+  Game();                       // Default constructor
   void initialiseShops();       // Initialises shops
   void initialiseLocations();   // Initialises locations
   void playTutorial();          // Plays the tutorial
   void openCharacterCreator();  // Runs the character creator
  public:
-  bool saveGame();              // Saves the game
-  void exitGame();              // Exits the game
-  bool loadGame();              // Loads the game
-  void endGame();               // Ends the game if the player dies
-  void travel(Location *destination);           // Switches location
+  bool saveGame();                     // Saves the game
+  void exitGame();                     // Exits the game
+  bool loadGame();                     // Loads the game
+  void endGame();                      // Ends the game if the player dies
+  void travel(Location *destination);  // Switches location
   void setCurrentLocation(Location *location);  // Sets the location
   Location *viewCurrentLocation();              // Returns current location
-  Shop *viewShops(); // Returns list of shops
-  Location **viewLocations(); // Returns list of locations
-  int getNumBosses();
+  Shop *viewShops();                            // Returns list of shops
+  Location **viewLocations();                   // Returns list of locations
+
   void setNumBosses(int InputNumBosses);
-  bool isGameRunning(); // Returns true if the game is still run, false if not
+  bool isGameRunning();  // Returns true if the game is still run, false if not
+ public:
+  static int getNumBosses();
 };
 
 #endif
