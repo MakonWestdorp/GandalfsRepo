@@ -135,7 +135,7 @@ Location **Game::viewLocations()
     return this->Locations;
 }
 
-int Game::getNumBosses() { return bossesDefeated; }
+int Game::getNumBosses() { return this->bossesDefeated; }
 
 void Game::setNumBosses(int InputNumBosses) { 
   this->bossesDefeated = InputNumBosses; 

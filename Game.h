@@ -70,8 +70,7 @@ class Game {
 
   void setNumBosses(int InputNumBosses);
   bool isGameRunning();  // Returns true if the game is still run, false if not
- public:
-  static int getNumBosses();
+  int getNumBosses();// Returns number of bosses
 };
 
 #endif
