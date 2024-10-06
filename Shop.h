@@ -5,6 +5,7 @@
 #include <iostream>
 #include <string> 
 #include "BaseItem.h"
+#include "Game.h"
 
 using namespace std; 
 
@@ -23,7 +24,7 @@ class Shop {
         float ownerAnnoyanceLevel; 
     public:
         Shop(); // Default Constructor 
-        Shop(BaseItem *inventory, int *prices, bool *forSaleStatus, string shopName, 
+        Shop(int *prices, bool *forSaleStatus, string shopName, 
              string shopKeeperName, string description, string asciiDescription); // Constructor 
         BaseItem *viewInventory(); // Returns inventory
         int *viewPrices(); // Returns prices

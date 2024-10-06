@@ -6,6 +6,8 @@
 
 using namespace std;
 
+class Game;
+
 class BaseItem {
  private:
   string name;

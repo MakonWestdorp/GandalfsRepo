@@ -16,7 +16,7 @@ Game::Game() {
   this->gameRunning = true;
 }
 
-void Game::initialiseShops() { 
+void Game::initialiseShops() {
   // Shop Descriptions
   string WeaponDescription = "Steel & Sorcery offers finely crafted blades, \nfrom master-forged steel to rare enchanted swords";
   string MagicDescription = "A mystical emporium filled with enchanting staves, \neach imbued with the essence of elemental magic";
@@ -28,16 +28,6 @@ void Game::initialiseShops() {
   string MagicAscii = "";
   string ArmourAscii = "";
   string GeneralAscii = "";
-
-  // Shop inventory - temporary
-  BaseItem *WeaponInventory = new BaseItem[5];
-  fill(WeaponInventory,WeaponInventory + 5, BaseItem("Sword"));
-  BaseItem *MagicInventory = new BaseItem[5];
-  fill(MagicInventory,MagicInventory + 5, BaseItem("Staff"));
-  BaseItem *ArmourInventory = new BaseItem[5];
-  fill(ArmourInventory,ArmourInventory + 5, BaseItem("Leather Armour"));
-  BaseItem *GeneralInventory = new BaseItem[5];
-  fill(GeneralInventory,GeneralInventory + 5, BaseItem("Healing Potion"));
 
   // Shop prices - temporary 
   int *WeaponPrices = new int[5];
@@ -60,10 +50,10 @@ void Game::initialiseShops() {
   fill(GeneralForSale,GeneralForSale+5,true);
 
   // Specific constructors will be used later
-  WeaponShop = Shop(WeaponInventory,WeaponPrices,WeaponForSale,"Steel & Sorcery","Timmy", WeaponDescription, WeaponAscii);
-  MagicShop = Shop(MagicInventory,MagicPrices,MagicForSale,"The Eldritch Emporium","Rufus",MagicDescription,MagicAscii);
-  ArmourShop = Shop(ArmourInventory,ArmourPrices,ArmourForSale,"Defender's Den","Keith",ArmourDescription,ArmourAscii);
-  GeneralShop = Shop(GeneralInventory,GeneralPrices,GeneralForSale,"The Adventurer's Arsenal","James",GeneralDescription,GeneralAscii);
+  WeaponShop = Shop(WeaponPrices,WeaponForSale,"Steel & Sorcery","Timmy", WeaponDescription, WeaponAscii);
+  MagicShop = Shop(MagicPrices,MagicForSale,"The Eldritch Emporium","Rufus",MagicDescription,MagicAscii);
+  ArmourShop = Shop(ArmourPrices,ArmourForSale,"Defender's Den","Keith",ArmourDescription,ArmourAscii);
+  GeneralShop = Shop(GeneralPrices,GeneralForSale,"The Adventurer's Arsenal","James",GeneralDescription,GeneralAscii);
 
   Shops = new Shop[4];
   Shops[0] = WeaponShop;

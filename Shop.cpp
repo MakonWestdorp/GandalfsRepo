@@ -7,6 +7,9 @@
 using namespace chrono;
 using namespace this_thread;
 
+// Include library for fill
+#include <algorithm>
+
 Shop::Shop()
 {
     this->inventory = nullptr; 
@@ -22,9 +25,8 @@ Shop::Shop()
 
 }
 
-Shop::Shop(BaseItem *inventory, int *prices, bool *forSaleStatus, string shopName, string shopKeeperName, string description, string asciiDescription)
+Shop::Shop(int *prices, bool *forSaleStatus, string shopName, string shopKeeperName, string description, string asciiDescription)
 {
-    this->inventory = inventory; 
     this->prices = prices; 
     this->forSaleStatus = forSaleStatus;
     this->shopName = shopName;
@@ -34,6 +36,10 @@ Shop::Shop(BaseItem *inventory, int *prices, bool *forSaleStatus, string shopNam
     this->shopLevel = 1; 
     this->ownerAnnoyanceLevel = 0; 
     this->inventorySize = 5; 
+
+    // Generate inventory
+    this->inventory = new BaseItem*[5];
+
 }
 
 BaseItem *Shop::viewInventory()

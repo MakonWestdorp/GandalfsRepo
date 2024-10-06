@@ -7,7 +7,7 @@ void Enemy::MeleeAttack(Entity* Target) {}
 void Enemy::MagicAttack(Entity* Target) {}
 
 BaseItem Enemy::RandomItemForEnemy() {
-  BaseItem RandomItem;
+  BaseItem RandomItem();
   if (rand() % 2 < 1) {
     RandomItem;  // Whatever a buff item ends up being
   } else {

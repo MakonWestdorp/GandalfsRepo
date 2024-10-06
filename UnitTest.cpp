@@ -108,13 +108,15 @@ void UnitTest::LocationTravel() {
 }
 
 void UnitTest::BasicShopTest() {
+  // Create Game
+  Game Game;
   // Create inventory
-  BaseItem *inventory = new BaseItem[5];
-  inventory[0] = BaseItem("Big Sword");
-  inventory[1] = BaseItem("Small Sword");
-  inventory[2] = BaseItem("Legendary Sword");
-  inventory[3] = BaseItem("Fire Sword");
-  inventory[4] = BaseItem("Ancient Sword");
+  BaseItem *inventory = new BaseItem*[5];
+  inventory[0] = BaseItem(Game);
+  inventory[1] = BaseItem(Game);
+  inventory[2] = BaseItem(Game);
+  inventory[3] = BaseItem(Game);
+  inventory[4] = BaseItem(Game);
 
   int *prices = new int[5];
   prices[0] = 10;
@@ -134,7 +136,7 @@ void UnitTest::BasicShopTest() {
   string shopDescription =
       "Steel & Sorcery offers finely crafted blades, \nfrom master-forged "
       "steel to rare enchanted swords";
-  Shop WeaponsShop(inventory, prices, forSaleStatus, "Steel & Sorcery", "Timmy",
+  Shop WeaponsShop(prices, forSaleStatus, "Steel & Sorcery", "Timmy",
                    shopDescription, "");
 
   // Test shop interface
@@ -143,11 +145,11 @@ void UnitTest::BasicShopTest() {
   }
 
   // Create new inventory
-  inventory[0] = BaseItem("Bigger Sword");
-  inventory[1] = BaseItem("Smaller Sword");
-  inventory[2] = BaseItem("Gods Sword");
-  inventory[3] = BaseItem("Blazing Sword");
-  inventory[4] = BaseItem("The Origin Sword");
+  inventory[0] = BaseItem(Game);
+  inventory[1] = BaseItem(Game);
+  inventory[2] = BaseItem(Game);
+  inventory[3] = BaseItem(Game);
+  inventory[4] = BaseItem(Game);
 
   prices[0] = 20;
   prices[1] = 2;
@@ -181,9 +183,10 @@ void UnitTest::FirstTownTest() {
 }
 
 void UnitTest::BaseItemNameGeneratorTest() {
-  BaseItem Item1 = BaseItem();
-  BaseItem Item2 = BaseItem();
-  BaseItem Item3 = BaseItem();
+  Game Game;
+  BaseItem Item1 = BaseItem(Game);
+  BaseItem Item2 = BaseItem(Game);
+  BaseItem Item3 = BaseItem(Game);
   cout << "Item1 name: " << Item1.getName() << endl;
   cout << "Item2 name: " << Item2.getName() << endl;
   cout << "Item3 name: " << Item3.getName() << endl;
