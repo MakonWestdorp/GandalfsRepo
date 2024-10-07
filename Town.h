@@ -6,7 +6,7 @@
 #include "Location.h"
 
 class Game;
-class Shop;
+class Shop; 
 
 class Town : public Location {
     public: 

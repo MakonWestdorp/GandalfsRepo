@@ -4,12 +4,11 @@
 // Include libraries
 #include <iostream>
 #include <string> 
-#include "BaseItem.h"
-#include "Game.h"
 
 using namespace std; 
 
 // Temporary forward declare as BaseItem class does not yet exist
+class BaseItem;
 
 class Shop {
     private:
@@ -24,14 +23,14 @@ class Shop {
         float ownerAnnoyanceLevel; 
     public:
         Shop(); // Default Constructor 
-        Shop(int *prices, bool *forSaleStatus, string shopName, 
+        Shop(int &numBossesDefeated, int *prices, bool *forSaleStatus, string shopName, 
              string shopKeeperName, string description, string asciiDescription); // Constructor 
         BaseItem *viewInventory(); // Returns inventory
         int *viewPrices(); // Returns prices
         bool *viewForSaleStatus(); // Returns for sale statuses 
         string purchaseItem(int itemNumber, int &cashOnHand); // Allows user to purchase item
         bool showShopInterface(int &cashOnHand); // Shows the shop interface and items
-        void updateShop(BaseItem *inventory, int *prices, bool *forSaleStatus); // Updates inventory
+        void updateShop(int &numBossesDefeated, int *prices, bool *forSaleStatus); // Updates inventory
 
 
 };

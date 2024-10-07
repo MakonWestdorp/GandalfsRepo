@@ -25,7 +25,7 @@ Shop::Shop()
 
 }
 
-Shop::Shop(int *prices, bool *forSaleStatus, string shopName, string shopKeeperName, string description, string asciiDescription)
+Shop::Shop(int &numBossesDefeated, int *prices, bool *forSaleStatus, string shopName, string shopKeeperName, string description, string asciiDescription)
 {
     this->prices = prices; 
     this->forSaleStatus = forSaleStatus;
@@ -38,7 +38,10 @@ Shop::Shop(int *prices, bool *forSaleStatus, string shopName, string shopKeeperN
     this->inventorySize = 5; 
 
     // Generate inventory
-    this->inventory = new BaseItem*[5];
+    this->inventory = new BaseItem[5];
+    for (int i = 0; i < inventorySize; i++) {
+        inventory[i] = BaseItem(numBossesDefeated);
+    }
 
 }
 
@@ -133,7 +136,7 @@ bool Shop::showShopInterface(int &cashOnHand)
 
 }
 
-void Shop::updateShop(BaseItem *inventory, int *prices, bool *forSaleStatus)
+void Shop::updateShop(int &numBossesDefeated, int *prices, bool *forSaleStatus)
 {
     // Delete old inventory
     //delete this->inventory; 
@@ -141,7 +144,10 @@ void Shop::updateShop(BaseItem *inventory, int *prices, bool *forSaleStatus)
     //delete this->forSaleStatus; 
 
     // Implement new inventory
-    this->inventory = inventory; 
     this->prices = prices; 
     this->forSaleStatus = forSaleStatus;
+
+    for (int i = 0; i < inventorySize; i++) {
+        inventory[i] = BaseItem(numBossesDefeated);
+    }
 }

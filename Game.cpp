@@ -4,19 +4,20 @@
 #include "Town.h"
 #include "Forest.h"
 #include "Arena.h"
+#include "Shop.h"
 
 #include <algorithm>
 using namespace std;
 
 // Protected functions
 Game::Game() {
-  this->bossesDefeated = 0;
   this->currentLocation = nullptr;
   this->playerAlive = true;
   this->gameRunning = true;
 }
 
 void Game::initialiseShops() {
+  int numBossesDefeated = 1; // Temporary
   // Shop Descriptions
   string WeaponDescription = "Steel & Sorcery offers finely crafted blades, \nfrom master-forged steel to rare enchanted swords";
   string MagicDescription = "A mystical emporium filled with enchanting staves, \neach imbued with the essence of elemental magic";
@@ -50,10 +51,10 @@ void Game::initialiseShops() {
   fill(GeneralForSale,GeneralForSale+5,true);
 
   // Specific constructors will be used later
-  WeaponShop = Shop(WeaponPrices,WeaponForSale,"Steel & Sorcery","Timmy", WeaponDescription, WeaponAscii);
-  MagicShop = Shop(MagicPrices,MagicForSale,"The Eldritch Emporium","Rufus",MagicDescription,MagicAscii);
-  ArmourShop = Shop(ArmourPrices,ArmourForSale,"Defender's Den","Keith",ArmourDescription,ArmourAscii);
-  GeneralShop = Shop(GeneralPrices,GeneralForSale,"The Adventurer's Arsenal","James",GeneralDescription,GeneralAscii);
+  WeaponShop = Shop(numBossesDefeated,WeaponPrices,WeaponForSale,"Steel & Sorcery","Timmy", WeaponDescription, WeaponAscii);
+  MagicShop = Shop(numBossesDefeated,MagicPrices,MagicForSale,"The Eldritch Emporium","Rufus",MagicDescription,MagicAscii);
+  ArmourShop = Shop(numBossesDefeated,ArmourPrices,ArmourForSale,"Defender's Den","Keith",ArmourDescription,ArmourAscii);
+  GeneralShop = Shop(numBossesDefeated,GeneralPrices,GeneralForSale,"The Adventurer's Arsenal","James",GeneralDescription,GeneralAscii);
 
   Shops = new Shop[4];
   Shops[0] = WeaponShop;
@@ -124,12 +125,6 @@ Location **Game::viewLocations()
 {
     return this->Locations;
 }
-
-int Game::getNumBosses() { return this->bossesDefeated; }
-
-void Game::setNumBosses(int InputNumBosses) { 
-  this->bossesDefeated = InputNumBosses; 
-  }
 
   bool Game::isGameRunning()
   {

@@ -6,13 +6,13 @@
 #include <string>
 
 // Include classes
-#include "Arena.h"
 #include "Entity.h"
-#include "Forest.h"
 #include "Location.h"
-#include "Shop.h"
 #include "Town.h"
+#include "Arena.h"
+#include "Forest.h"
 #include "UnitTest.h"
+#include "Shop.h"
 
 // Namespace
 using namespace std;
@@ -23,9 +23,6 @@ using namespace std;
   Forward declaring Unit testing class to give it access to the game functions
 */
 
-class Location;
-class Entity;
-class UnitTest;
 class Game {
   // Declaring Entity and Unit test as a Friend Class
   friend class Entity;
@@ -34,7 +31,6 @@ class Game {
 
  private:
   // Variables for keeping track of the game
-  int bossesDefeated;
   Location *currentLocation;
   bool playerAlive, gameRunning;
 
@@ -68,9 +64,7 @@ class Game {
   Shop *viewShops();                            // Returns list of shops
   Location **viewLocations();                   // Returns list of locations
 
-  void setNumBosses(int InputNumBosses);
   bool isGameRunning();  // Returns true if the game is still run, false if not
-  int getNumBosses();// Returns number of bosses
 };
 
 #endif

@@ -1,6 +1,7 @@
 #include "BaseItem.h"
 
 #include "Game.h"
+#include "Entity.h"
 
 void BaseItem::UseItem(Entity* Target) {
   // BaseItem UseItem function does nothing, it gets overloaded by inherited

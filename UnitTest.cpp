@@ -108,16 +108,8 @@ void UnitTest::LocationTravel() {
 }
 
 void UnitTest::BasicShopTest() {
-  // Create Game
-  Game Game;
-
   // Create inventory
-  BaseItem *inventory = new BaseItem[5];
-  inventory[0] = BaseItem(Game.getNumBosses());
-  inventory[1] = BaseItem(Game.getNumBosses());
-  inventory[2] = BaseItem(Game.getNumBosses());
-  inventory[3] = BaseItem(Game.getNumBosses());
-  inventory[4] = BaseItem(Game.getNumBosses());
+  int numBossesDefeated = 1;
 
   int *prices = new int[5];
   prices[0] = 10;
@@ -137,7 +129,7 @@ void UnitTest::BasicShopTest() {
   string shopDescription =
       "Steel & Sorcery offers finely crafted blades, \nfrom master-forged "
       "steel to rare enchanted swords";
-  Shop WeaponsShop(prices, forSaleStatus, "Steel & Sorcery", "Timmy",
+  Shop WeaponsShop(numBossesDefeated, prices, forSaleStatus, "Steel & Sorcery", "Timmy",
                    shopDescription, "");
 
   // Test shop interface
@@ -146,12 +138,6 @@ void UnitTest::BasicShopTest() {
   }
 
   // Create new inventory
-  inventory[0] = BaseItem(Game.getNumBosses());
-  inventory[1] = BaseItem(Game.getNumBosses());
-  inventory[2] = BaseItem(Game.getNumBosses());
-  inventory[3] = BaseItem(Game.getNumBosses());
-  inventory[4] = BaseItem(Game.getNumBosses());
-
   prices[0] = 20;
   prices[1] = 2;
   prices[2] = 200;
@@ -164,7 +150,7 @@ void UnitTest::BasicShopTest() {
   forSaleStatus[3] = true;
   forSaleStatus[4] = true;
 
-  WeaponsShop.updateShop(inventory, prices, forSaleStatus);
+  WeaponsShop.updateShop(numBossesDefeated, prices, forSaleStatus);
 
   // Test shop interface
   while (WeaponsShop.showShopInterface(cashOnHand) == true) {
@@ -184,10 +170,10 @@ void UnitTest::FirstTownTest() {
 }
 
 void UnitTest::BaseItemNameGeneratorTest() {
-  Game Game;
-  BaseItem Item1 = BaseItem(Game.getNumBosses());
-  BaseItem Item2 = BaseItem(Game.getNumBosses());
-  BaseItem Item3 = BaseItem(Game.getNumBosses());
+  int numBossesDefeated = 1;
+  BaseItem Item1 = BaseItem(numBossesDefeated);
+  BaseItem Item2 = BaseItem(numBossesDefeated);
+  BaseItem Item3 = BaseItem(numBossesDefeated);
   cout << "Item1 name: " << Item1.getName() << endl;
   cout << "Item2 name: " << Item2.getName() << endl;
   cout << "Item3 name: " << Item3.getName() << endl;
