@@ -9,7 +9,8 @@ class Enemy : public Entity {
   void MagicAttack(Entity* Target);
 
  private:
-  BaseItem RandomItemForEnemy();
-  BaseItem Inventory = RandomItemForEnemy();
+  int CurrentNumBossesDefeated;
+  BaseItem RandomItemForEnemy(int NumBossesDefeated);
+  BaseItem Inventory = RandomItemForEnemy(CurrentNumBossesDefeated);
 };
 #endif

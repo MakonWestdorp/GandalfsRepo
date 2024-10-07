@@ -2,8 +2,16 @@
 
 #include "Game.h"
 
-BaseItem::BaseItem(Game& game) {
-  DamageOrBuff = (rand() % 5 * game.getNumBosses()) + 5 * game.getNumBosses();
+void BaseItem::UseItem(Entity* Target) {
+  // BaseItem UseItem function does nothing, it gets overloaded by inherited
+  // classes
+}
+BaseItem::BaseItem() {
+  DamageOrBuff = rand();
+  name = nameRandomiser();
+}
+BaseItem::BaseItem(int NumBossesDefeated) {
+  DamageOrBuff = (rand() % 5 * NumBossesDefeated) + 5 * NumBossesDefeated;
   name = nameRandomiser();
 }
 

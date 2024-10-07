@@ -110,13 +110,14 @@ void UnitTest::LocationTravel() {
 void UnitTest::BasicShopTest() {
   // Create Game
   Game Game;
+
   // Create inventory
-  BaseItem *inventory = new BaseItem*[5];
-  inventory[0] = BaseItem(Game);
-  inventory[1] = BaseItem(Game);
-  inventory[2] = BaseItem(Game);
-  inventory[3] = BaseItem(Game);
-  inventory[4] = BaseItem(Game);
+  BaseItem *inventory = new BaseItem[5];
+  inventory[0] = BaseItem(Game.getNumBosses());
+  inventory[1] = BaseItem(Game.getNumBosses());
+  inventory[2] = BaseItem(Game.getNumBosses());
+  inventory[3] = BaseItem(Game.getNumBosses());
+  inventory[4] = BaseItem(Game.getNumBosses());
 
   int *prices = new int[5];
   prices[0] = 10;
@@ -145,11 +146,11 @@ void UnitTest::BasicShopTest() {
   }
 
   // Create new inventory
-  inventory[0] = BaseItem(Game);
-  inventory[1] = BaseItem(Game);
-  inventory[2] = BaseItem(Game);
-  inventory[3] = BaseItem(Game);
-  inventory[4] = BaseItem(Game);
+  inventory[0] = BaseItem(Game.getNumBosses());
+  inventory[1] = BaseItem(Game.getNumBosses());
+  inventory[2] = BaseItem(Game.getNumBosses());
+  inventory[3] = BaseItem(Game.getNumBosses());
+  inventory[4] = BaseItem(Game.getNumBosses());
 
   prices[0] = 20;
   prices[1] = 2;
@@ -184,9 +185,9 @@ void UnitTest::FirstTownTest() {
 
 void UnitTest::BaseItemNameGeneratorTest() {
   Game Game;
-  BaseItem Item1 = BaseItem(Game);
-  BaseItem Item2 = BaseItem(Game);
-  BaseItem Item3 = BaseItem(Game);
+  BaseItem Item1 = BaseItem(Game.getNumBosses());
+  BaseItem Item2 = BaseItem(Game.getNumBosses());
+  BaseItem Item3 = BaseItem(Game.getNumBosses());
   cout << "Item1 name: " << Item1.getName() << endl;
   cout << "Item2 name: " << Item2.getName() << endl;
   cout << "Item3 name: " << Item3.getName() << endl;

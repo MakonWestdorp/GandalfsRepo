@@ -9,7 +9,7 @@ using namespace std;
 class Game;
 
 class BaseItem {
- private:
+ protected:
   string name;
   int DamageOrBuff;
   string DamageTypeOrNameOfStat;
@@ -20,9 +20,11 @@ class BaseItem {
   int nameOfStatsSize = sizeof(nameOfStats) / sizeof(nameOfStats[0]);
 
  public:
-  BaseItem(Game &game);     // Defeault Constructor
-  string getName();         // Returns name
-  string nameRandomiser();  // Generates a random name for the item.
+  void UseItem(Entity* Target);
+  BaseItem();
+  BaseItem(int NumBossesDefeated);  // Defeault Constructor
+  string getName();                 // Returns name
+  string nameRandomiser();          // Generates a random name for the item.
   string getRandomElement(const string elements[],
                           int size);  // Used inside nameRandomiser
 };
