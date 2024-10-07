@@ -27,15 +27,19 @@ void Entity::takeDamage(int Damage, string DamageType) {
     isAlive = false;
   }
 }
-// Triggers the Targets TakeDamage Function, as this is a melee attack it
-// deals damage equal to the strength stat, and the damage type is BluntForce.
-void Entity::MeleeAttack(Entity* Target) {
-  Target->takeDamage(strength, "BluntForce");
+
+void Entity::Attack(Entity* Target) {
+  Target->takeDamage(rand() % 5 * (strength), "BluntForce");
 }
 
-// Triggers the Targets TakeDamage Function, as this is a magic attack it deals
-// damage equal to the magic stat, and the damage type is Magic.
-void Entity::MagicAttack(Entity* Target) { Target->takeDamage(magic, "Magic"); }
+void Entity::Attack(Entity* Target, string TypeOfAttack, string StatUsed,
+                    int DamageBuff) {
+  if (StatUsed == "STR") {
+    Target->takeDamage(strength + DamageBuff, TypeOfAttack);
+  } else if (StatUsed == "MAG") {
+    Target->takeDamage(magic + DamageBuff, TypeOfAttack);
+  }
+}
 
 // If you need a comment to explain a Getter/Setter, please seek help.
 int Entity::getHP() { return healthPoints; }

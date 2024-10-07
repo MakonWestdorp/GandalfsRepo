@@ -17,8 +17,9 @@ class Entity {
   Entity(string Name, int HP, int STR, int DEF, int MAG, string Resistance);
   // The attack/recieve attack functions.
   void takeDamage(int Damage, string DamageType);
-  void MeleeAttack(Entity* Target);
-  void MagicAttack(Entity* Target);
+  void Attack(Entity* Target);
+  void Attack(Entity* Target, string TypeOfAttack, string StatUsed,
+              int DamageBuff);
   // Random name generator for Enemies
 
   // Getters and Setters. Only used in UnitTest class.
@@ -38,6 +39,7 @@ class Entity {
   void setRes(string InputName);
 
  private:
+  int NumBossesDeafeated;
   std::string name, Resistance;
   int healthPoints, strength, defence, magic;
   bool isAlive;

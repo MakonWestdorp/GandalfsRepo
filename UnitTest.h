@@ -22,8 +22,7 @@ class UnitTest {
  private:
   // Entity class tests
   void EntityTakeDamage();
-  void EntityMeleeAttack();
-  void EntityMagicAttack();
+  void EntityAttack();
 
   // Location class tests
   void LocationTravel();

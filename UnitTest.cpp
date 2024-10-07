@@ -10,8 +10,7 @@ void UnitTest::StartAllTests() {
 // Start tests
 void UnitTest::StartEntityTests() {
   EntityTakeDamage();
-  EntityMeleeAttack();
-  EntityMagicAttack();
+  EntityAttack();
 }
 
 void UnitTest::StartLocationTests() { LocationTravel(); }
@@ -28,46 +27,41 @@ void UnitTest::EntityTakeDamage() {
   Gandalf.takeDamage(2, "Magic");
   if (Gandalf.getHP() != 14) {
     cout << "EntityTakeDamage Resistance Check Failed" << endl;
+  } else {
+    cout << "EntityTakeDamage Resistance Check Succeeded" << endl;
   };
   Gandalf.setHP(15);
   Gandalf.takeDamage(4, "BluntForce");
   if (Gandalf.getHP() != 11) {
     cout << "EntityTakeDamage Non-Resistance Check Failed" << endl;
+  } else {
+    cout << "EntityTakeDamage Non-Resistance Check Succeeded" << endl;
   };
   Gandalf.setHP(15);
   Gandalf.takeDamage(0, "BluntForce");
   if (Gandalf.getHP() != 15) {
-    cout << "EntityTakeDamage No Damage Check failed" << endl;
+    cout << "EntityTakeDamage No Damage Check Failed" << endl;
+  } else {
+    cout << "EntityTakeDamage No Damage Check Succeeded" << endl;
   };
 }
 
-void UnitTest::EntityMeleeAttack() {
+void UnitTest::EntityAttack() {
   Entity Gandalf = Entity("Gandalf", 15, 4, 8, 15, "Magic");
   Entity Sauron = Entity("Sauron", 15, 4, 8, 10, "BluntForce");
   Entity *PtrToGandalf = &Gandalf;
   Entity *PtrToSauron = &Sauron;
-  Sauron.MeleeAttack(PtrToGandalf);
+  Sauron.Attack(PtrToGandalf, "BluntForce", "STR", 0);
   if (Gandalf.getHP() != 15 - Sauron.getSTR()) {
-    cout << "EntityMeleeAttack Non-Resistance attack failed" << endl;
+    cout << "EntityAttack Non-Resistance attack failed" << endl;
+  } else {
+    cout << "EntityAttack Non-Resistance attack succeeded" << endl;
   };
-  Gandalf.MeleeAttack(PtrToSauron);
+  Gandalf.Attack(PtrToSauron, "BluntForce", "STR", 0);
   if (Sauron.getHP() != 15 - 0.5 * Gandalf.getSTR()) {
-    cout << "EntityMeleeAttack Resistance attack failed" << endl;
-  };
-}
-
-void UnitTest::EntityMagicAttack() {
-  Entity Gandalf = Entity("Gandalf", 15, 4, 8, 14, "Magic");
-  Entity Sauron = Entity("Sauron", 15, 4, 8, 10, "BluntForce");
-  Entity *PtrToGandalf = &Gandalf;
-  Entity *PtrToSauron = &Sauron;
-  Sauron.MagicAttack(PtrToGandalf);
-  if (Gandalf.getHP() != 10) {
-    cout << "EntityMeleeAttack Resistance attack failed" << endl;
-  };
-  Gandalf.MagicAttack(PtrToSauron);
-  if (Sauron.getHP() != 1) {
-    cout << "EntityMeleeAttack Non-Resistance attack failed" << endl;
+    cout << "EntityAttack Resistance attack failed" << endl;
+  } else {
+    cout << "EntityAttack Resistance attack succeeded" << endl;
   };
 }
 
@@ -129,8 +123,8 @@ void UnitTest::BasicShopTest() {
   string shopDescription =
       "Steel & Sorcery offers finely crafted blades, \nfrom master-forged "
       "steel to rare enchanted swords";
-  Shop WeaponsShop(numBossesDefeated, prices, forSaleStatus, "Steel & Sorcery", "Timmy",
-                   shopDescription, "");
+  Shop WeaponsShop(numBossesDefeated, prices, forSaleStatus, "Steel & Sorcery",
+                   "Timmy", shopDescription, "");
 
   // Test shop interface
   int cashOnHand = 50;
