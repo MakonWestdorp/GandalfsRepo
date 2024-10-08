@@ -1,12 +1,13 @@
 #include "BaseItem.h"
 
-#include "Game.h"
 #include "Entity.h"
+#include "Game.h"
 
 void BaseItem::UseItem(Entity* Target) {
   // BaseItem UseItem function does nothing, it gets overloaded by inherited
   // classes
 }
+
 BaseItem::BaseItem() {
   DamageOrBuff = rand();
   name = nameRandomiser();

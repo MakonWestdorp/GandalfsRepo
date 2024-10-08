@@ -56,6 +56,30 @@ void Entity::setCashOnHand(int inputCashOnHand) {
   CashOnHand = inputCashOnHand;
 }
 
+void Entity::ApplyBuff(int Buff, string Stat) {
+  if (Stat == "HP") {
+    healthPoints = getHP() + Buff;
+  } else if (Stat == "STR") {
+    strength = getSTR() + Buff;
+  } else if (Stat == "DEF") {
+    defence = getDEF() + Buff;
+  } else if (Stat == "MAG") {
+    magic = getMAG() + Buff;
+  }
+}
+
+void Entity::WithdrawBuff(int Buff, string Stat) {
+  if (Stat == "HP") {
+    healthPoints = getHP();
+  } else if (Stat == "STR") {
+    strength = getSTR() - Buff;
+  } else if (Stat == "DEF") {
+    defence = getDEF() - Buff;
+  } else if (Stat == "MAG") {
+    magic = getMAG() - Buff;
+  }
+}
+
 void Entity::Attack(Entity* Target, string TypeOfAttack, string StatUsed,
                     int DamageBuff) {
   if (StatUsed == "STR") {

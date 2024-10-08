@@ -5,4 +5,10 @@ BuffItem::BuffItem(int NumBossesDefeated) {
   DamageTypeOrNameOfStat = getRandomElement(nameOfStats, nameOfStatsSize);
 }
 
-void BuffItem::UseItem(Entity* Target) {}
+void BuffItem::UseItem(Entity* Target, string ApplyWithdraw) {
+  if (ApplyWithdraw == "Apply") {
+    Target->ApplyBuff(DamageOrBuff, DamageTypeOrNameOfStat);
+  } else if (ApplyWithdraw == "Withdraw") {
+    Target->WithdrawBuff(DamageOrBuff, DamageTypeOrNameOfStat);
+  }
+}

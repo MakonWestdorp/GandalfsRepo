@@ -7,7 +7,7 @@
 using namespace std;
 
 class Game;
-class Entity; 
+class Entity;
 
 class BaseItem {
  protected:
@@ -21,13 +21,14 @@ class BaseItem {
   int nameOfStatsSize = sizeof(nameOfStats) / sizeof(nameOfStats[0]);
 
  public:
-  void UseItem(Entity* Target);
+  virtual void UseItem(Entity* Target);
   BaseItem();
   BaseItem(int NumBossesDefeated);  // Defeault Constructor
   string getName();                 // Returns name
   string nameRandomiser();          // Generates a random name for the item.
   string getRandomElement(const string elements[],
                           int size);  // Used inside nameRandomiser
+  bool IsBuff;
 };
 
 #endif

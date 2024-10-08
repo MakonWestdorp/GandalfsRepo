@@ -26,6 +26,9 @@ class Entity {
   int getCashOnHand();
   void setCashOnHand(int inputCashOnHand);
   // Getters and Setters. Only used in UnitTest class.
+  void ApplyBuff(int Buff, string Stat);
+  void WithdrawBuff(int Buff, string Stat);
+
  protected:
   int getHP();
   int getSTR();
