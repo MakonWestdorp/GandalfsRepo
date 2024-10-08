@@ -22,6 +22,7 @@ class Forest : public Location {
         void callForBattle(Entity *player, Entity *enemy);
         void explore();
         void openTreasure(Entity *player, int &numBossesDefeated);
+        void viewEnemies(Game &game, int &cashOnHand);
 }; 
 
 #endif

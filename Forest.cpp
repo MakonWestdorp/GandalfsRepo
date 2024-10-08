@@ -21,13 +21,13 @@ Forest::Forest() : Location() {
   treasure = false;
 }
 
-Forest::Forest(string name, string description, string asciiDescription)
-    : Location(name, description, asciiDescription) {
-  treasure = false;
-  enemies = new Entity[5];
-  for (int i = 0; i < 5; i++) {
-    enemies[i] = Entity();
-  }
+Forest::Forest(string name, string description, string asciiDescription) : Location(name,description,asciiDescription)
+{
+    treasure = false; 
+    enemies = new Entity*[5];
+    for (int i = 0; i < 5; i++) {
+        enemies[i] = Entity();
+    }
 }
 
 void Forest::travelToLocation(Game &game, Location *location) {
@@ -38,36 +38,32 @@ void Forest::travelToLocation(Game &game, Location *location) {
   }
 }
 
-void Forest::showLocation(Game &game, int &cashOnHand, Entity *player,
-                          Entity *enemy, int &numBossesDefeated) {
-  string divider =
-      "+------------------------------------------------------------------+";
-  int userDecision = 0;
-  Location::showLocation(game, cashOnHand);
-  cout << "1. Travel to Town" << endl
-       << "2. Explore" << endl
-       << "3. Search for treasure" << endl
-       << "4. Fight Enemy" << endl
-       << divider << endl;
-  cin >> userDecision;
-  cout << divider << endl;
+void Forest::showLocation(Game &game, int &cashOnHand, Entity *player, Entity *enemy, int &numBossesDefeated)
+{
+    string divider = "+------------------------------------------------------------------+"; 
+    int userDecision = 0;
+    Location::showLocation(game,cashOnHand);
+    cout << "1. Travel to Town" << endl << "2. Explore" << endl << "3. Search for treasure" 
+         << endl << "4. Fight Enemy" << endl << divider << endl;
+    cin >> userDecision; 
+    cout << divider << endl;
 
-  switch (userDecision) {
-    case 1:
-      sleep_for(seconds(1));
-      travelToLocation(game, game.viewLocations()[0]);
-      break;
-    case 2:
-      sleep_for(seconds(1));
-      explore();
-      cout << divider << endl;
-      break;
-    case 3:
-      sleep_for(seconds(1));
-      openTreasure(player, numBossesDefeated);
-      break;
-    case 4:
-      sleep_for(seconds(1));
+    switch (userDecision) {
+        case 1:
+            sleep_for(seconds(1));
+            travelToLocation(game,game.viewLocations()[0]);
+            break;
+        case 2:
+            sleep_for(seconds(1));
+            explore();
+            cout << divider << endl; 
+            break;
+        case 3: 
+            sleep_for(seconds(1));
+            openTreasure(player, numBossesDefeated);
+            break;
+        case 4:
+            sleep_for(seconds(1));
 
       break;
     default:
@@ -104,7 +100,9 @@ void Forest::explore() {
   }
 }
 
-void Forest::openTreasure(Entity *player, int &numBossesDefeated) {
-  if (treasure == true) {
-  }
+void Forest::openTreasure(Entity *player, int &numBossesDefeated)
+{
+    if (treasure == true) {
+    
+    }
 }
