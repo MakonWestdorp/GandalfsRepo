@@ -19,20 +19,20 @@ Arena::Arena(string name, string description, string asciiDescription) : Locatio
 {
 }
 
-void Arena::travelToLocation(Game &game, Location *location)
+void Arena::travelToLocation(Game &game, Location *location, Entity *player, Enemy *enemy)
 {
     int cashOnHand = 0; // Temporary - Needed for function call
     if (location->getName() == game.viewLocations()[0]->getName()) {
         game.travel(location);
-        game.viewCurrentLocation()->showLocation(game,cashOnHand);
+        game.viewCurrentLocation()->showLocation(game,cashOnHand,player,enemy,1);
     }
 }
 
-void Arena::showLocation(Game &game, int &cashOnHand)
+void Arena::showLocation(Game &game, int &cashOnHand, Entity *player, Enemy *enemy, int numBossesDefeated)
 {
     string divider = "+------------------------------------------------------------------+"; 
     int userDecision = 0;
-    Location::showLocation(game,cashOnHand);
+    Location::showLocation(game,cashOnHand,player,enemy,1);
     cout << "1. Travel to Town" << endl << divider << endl;
     cin >> userDecision; 
     cout << divider << endl;
@@ -40,7 +40,7 @@ void Arena::showLocation(Game &game, int &cashOnHand)
     switch (userDecision) {
         case 1:
             sleep_for(seconds(1));
-            travelToLocation(game,game.viewLocations()[0]);
+            travelToLocation(game,game.viewLocations()[0],player,enemy);
             break;
         default:
             sleep_for(seconds(1));

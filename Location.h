@@ -4,6 +4,9 @@
 #include <iostream>
 #include <string> 
 
+#include "Entity.h"
+#include "Enemy.h"
+
 using namespace std; 
 
 /*
@@ -23,8 +26,8 @@ class Location {
     public:
         Location(); // Default constructor 
         Location(string name, string description, string asciiDescription); // Constructor 
-        virtual void showLocation(Game &game, int &cashOnHand); // Displays the locations details 
-        virtual void travelToLocation(Game &game, Location *destination); // Changes the location 
+        virtual void showLocation(Game &game, int &cashOnHand, Entity *player, Enemy *enemy, int numBossesDefeated); // Displays the locations details 
+        virtual void travelToLocation(Game &game, Location *destination,Entity *player, Enemy *enemy); // Changes the location 
         string getName(); // Returns the name
 
 };

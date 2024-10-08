@@ -4,6 +4,8 @@
 #include "Shop.h"
 #include "Forest.h"
 #include "Arena.h"
+#include "Entity.h"
+#include "Enemy.h"
 
 // Include libraries for pause and namepsaces
 #include <chrono>
@@ -19,13 +21,13 @@ Town::Town(string name, string description, string asciiDescription) : Location(
 {
 }
 
-void Town::travelToLocation(Game &game, Location *location)
+void Town::travelToLocation(Game &game, Location *location, Entity *player, Enemy *enemy)
 {   
     int cashOnHand = 0; // Temporary - Needed for function call
     if (location->getName() == game.viewLocations()[1]->getName() || 
         location->getName() == game.viewLocations()[2]->getName()) {
         game.travel(location);
-        game.viewCurrentLocation()->showLocation(game,cashOnHand);
+        game.viewCurrentLocation()->showLocation(game,cashOnHand,player,enemy,1);
     }
 }
 
@@ -34,11 +36,11 @@ void Town::enterShop(Shop &shopName, int &cashOnHand)
     while (shopName.showShopInterface(cashOnHand) == true) {}
 }
 
-void Town::showLocation(Game &game, int &cashOnHand)
+void Town::showLocation(Game &game, int &cashOnHand, Entity *player, Enemy *enemy, int numBossesDefeated)
 {
     string divider = "+------------------------------------------------------------------+"; 
     int userDecision = 0;
-    Location::showLocation(game,cashOnHand);
+    Location::showLocation(game,cashOnHand,player,enemy,1);
     cout << "1. Travel to Weapons Shop" << endl << "2. Travel to Magic Shop" << endl 
          << "3. Travel to Armour Shop" << endl << "4. Travel to General Shop" << endl
          << "5. Travel to Forest" << endl << "6. Travel to Arena" << endl << "7. Save Game (N/A)" 
@@ -64,11 +66,11 @@ void Town::showLocation(Game &game, int &cashOnHand)
             break;
         case 5:
             sleep_for(seconds(1));
-            travelToLocation(game,game.viewLocations()[1]);
+            travelToLocation(game,game.viewLocations()[1],player,enemy);
             break;
         case 6:
             sleep_for(seconds(1));
-            travelToLocation(game,game.viewLocations()[2]);
+            travelToLocation(game,game.viewLocations()[2],player,enemy);
             break;
         case 7:
             sleep_for(seconds(1));
