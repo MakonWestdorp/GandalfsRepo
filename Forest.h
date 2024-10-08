@@ -18,9 +18,10 @@ class Forest : public Location {
         Forest();
         Forest(string name, string description, string asciiDescription);
         void travelToLocation(Game &game, Location *location);
-        void showLocation(Game &game,int &cashOnHand);
+        void showLocation(Game &game,int &cashOnHand,Entity *player, Entity *enemy, int &numBossesDefeated);
         void callForBattle(Entity *player, Entity *enemy);
         void explore();
+        void openTreasure(Entity *player, int &numBossesDefeated);
 }; 
 
 #endif

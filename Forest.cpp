@@ -11,6 +11,10 @@
 using namespace chrono;
 using namespace this_thread;
 
+// Include libraries for random number generator 
+#include <cstdlib> // for the random part
+#include <ctime> // For time
+
 Forest::Forest() : Location()
 {
     enemies = nullptr; 
@@ -35,7 +39,7 @@ void Forest::travelToLocation(Game &game, Location *location)
     }
 }
 
-void Forest::showLocation(Game &game, int &cashOnHand)
+void Forest::showLocation(Game &game, int &cashOnHand, Entity *player, Entity *enemy, int &numBossesDefeated)
 {
     string divider = "+------------------------------------------------------------------+"; 
     int userDecision = 0;
@@ -53,10 +57,11 @@ void Forest::showLocation(Game &game, int &cashOnHand)
         case 2:
             sleep_for(seconds(1));
             explore();
+            cout << divider << endl; 
             break;
         case 3: 
             sleep_for(seconds(1));
-
+            openTreasure(player, numBossesDefeated);
             break;
         case 4:
             sleep_for(seconds(1));
@@ -71,16 +76,40 @@ void Forest::showLocation(Game &game, int &cashOnHand)
 
 void Forest::callForBattle(Entity *player, Entity *enemy)
 {
-
+    while (player->GetIsAlive() == true && enemy->GetIsAlive()==true) {
+    
+    }
 }
 
 void Forest::explore()
 {   
+    // Generate new enemies
+    for (int i = 0; i < 5; i++) {
+        enemies[i] = Entity(); // Change to Enemy later
+    }
+
+    cout << "New Enemies have appeared!" << endl;
+
+    // Get a different random number each time the program runs
+    srand(time(0));
+
+    //Generate a random number between 1 and 3
+    int randomNumber = (rand() % 3) + 1;
+
+    // Determine if treasure appears
+    if (randomNumber == 2) {
+        treasure = true;
+        cout << "You have found treasure!" << endl; 
+    }
+
     
 
 
-    for (int i = 0; i < 5; i++) {
-        enemies[i] = Entity();
+}
+
+void Forest::openTreasure(Entity *player, int &numBossesDefeated)
+{
+    if (treasure == true) {
+    
     }
-    cout << "New Enemies have appeared!" << endl; 
 }
