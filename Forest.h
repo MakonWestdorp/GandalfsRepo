@@ -8,20 +8,20 @@
 using namespace std;
 
 class Game; 
-class Entity;
+class Enemy;
 
 class Forest : public Location {
     private:
-        Entity *enemies;
+        Enemy *enemies;
         bool treasure; 
     public:
         Forest();
-        Forest(string name, string description, string asciiDescription);
+        Forest(string name, string description, string asciiDescription, int numBossesDefeated);
         void travelToLocation(Game &game, Location *location);
-        void showLocation(Game &game,int &cashOnHand,Entity *player, Entity *enemy, int &numBossesDefeated);
-        void callForBattle(Entity *player, Entity *enemy);
-        void explore();
-        void openTreasure(Entity *player, int &numBossesDefeated);
+        void showLocation(Game &game,int &cashOnHand,Entity *player, Enemy *enemy, int numBossesDefeated);
+        void callForBattle(Entity *player, Enemy *enemy);
+        void explore(int numBossesDefeated);
+        void openTreasure(Entity *player, int numBossesDefeated);
         void viewEnemies(Game &game, int &cashOnHand);
 }; 
 
