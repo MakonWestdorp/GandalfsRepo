@@ -14,8 +14,8 @@ class Arena : public Location {
     public:
         Arena();
         Arena(string name, string description, string asciiDescription);
-        void travelToLocation(Game &game, Location *location);
-        void showLocation(Game &game,int &cashOnHand);
+        void travelToLocation(Game &game, Location *location, Entity *player, Enemy *enemy);
+        void showLocation(Game &game, int &cashOnHand, Entity *player, Enemy *enemy, int numBossesDefeated);
 };
 
 #endif

@@ -32,11 +32,13 @@ Forest::Forest(string name, string description, string asciiDescription,
   }
 }
 
-void Forest::travelToLocation(Game &game, Location *location) {
+void Forest::travelToLocation(Game &game, Location *location, Entity *player,
+                              Enemy *enemy) {
   int cashOnHand = 0;  // Temporary - Needed for function call
   if (location->getName() == game.viewLocations()[0]->getName()) {
     game.travel(location);
-    game.viewCurrentLocation()->showLocation(game, cashOnHand);
+    game.viewCurrentLocation()->showLocation(game, cashOnHand, player, enemy,
+                                             1);
   }
 }
 
@@ -89,6 +91,7 @@ void Forest::callForBattle(Entity *player, Enemy *enemy) {
 void Forest::explore(int numBossesDefeated) {
   // Generate new enemies
   for (int i = 0; i < 5; i++) {
+    srand(time(0));
     enemies[i] = new Enemy(numBossesDefeated);  // Change to Enemy later
   }
 

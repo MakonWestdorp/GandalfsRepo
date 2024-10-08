@@ -18,7 +18,7 @@ class Enemy : public Entity {
                                "Bringer", "Warden"};
   const string types[10] = {"Dragon",  "Wraith", "Goblin", "Orc",     "Beast",
                             "Serpent", "Knight", "Golem",  "Specter", "Troll"};
-  int CurrentNumBossesDefeated;
+  int CurrentNumBossesDefeated = 1;
   int ChallengeRating;
   string RandomEnemyName();
   BaseItem RandomItemForEnemy(int NumBossesDefeated);
