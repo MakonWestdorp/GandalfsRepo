@@ -1,6 +1,17 @@
 #include "Entity.h"
 // Default uses randomized stats based upon #bosses defeated.
 Entity::Entity() {}
+Entity::Entity(string inputName, int NumBossesDefeated) {
+  name = inputName;
+  healthPoints = NumBossesDeafeated * 5 + 5;
+  strength = NumBossesDeafeated * 5 + 5;
+  defence = NumBossesDeafeated * 5 + 5;
+  magic = NumBossesDeafeated * 5 + 5;
+  isAlive = true;
+  string damageTypes[4] = {"Magic", "Piercing", "Bludgeoning", "Slashing"};
+  int damageTypesSize = sizeof(damageTypes) / sizeof(damageTypes[0]);
+  Resistance = damageTypes[rand() % damageTypesSize];
+}
 // Specific Constructor used for Player Class
 Entity::Entity(string InputName, int InputHP, int InputSTR, int InputDEF,
                int InputMAG, string InputResistance) {
@@ -29,12 +40,18 @@ void Entity::takeDamage(int Damage, string DamageType) {
 }
 
 void Entity::Attack(Entity* Target) {
-  Target->takeDamage(rand() % 5 * (strength), "Bludgeoning");
+  Target->takeDamage(rand() % (strength), "Bludgeoning");
 }
 
 void Entity::takeTurn(Entity* Target) { Attack(Target); }
 
 bool Entity::GetIsAlive() { return isAlive; }
+
+int Entity::getCashOnHand() { return CashOnHand; }
+
+void Entity::setCashOnHand(int inputCashOnHand) {
+  CashOnHand = inputCashOnHand;
+}
 
 void Entity::Attack(Entity* Target, string TypeOfAttack, string StatUsed,
                     int DamageBuff) {

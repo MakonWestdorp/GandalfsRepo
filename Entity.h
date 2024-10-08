@@ -13,6 +13,7 @@ class Entity {
   // Default Constructor for Entity. Enemies will use Default constructor, so
   // the "Stats" and Names will be randomised.
   Entity();
+  Entity(string inputName, int NumBossesDefeated);
   // Specific Constructor for players.
   Entity(string Name, int HP, int STR, int DEF, int MAG, string Resistance);
   // The attack/recieve attack functions.
@@ -22,6 +23,8 @@ class Entity {
               int DamageBuff);
   void takeTurn(Entity* Target);
   bool GetIsAlive();
+  int getCashOnHand();
+  void setCashOnHand(int inputCashOnHand);
   // Getters and Setters. Only used in UnitTest class.
  protected:
   int getHP();
@@ -37,7 +40,7 @@ class Entity {
   void setMAG(int InputMAG);
   void setName(string InputName);
   void setRes(string InputName);
-
+  int CashOnHand;
   int NumBossesDeafeated;
   std::string name, Resistance;
   int healthPoints, strength, defence, magic;

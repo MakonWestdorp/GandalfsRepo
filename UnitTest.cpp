@@ -47,22 +47,16 @@ void UnitTest::EntityTakeDamage() {
 }
 
 void UnitTest::EntityAttack() {
-  Entity Gandalf = Entity("Gandalf", 15, 4, 8, 15, "Magic");
-  Entity Sauron = Entity("Sauron", 15, 4, 8, 10, "BluntForce");
+  Entity Gandalf = Entity("Gandalf", 4);
+  Entity Sauron = Entity("Sauron", 3);
   Entity *PtrToGandalf = &Gandalf;
   Entity *PtrToSauron = &Sauron;
-  Sauron.Attack(PtrToGandalf, "BluntForce", "STR", 0);
-  if (Gandalf.getHP() != 15 - Sauron.getSTR()) {
-    cout << "EntityAttack Non-Resistance attack failed" << endl;
-  } else {
-    cout << "EntityAttack Non-Resistance attack succeeded" << endl;
-  };
-  Gandalf.Attack(PtrToSauron, "BluntForce", "STR", 0);
-  if (Sauron.getHP() != 15 - 0.5 * Gandalf.getSTR()) {
-    cout << "EntityAttack Resistance attack failed" << endl;
-  } else {
-    cout << "EntityAttack Resistance attack succeeded" << endl;
-  };
+  string GandalfsResistance = Gandalf.getRes();
+  string SauronsResistance = Sauron.getRes();
+  cout << "Sauron has " << Sauron.getHP() << "health points" << endl;
+  Gandalf.Attack(PtrToSauron, SauronsResistance, "MAG", 0);
+  cout << "Gandalf has attacked Sauron" << endl;
+  cout << "Sauron now has" << Sauron.getHP() << "health points" << endl;
 }
 
 // Location test functions

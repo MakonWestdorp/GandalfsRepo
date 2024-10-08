@@ -23,6 +23,7 @@ class UnitTest {
   // Entity class tests
   void EntityTakeDamage();
   void EntityAttack();
+  void EntityRoundBasedAttacks();
 
   // Location class tests
   void LocationTravel();
