@@ -1,12 +1,15 @@
 #include "Entity.h"
+
+#include <iostream>
 // Default uses randomized stats based upon #bosses defeated.
 Entity::Entity() {}
-Entity::Entity(string inputName, int NumBossesDefeated) {
+Entity::Entity(string inputName, int InputNumBossesDefeated) {
   name = inputName;
-  healthPoints = NumBossesDeafeated * 5 + 5;
-  strength = NumBossesDeafeated * 5 + 5;
-  defence = NumBossesDeafeated * 5 + 5;
-  magic = NumBossesDeafeated * 5 + 5;
+  NumBossesDeafeated = InputNumBossesDefeated;
+  healthPoints = (InputNumBossesDefeated * 5) + 5;
+  strength = InputNumBossesDefeated * 5 + 5;
+  defence = InputNumBossesDefeated * 5 + 5;
+  magic = InputNumBossesDefeated * 5 + 5;
   isAlive = true;
   string damageTypes[4] = {"Magic", "Piercing", "Bludgeoning", "Slashing"};
   int damageTypesSize = sizeof(damageTypes) / sizeof(damageTypes[0]);

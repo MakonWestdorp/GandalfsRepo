@@ -5,7 +5,7 @@
 class Enemy : public Entity {
  public:
   Enemy(int NumBossesDeafeated);
-  string RandomEnemyName();
+  string getName();
   int getChallengeRating();
 
  private:

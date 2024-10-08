@@ -48,15 +48,15 @@ void UnitTest::EntityTakeDamage() {
 
 void UnitTest::EntityAttack() {
   Entity Gandalf = Entity("Gandalf", 4);
-  Entity Sauron = Entity("Sauron", 3);
+  Entity Sauron = Entity("Sauron", 0);
   Entity *PtrToGandalf = &Gandalf;
   Entity *PtrToSauron = &Sauron;
   string GandalfsResistance = Gandalf.getRes();
   string SauronsResistance = Sauron.getRes();
-  cout << "Sauron has " << Sauron.getHP() << "health points" << endl;
+  cout << "Sauron has " << Sauron.getHP() << " health points" << endl;
   Gandalf.Attack(PtrToSauron, SauronsResistance, "MAG", 0);
   cout << "Gandalf has attacked Sauron" << endl;
-  cout << "Sauron now has" << Sauron.getHP() << "health points" << endl;
+  cout << "Sauron now has" << Sauron.getHP() << " health points" << endl;
 }
 
 // Location test functions

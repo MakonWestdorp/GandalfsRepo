@@ -14,6 +14,7 @@ Enemy::Enemy(int NumBossesDeafeated) {
   ChallengeRating = healthPoints + strength + defence + magic;
   ChallengeRating = ChallengeRating / 4;
 }
+string Enemy::getName() { return name; }
 string Enemy::RandomEnemyName() {
   // Randomly choose a prefix, suffix, and type
   string prefix = prefixes[rand() % 10];

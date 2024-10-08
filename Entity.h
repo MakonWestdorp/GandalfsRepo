@@ -13,7 +13,7 @@ class Entity {
   // Default Constructor for Entity. Enemies will use Default constructor, so
   // the "Stats" and Names will be randomised.
   Entity();
-  Entity(string inputName, int NumBossesDefeated);
+  Entity(string inputName, int InputNumBossesDefeated);
   // Specific Constructor for players.
   Entity(string Name, int HP, int STR, int DEF, int MAG, string Resistance);
   // The attack/recieve attack functions.
