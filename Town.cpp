@@ -46,6 +46,11 @@ void Town::showLocation(Game &game, int &cashOnHand, Entity *player, Enemy *enem
          << "5. Travel to Forest" << endl << "6. Travel to Arena" << endl << "7. Save Game (N/A)" 
          << endl << "8. Save and Leave Game" << endl << divider << endl;
     cin >> userDecision; 
+    if (cin.fail() == true) {
+      cin.clear();
+      cin.ignore(1000, '\n');
+      userDecision = 9;
+    }
     cout << divider << endl; 
     switch (userDecision) {
         case 1:

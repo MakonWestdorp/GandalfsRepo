@@ -116,6 +116,11 @@ bool Shop::showShopInterface(int &cashOnHand)
     count++; 
     cout << count << ". Leave Shop" << endl << divider << endl;
     cin >> userDecision; 
+    if (cin.fail() == true) {
+      cin.clear();
+      cin.ignore(1000, '\n');
+      userDecision = 10;
+    }
     cout << divider << endl; 
 
     if (userDecision <= inventorySize && userDecision > 0) {

@@ -49,6 +49,11 @@ void Forest::showLocation(Game &game, int &cashOnHand, Entity *player, Enemy *en
     cout << "1. Travel to Town" << endl << "2. Explore" << endl << "3. Search for treasure" 
          << endl << "4. View Enemies" << endl << divider << endl;
     cin >> userDecision; 
+    if (cin.fail() == true) {
+      cin.clear();
+      cin.ignore(1000, '\n');
+      userDecision = 5;
+    }
     cout << divider << endl;
 
     switch (userDecision) {
@@ -119,7 +124,7 @@ void Forest::openTreasure(Entity *player, int numBossesDefeated)
 
 void Forest::viewEnemies(Game &game, int &cashOnHand, Entity *player, Enemy *enemy)
 {
-    int userDescision = 0, cashLost = 0; // Used to select an enemy to fight
+    int userDecision = 0, cashLost = 0; // Used to select an enemy to fight
 
     // Clears terminal
     cout << endl << endl << endl << endl << endl << endl << endl;; 
@@ -134,13 +139,18 @@ void Forest::viewEnemies(Game &game, int &cashOnHand, Entity *player, Enemy *ene
         cout << i + 1 << " " << enemies[i]->getName() << " | Challenge rating : " << enemies[i]->getChallengeRating() << endl;
     }
     cout << "6. Return to the main paths safety" << endl << divider << endl;
-    cin >> userDescision;
+    cin >> userDecision;
+    if (cin.fail() == true) {
+      cin.clear();
+      cin.ignore(1000, '\n');
+      userDecision = 10;
+    }
     cout << divider << endl;
     
-    if (userDescision > 0 && userDescision <= 5) {
+    if (userDecision > 0 && userDecision <= 5) {
       callForBattle(player,enemy);
       sleep_for(seconds(1));
-    } else if (userDescision == 6) {
+    } else if (userDecision == 6) {
       cout << "You return to the safety of the main path" << endl << divider << endl;
       sleep_for(seconds(1));
     } else {

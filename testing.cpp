@@ -29,6 +29,11 @@ int main() {
        << divider << endl;
 
   cin >> testSelector;
+  if (cin.fail() == true) {
+      cin.clear();
+      cin.ignore(1000, '\n');
+      testSelector = 10;
+    }
   cout << "Test begin" << endl;
 
   switch (testSelector) {

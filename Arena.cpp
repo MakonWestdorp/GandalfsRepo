@@ -35,6 +35,11 @@ void Arena::showLocation(Game &game, int &cashOnHand, Entity *player, Enemy *ene
     Location::showLocation(game,cashOnHand,player,enemy,1);
     cout << "1. Travel to Town" << endl << divider << endl;
     cin >> userDecision; 
+    if (cin.fail() == true) {
+      cin.clear();
+      cin.ignore(1000, '\n');
+      userDecision = 2;
+    }
     cout << divider << endl;
     
     switch (userDecision) {
