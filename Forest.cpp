@@ -5,6 +5,7 @@
 #include "Game.h"
 #include "Location.h"
 #include "Town.h"
+#include "Enemy.h"
 
 // Include libraries for pause and namepsaces
 #include <chrono>
@@ -21,12 +22,12 @@ Forest::Forest() : Location() {
   treasure = false;
 }
 
-Forest::Forest(string name, string description, string asciiDescription) : Location(name,description,asciiDescription)
+Forest::Forest(string name, string description, string asciiDescription, int numBossesDefeated) : Location(name,description,asciiDescription)
 {
-    treasure = false; 
-    enemies = new Entity[5];
+    treasure = false;   
+    enemies = new Enemy[5];
     for (int i = 0; i < 5; i++) {
-        enemies[i] = Entity();
+        enemies[i] = new Enemy(numBossesDefeated);
     }
 
 }
@@ -39,7 +40,7 @@ void Forest::travelToLocation(Game &game, Location *location) {
   }
 }
 
-void Forest::showLocation(Game &game, int &cashOnHand, Entity *player, Entity *enemy, int &numBossesDefeated)
+void Forest::showLocation(Game &game, int &cashOnHand, Entity *player, Enemy *enemy, int numBossesDefeated)
 {
     string divider = "+------------------------------------------------------------------+"; 
     int userDecision = 0;
@@ -56,7 +57,7 @@ void Forest::showLocation(Game &game, int &cashOnHand, Entity *player, Entity *e
             break;
         case 2:
             sleep_for(seconds(1));
-            explore();
+            explore(numBossesDefeated);
             cout << divider << endl; 
             break;
         case 3: 
@@ -76,16 +77,16 @@ void Forest::showLocation(Game &game, int &cashOnHand, Entity *player, Entity *e
   }
 }
 
-void Forest::callForBattle(Entity *player, Entity *enemy) {
+void Forest::callForBattle(Entity *player, Enemy *enemy) {
   while (player->GetIsAlive() == true && enemy->GetIsAlive() == true) {
 
   }
 }
 
-void Forest::explore() {
+void Forest::explore(int numBossesDefeated) {
   // Generate new enemies
   for (int i = 0; i < 5; i++) {
-    enemies[i] = Entity();  // Change to Enemy later
+    enemies[i] = new Enemy(numBossesDefeated);  // Change to Enemy later
   }
 
   cout << "New Enemies have appeared!" << endl;
@@ -99,17 +100,17 @@ void Forest::explore() {
   // Determine if treasure appears
   if (randomNumber == 2) {
     treasure = true;
-    cout << "You have found treasure!" << endl;
+    cout << "You have spotted treasure!" << endl;
   }
 }
 
 
-void Forest::openTreasure(Entity *player, int &numBossesDefeated) {
+void Forest::openTreasure(Entity *player, int numBossesDefeated) {
   if (treasure == true) {
   }
 }
 
-void Forest::openTreasure(Entity *player, int &numBossesDefeated)
+void Forest::openTreasure(Entity *player, int numBossesDefeated)
 {
     if (treasure == true) {
         player->setCashOnHand((player->getCashOnHand() + 5 * numBossesDefeated));
@@ -131,7 +132,7 @@ void Forest::viewEnemies(Game &game, int &cashOnHand)
     // Show location
     Location::showLocation(game, cashOnHand);
     for (int i = 0; i < 5; i++) {
-        cout << i + 1 << " ";
+        cout << i + 1 << " " << enemies[i].getName() << " | Challenge rating : " << enemies[i].getChallengeRating() << endl;
     }
 
 }
