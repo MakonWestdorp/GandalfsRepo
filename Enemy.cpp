@@ -3,16 +3,27 @@
 #include "AttackItem.h"
 #include "BaseItem.h"
 #include "BuffItem.h"
-Enemy::Enemy(int NumBossesDeafeated) {
-  healthPoints = NumBossesDeafeated * 5 + 5;
-  strength = NumBossesDeafeated * 5 + 5;
-  defence = NumBossesDeafeated * 5 + 5;
-  magic = NumBossesDeafeated * 5 + 5;
-  isAlive = true;
-  srand(time(0));
-  name = RandomEnemyName();
-  ChallengeRating = healthPoints + strength + defence + magic;
-  ChallengeRating = ChallengeRating / 4;
+Enemy::Enemy()
+{
+  healthPoints = 0;
+  strength = 0;
+  defence = 0;
+  magic = 0;
+  isAlive = false; 
+  name = "No Name";
+  ChallengeRating = 0;
+}
+Enemy::Enemy(int NumBossesDeafeated)
+{
+    healthPoints = NumBossesDeafeated * 5 + 5;
+    strength = NumBossesDeafeated * 5 + 5;
+    defence = NumBossesDeafeated * 5 + 5;
+    magic = NumBossesDeafeated * 5 + 5;
+    isAlive = true;
+    srand(time(0));
+    name = RandomEnemyName();
+    ChallengeRating = healthPoints + strength + defence + magic;
+    ChallengeRating = ChallengeRating / 4;
 }
 string Enemy::getName() { return name; }
 string Enemy::RandomEnemyName() {
