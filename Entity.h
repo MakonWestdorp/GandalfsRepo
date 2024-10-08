@@ -20,8 +20,8 @@ class Entity {
   void Attack(Entity* Target);
   void Attack(Entity* Target, string TypeOfAttack, string StatUsed,
               int DamageBuff);
-  // Random name generator for Enemies
-
+  void takeTurn(Entity* Target);
+  bool GetIsAlive();
   // Getters and Setters. Only used in UnitTest class.
  protected:
   int getHP();
@@ -38,7 +38,6 @@ class Entity {
   void setName(string InputName);
   void setRes(string InputName);
 
- private:
   int NumBossesDeafeated;
   std::string name, Resistance;
   int healthPoints, strength, defence, magic;

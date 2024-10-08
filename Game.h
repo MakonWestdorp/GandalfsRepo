@@ -6,22 +6,16 @@
 #include <string>
 
 // Include classes
-#include "Entity.h"
-#include "Location.h"
-#include "Town.h"
 #include "Arena.h"
+#include "Entity.h"
 #include "Forest.h"
-#include "UnitTest.h"
+#include "Location.h"
 #include "Shop.h"
+#include "Town.h"
+#include "UnitTest.h"
 
 // Namespace
 using namespace std;
-
-/*
-  Forward Declaring Entity class to allow Game to declare Entity as a friend
-  class give access to bossesDefeated variable
-  Forward declaring Unit testing class to give it access to the game functions
-*/
 
 class Game {
   // Declaring Entity and Unit test as a Friend Class

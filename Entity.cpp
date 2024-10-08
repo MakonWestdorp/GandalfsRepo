@@ -29,8 +29,12 @@ void Entity::takeDamage(int Damage, string DamageType) {
 }
 
 void Entity::Attack(Entity* Target) {
-  Target->takeDamage(rand() % 5 * (strength), "BluntForce");
+  Target->takeDamage(rand() % 5 * (strength), "Bludgeoning");
 }
+
+void Entity::takeTurn(Entity* Target) { Attack(Target); }
+
+bool Entity::GetIsAlive() { return isAlive; }
 
 void Entity::Attack(Entity* Target, string TypeOfAttack, string StatUsed,
                     int DamageBuff) {

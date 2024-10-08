@@ -4,12 +4,21 @@
 #include "Entity.h"
 class Enemy : public Entity {
  public:
-  void takeDamage(int Damage, string DamageType);
-  void MeleeAttack(Entity* Target);
-  void MagicAttack(Entity* Target);
+  Enemy(int NumBossesDeafeated);
+  string RandomEnemyName();
+  int getChallengeRating();
 
  private:
+  const string prefixes[10] = {"Dark",  "Flame",  "Shadow", "Frost", "Venom",
+                               "Steel", "Cursed", "Wild",   "Blood", "Ghost"};
+  const string suffixes[10] = {"Fang",    "Claw",   "Gaze",    "Blade",
+                               "Wing",    "Spirit", "Stalker", "Reaper",
+                               "Bringer", "Warden"};
+  const string types[10] = {"Dragon",  "Wraith", "Goblin", "Orc",     "Beast",
+                            "Serpent", "Knight", "Golem",  "Specter", "Troll"};
   int CurrentNumBossesDefeated;
+  int ChallengeRating;
+  string RandomEnemyName();
   BaseItem RandomItemForEnemy(int NumBossesDefeated);
   BaseItem Inventory = RandomItemForEnemy(CurrentNumBossesDefeated);
 };
