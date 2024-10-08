@@ -3,31 +3,30 @@
 #include "AttackItem.h"
 #include "BaseItem.h"
 #include "BuffItem.h"
-Enemy::Enemy()
-{
+Enemy::Enemy() {
   healthPoints = 0;
   strength = 0;
   defence = 0;
   magic = 0;
-  isAlive = false; 
+  isAlive = false;
   name = "No Name";
   ChallengeRating = 0;
 }
-Enemy::Enemy(int NumBossesDeafeated)
-{
-    healthPoints = NumBossesDeafeated * 5 + 5;
-    strength = NumBossesDeafeated * 5 + 5;
-    defence = NumBossesDeafeated * 5 + 5;
-    magic = NumBossesDeafeated * 5 + 5;
-    isAlive = true;
-    srand(time(0));
-    name = RandomEnemyName();
-    ChallengeRating = healthPoints + strength + defence + magic;
-    ChallengeRating = ChallengeRating / 4;
+Enemy::Enemy(int NumBossesDeafeated) {
+  healthPoints = NumBossesDeafeated * 5 + 5;
+  strength = NumBossesDeafeated * 5 + 5;
+  defence = NumBossesDeafeated * 5 + 5;
+  magic = NumBossesDeafeated * 5 + 5;
+  isAlive = true;
+  srand(time(0));
+  name = RandomEnemyName();
+  ChallengeRating = healthPoints + strength + defence + magic;
+  ChallengeRating = ChallengeRating / 4;
 }
 string Enemy::getName() { return name; }
 string Enemy::RandomEnemyName() {
   // Randomly choose a prefix, suffix, and type
+  srand(time(0));
   string prefix = prefixes[rand() % 10];
   string suffix = suffixes[rand() % 10];
   string type = types[rand() % 10];
@@ -59,6 +58,7 @@ void Enemy::TakeTurn(Entity* Target, int CurrentRound, int roundBuffUsed) {
 }
 BaseItem Enemy::RandomItemForEnemy(int NumBossesDeafeated) {
   BaseItem RandomItem;
+  srand(time(0));
   if (rand() % 2 < 1) {
     RandomItem = AttackItem(NumBossesDeafeated);
   } else {
