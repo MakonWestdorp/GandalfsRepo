@@ -8,14 +8,19 @@
 using namespace std;
 
 class Game; 
+class Entity;
 
 class Forest : public Location {
     private:
+        Entity *enemies;
+        bool treasure; 
     public:
         Forest();
         Forest(string name, string description, string asciiDescription);
         void travelToLocation(Game &game, Location *location);
         void showLocation(Game &game,int &cashOnHand);
+        void callForBattle(Entity *player, Entity *enemy);
+        void explore();
 }; 
 
 #endif
