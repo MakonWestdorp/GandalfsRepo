@@ -49,7 +49,6 @@ void UnitTest::EntityTakeDamage() {
 void UnitTest::EntityAttack() {
   Entity Gandalf = Entity("Gandalf", 4);
   Entity Sauron = Entity("Sauron", 0);
-  Entity *PtrToGandalf = &Gandalf;
   Entity *PtrToSauron = &Sauron;
   string GandalfsResistance = Gandalf.getRes();
   string SauronsResistance = Sauron.getRes();
@@ -62,7 +61,7 @@ void UnitTest::EntityAttack() {
 // Location test functions
 void UnitTest::LocationTravel() {
   // Not required for test but needed for function calls
-  Entity *player = new Entity("Player",1);
+  Entity *player = new Entity("Player", 1);
   Enemy *enemy = new Enemy(1);
   // Descriptions
   string forestDescription =
@@ -92,10 +91,13 @@ void UnitTest::LocationTravel() {
   */
   LocationTest.setCurrentLocation(Forest);
   cout << LocationTest.viewCurrentLocation()->getName() << endl;
-  LocationTest.viewCurrentLocation()->showLocation(LocationTest, cashOnHand, player, enemy, 1);
-  LocationTest.viewCurrentLocation()->travelToLocation(LocationTest, Town, player, enemy);
+  LocationTest.viewCurrentLocation()->showLocation(LocationTest, cashOnHand,
+                                                   player, enemy, 1);
+  LocationTest.viewCurrentLocation()->travelToLocation(LocationTest, Town,
+                                                       player, enemy);
   cout << LocationTest.viewCurrentLocation()->getName() << endl;
-  LocationTest.viewCurrentLocation()->showLocation(LocationTest, cashOnHand, player, enemy, 1);
+  LocationTest.viewCurrentLocation()->showLocation(LocationTest, cashOnHand,
+                                                   player, enemy, 1);
 }
 
 void UnitTest::BasicShopTest() {
@@ -150,7 +152,7 @@ void UnitTest::BasicShopTest() {
 
 void UnitTest::FirstTownTest() {
   Game game;
-  Entity *player = new Entity("Player",1);
+  Entity *player = new Entity("Player", 1);
   Enemy *enemy = new Enemy(1);
   int cashOnHand = 50;
   game.initialiseLocations();
@@ -158,7 +160,8 @@ void UnitTest::FirstTownTest() {
   game.setCurrentLocation(game.viewLocations()[0]);
 
   while (game.isGameRunning() == true) {
-    game.viewCurrentLocation()->showLocation(game, cashOnHand,player,enemy,1);
+    game.viewCurrentLocation()->showLocation(game, cashOnHand, player, enemy,
+                                             1);
   }
 }
 
