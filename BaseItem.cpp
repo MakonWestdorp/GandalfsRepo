@@ -3,6 +3,8 @@
 #include "Entity.h"
 #include "Game.h"
 
+int BaseItem::GetChallengeRating() { return ChallengeRating; }
+
 void BaseItem::UseItem(Entity* Target) {
   // BaseItem UseItem function does nothing, it gets overloaded by inherited
   // classes

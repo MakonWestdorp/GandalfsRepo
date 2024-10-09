@@ -21,6 +21,7 @@ class BaseItem {
   int nameOfStatsSize = sizeof(nameOfStats) / sizeof(nameOfStats[0]);
 
  public:
+  int GetChallengeRating();
   virtual void UseItem(Entity* Target);
   BaseItem();
   BaseItem(int NumBossesDefeated);  // Defeault Constructor
