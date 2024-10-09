@@ -2,6 +2,7 @@
 #include "BaseItem.h"
 #include "AttackItem.h"
 #include "BuffItem.h"
+#include "Player.h"
 
 // Include libraries for pause and namepsaces
 #include <chrono>
@@ -73,7 +74,7 @@ bool *Shop::viewForSaleStatus()
     return this->forSaleStatus;
 }
 
-string Shop::purchaseItem(int itemNumber, int &cashOnHand)
+string Shop::purchaseItem(int itemNumber, Player *player)
 {
 
     // Checking if item exists
@@ -88,12 +89,13 @@ string Shop::purchaseItem(int itemNumber, int &cashOnHand)
             return "Item not for sale"; 
 
         } else {
-            if (prices[itemNumber] > cashOnHand) {
+            if (prices[itemNumber] > player->getCashOnHand()) {
                 return "Insufficient funds";
 
             } else {
                 forSaleStatus[itemNumber] = false;
-                cashOnHand -= prices[itemNumber];
+                player->setCashOnHand(player->getCashOnHand()-prices[itemNumber]);
+                player->AddItemToInventory(inventory[itemNumber]);
                 return "Item purchased";
             }
         }
@@ -105,7 +107,7 @@ string Shop::purchaseItem(int itemNumber, int &cashOnHand)
 
 }
 
-bool Shop::showShopInterface(int &cashOnHand)
+bool Shop::showShopInterface(Player *player)
 {
     // Divider to seperate elements of the visual
     string divider = "+------------------------------------------------------------------+";
@@ -116,7 +118,7 @@ bool Shop::showShopInterface(int &cashOnHand)
 
     // Show shop visuals 
     cout << divider << endl << this->shopName << "   |   Shop Keeper : " << this->shopKeeperName 
-         << "   |   Cash on hand : " << cashOnHand << endl << divider << endl << this->description 
+         << "   |   Cash on hand : " << player->getCashOnHand() << endl << divider << endl << this->description 
          << endl << divider << endl; 
 
     // Show shop options
@@ -137,7 +139,7 @@ bool Shop::showShopInterface(int &cashOnHand)
     cout << divider << endl; 
 
     if (userDecision <= inventorySize && userDecision > 0) {
-        cout << purchaseItem(userDecision,cashOnHand) << endl << divider << endl; 
+        cout << purchaseItem(userDecision,player) << endl << divider << endl; 
         sleep_for(seconds(2));
         return true; // User will stay in the shop
     } else if (userDecision == count) {

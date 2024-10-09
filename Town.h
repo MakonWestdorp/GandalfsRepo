@@ -8,15 +8,16 @@
 class Game;
 class Shop; 
 class Entity;
-class Entity;
+class Enemy;
+class Player;
 
 class Town : public Location {
     public: 
     Town();
     Town(string name, string description, string asciiDescription);
-    void travelToLocation(Game &game, Location *location, Entity *player, Enemy *enemy);
-    void enterShop(Shop &shopName, int &cashOnHand);
-    void showLocation(Game &game, int &cashOnHand, Entity *player, Enemy *enemy, int numBossesDefeated);
+    void travelToLocation(Game &game, Location *location, Player *player, Enemy *enemy,int numBossesDefeated);
+    void enterShop(Shop &shopName, Player *player);
+    void showLocation(Game &game, Player *player, Enemy *enemy, int numBossesDefeated);
 
 
 };

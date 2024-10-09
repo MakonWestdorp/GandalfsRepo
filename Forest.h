@@ -10,6 +10,7 @@ using namespace std;
 class Game; 
 class Entity;
 class Enemy;
+class Player;
 
 class Forest : public Location {
     private:
@@ -18,12 +19,12 @@ class Forest : public Location {
     public:
         Forest();
         Forest(string name, string description, string asciiDescription, int numBossesDefeated);
-        void travelToLocation(Game &game, Location *location,Entity *player, Enemy *enemy);
-        void showLocation(Game &game,int &cashOnHand,Entity *player, Enemy *enemy, int numBossesDefeated);
-        void callForBattle(Entity *player, Enemy *enemy);
+        void travelToLocation(Game &game, Location *location,Player *player, Enemy *enemy, int numBossesDefeated);
+        void showLocation(Game &game,Player *player, Enemy *enemy, int numBossesDefeated);
+        void callForBattle(Player *player, Enemy *enemy);
         void explore(int numBossesDefeated);
-        void openTreasure(Entity *player, int numBossesDefeated);
-        void viewEnemies(Game &game, int &cashOnHand, Entity *player, Enemy *enemy);
+        void openTreasure(Player *player, int numBossesDefeated);
+        void viewEnemies(Game &game, Player *player, Enemy *enemy, int numBossesDefeated);
 }; 
 
 #endif

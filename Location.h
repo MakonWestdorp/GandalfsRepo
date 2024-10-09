@@ -6,6 +6,7 @@
 
 #include "Entity.h"
 #include "Enemy.h"
+#include "Player.h"
 
 using namespace std; 
 
@@ -16,6 +17,7 @@ using namespace std;
 
 class UnitTest; 
 class Game;
+
 class Location {
     friend class UnitTest; 
     private:
@@ -26,8 +28,8 @@ class Location {
     public:
         Location(); // Default constructor 
         Location(string name, string description, string asciiDescription); // Constructor 
-        virtual void showLocation(Game &game, int &cashOnHand, Entity *player, Enemy *enemy, int numBossesDefeated); // Displays the locations details 
-        virtual void travelToLocation(Game &game, Location *destination,Entity *player, Enemy *enemy); // Changes the location 
+        virtual void showLocation(Game &game, Player *player, Enemy *enemy, int numBossesDefeated); // Displays the locations details 
+        virtual void travelToLocation(Game &game, Location *destination, Player *player, Enemy *enemy, int numBossesDefeated); // Changes the location 
         string getName(); // Returns the name
 
 };

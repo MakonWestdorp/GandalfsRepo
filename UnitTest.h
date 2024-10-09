@@ -9,6 +9,7 @@
 #include "Location.h"
 #include "Shop.h"
 #include "Town.h"
+#include "Player.h"
 
 class UnitTest {
  public:

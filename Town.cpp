@@ -21,26 +21,25 @@ Town::Town(string name, string description, string asciiDescription) : Location(
 {
 }
 
-void Town::travelToLocation(Game &game, Location *location, Entity *player, Enemy *enemy)
+void Town::travelToLocation(Game &game, Location *location, Player *player, Enemy *enemy, int numBossesDefeated)
 {   
-    int cashOnHand = 0; // Temporary - Needed for function call
     if (location->getName() == game.viewLocations()[1]->getName() || 
         location->getName() == game.viewLocations()[2]->getName()) {
         game.travel(location);
-        game.viewCurrentLocation()->showLocation(game,cashOnHand,player,enemy,1);
+        game.viewCurrentLocation()->showLocation(game,player,enemy,numBossesDefeated);
     }
 }
 
-void Town::enterShop(Shop &shopName, int &cashOnHand)
+void Town::enterShop(Shop &shopName, Player *player)
 {   
-    while (shopName.showShopInterface(cashOnHand) == true) {}
+    while (shopName.showShopInterface(player) == true) {}
 }
 
-void Town::showLocation(Game &game, int &cashOnHand, Entity *player, Enemy *enemy, int numBossesDefeated)
+void Town::showLocation(Game &game, Player *player, Enemy *enemy, int numBossesDefeated)
 {
     string divider = "+------------------------------------------------------------------+"; 
     int userDecision = 0;
-    Location::showLocation(game,cashOnHand,player,enemy,1);
+    Location::showLocation(game,player,enemy,numBossesDefeated);
     cout << "1. Travel to Weapons Shop" << endl << "2. Travel to Magic Shop" << endl 
          << "3. Travel to Armour Shop" << endl << "4. Travel to General Shop" << endl
          << "5. Travel to Forest" << endl << "6. Travel to Arena" << endl << "7. Save Game (N/A)" 
@@ -55,27 +54,27 @@ void Town::showLocation(Game &game, int &cashOnHand, Entity *player, Enemy *enem
     switch (userDecision) {
         case 1:
             sleep_for(seconds(1));
-            enterShop(game.viewShops()[0],cashOnHand);
+            enterShop(game.viewShops()[0],player);
             break;
         case 2:
             sleep_for(seconds(1));
-            enterShop(game.viewShops()[1],cashOnHand);
+            enterShop(game.viewShops()[1],player);
             break;
         case 3:
             sleep_for(seconds(1));
-            enterShop(game.viewShops()[2],cashOnHand);
+            enterShop(game.viewShops()[2],player);
             break;
         case 4:
             sleep_for(seconds(1));
-            enterShop(game.viewShops()[3],cashOnHand);
+            enterShop(game.viewShops()[3],player);
             break;
         case 5:
             sleep_for(seconds(1));
-            travelToLocation(game,game.viewLocations()[1],player,enemy);
+            travelToLocation(game,game.viewLocations()[1],player,enemy,numBossesDefeated);
             break;
         case 6:
             sleep_for(seconds(1));
-            travelToLocation(game,game.viewLocations()[2],player,enemy);
+            travelToLocation(game,game.viewLocations()[2],player,enemy,numBossesDefeated);
             break;
         case 7:
             sleep_for(seconds(1));

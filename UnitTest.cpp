@@ -1,5 +1,5 @@
 #include "UnitTest.h"
-
+#include "Player.h"
 #include <iostream>
 using namespace std;
 void UnitTest::StartAllTests() {
@@ -61,8 +61,9 @@ void UnitTest::EntityAttack() {
 // Location test functions
 void UnitTest::LocationTravel() {
   // Not required for test but needed for function calls
-  Entity *player = new Entity("Player", 1);
+  Player *player = new Player("Player",5,5,5,5,"");
   Enemy *enemy = new Enemy(1);
+  int numBossesDefeated = 0;
   // Descriptions
   string forestDescription =
       "In a dark, mist-shrouded forest teeming with fearsome monsters, \n "
@@ -91,19 +92,18 @@ void UnitTest::LocationTravel() {
   */
   LocationTest.setCurrentLocation(Forest);
   cout << LocationTest.viewCurrentLocation()->getName() << endl;
-  LocationTest.viewCurrentLocation()->showLocation(LocationTest, cashOnHand,
-                                                   player, enemy, 1);
-  LocationTest.viewCurrentLocation()->travelToLocation(LocationTest, Town,
-                                                       player, enemy);
+  LocationTest.viewCurrentLocation()->showLocation(LocationTest,player, enemy, numBossesDefeated);
+  LocationTest.viewCurrentLocation()->travelToLocation(LocationTest, Town, player, enemy,numBossesDefeated);
   cout << LocationTest.viewCurrentLocation()->getName() << endl;
-  LocationTest.viewCurrentLocation()->showLocation(LocationTest, cashOnHand,
-                                                   player, enemy, 1);
+  LocationTest.viewCurrentLocation()->showLocation(LocationTest, player, enemy, numBossesDefeated);
 }
 
 void UnitTest::BasicShopTest() {
-  // Create inventory
+  // Needed for test
   int numBossesDefeated = 1;
+  Player *player = new Player("Player",5,5,5,5,"");
 
+  // Create inventory
   int *prices = new int[5];
   prices[0] = 10;
   prices[1] = 5;
@@ -127,7 +127,7 @@ void UnitTest::BasicShopTest() {
 
   // Test shop interface
   int cashOnHand = 50;
-  while (WeaponsShop.showShopInterface(cashOnHand) == true) {
+  while (WeaponsShop.showShopInterface(player) == true) {
   }
 
   // Create new inventory
@@ -146,22 +146,21 @@ void UnitTest::BasicShopTest() {
   WeaponsShop.updateShop(numBossesDefeated, prices, forSaleStatus);
 
   // Test shop interface
-  while (WeaponsShop.showShopInterface(cashOnHand) == true) {
+  while (WeaponsShop.showShopInterface(player) == true) {
   }
 }
 
 void UnitTest::FirstTownTest() {
   Game game;
-  Entity *player = new Entity("Player", 1);
+  Player *player = new Player("Player",5,5,5,5,"");
   Enemy *enemy = new Enemy(1);
-  int cashOnHand = 50;
+  int numBossesDefeated = 0;
   game.initialiseLocations();
   game.initialiseShops();
   game.setCurrentLocation(game.viewLocations()[0]);
 
   while (game.isGameRunning() == true) {
-    game.viewCurrentLocation()->showLocation(game, cashOnHand, player, enemy,
-                                             1);
+    game.viewCurrentLocation()->showLocation(game, player, enemy, numBossesDefeated);
   }
 }
 

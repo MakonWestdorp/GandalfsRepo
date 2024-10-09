@@ -2,6 +2,7 @@
 #include "Game.h"
 #include "Entity.h"
 #include "Enemy.h"
+#include "Player.h"
 
 Location::Location()
 {
@@ -17,7 +18,7 @@ Location::Location(string name, string description, string asciiDescription)
     this->asciiDescription = asciiDescription;   
 }
 
-void Location::showLocation(Game &game, int &cashOnHand, Entity *player, Enemy *enemy, int numBossesDefeated)
+void Location::showLocation(Game &game, Player *player, Enemy *enemy, int numBossesDefeated)
 {   
     // Divider to seperate elements of the visual
     string divider = "+------------------------------------------------------------------+"; 
@@ -32,11 +33,10 @@ void Location::showLocation(Game &game, int &cashOnHand, Entity *player, Enemy *
     
 }
 
-void Location::travelToLocation(Game& game, Location *destination,Entity *player, Enemy *enemy)
+void Location::travelToLocation(Game& game, Location *destination,Player *player, Enemy *enemy, int numBossesDefeated)
 {   
-    int cashOnHand = 0; // Temporary -Needed for function call
     game.travel(destination);
-    game.viewCurrentLocation()->showLocation(game,cashOnHand,player,enemy,1);
+    game.viewCurrentLocation()->showLocation(game,player,enemy,numBossesDefeated);
 }
 
 string Location::getName()

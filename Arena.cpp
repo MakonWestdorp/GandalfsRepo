@@ -3,6 +3,7 @@
 #include "Town.h"
 #include "Forest.h"
 #include "Game.h"
+#include "Player.h"
 
 
 // Include libraries for pause and namepsaces
@@ -19,20 +20,19 @@ Arena::Arena(string name, string description, string asciiDescription) : Locatio
 {
 }
 
-void Arena::travelToLocation(Game &game, Location *location, Entity *player, Enemy *enemy)
+void Arena::travelToLocation(Game &game, Location *location, Player *player, Enemy *enemy, int numBossesDefeated)
 {
-    int cashOnHand = 0; // Temporary - Needed for function call
     if (location->getName() == game.viewLocations()[0]->getName()) {
         game.travel(location);
-        game.viewCurrentLocation()->showLocation(game,cashOnHand,player,enemy,1);
+        game.viewCurrentLocation()->showLocation(game,player,enemy,numBossesDefeated);
     }
 }
 
-void Arena::showLocation(Game &game, int &cashOnHand, Entity *player, Enemy *enemy, int numBossesDefeated)
+void Arena::showLocation(Game &game, Player *player, Enemy *enemy, int numBossesDefeated)
 {
     string divider = "+------------------------------------------------------------------+"; 
     int userDecision = 0;
-    Location::showLocation(game,cashOnHand,player,enemy,1);
+    Location::showLocation(game,player,enemy,numBossesDefeated);
     cout << "1. Travel to Town" << endl << divider << endl;
     cin >> userDecision; 
     if (cin.fail() == true) {
@@ -45,7 +45,7 @@ void Arena::showLocation(Game &game, int &cashOnHand, Entity *player, Enemy *ene
     switch (userDecision) {
         case 1:
             sleep_for(seconds(1));
-            travelToLocation(game,game.viewLocations()[0],player,enemy);
+            travelToLocation(game,game.viewLocations()[0],player,enemy,numBossesDefeated);
             break;
         default:
             sleep_for(seconds(1));
