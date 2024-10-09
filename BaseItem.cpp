@@ -13,7 +13,6 @@ BaseItem::BaseItem() {
   name = nameRandomiser();
 }
 BaseItem::BaseItem(int NumBossesDefeated) {
-  srand(time(0));
   DamageOrBuff = (rand() % 5 * NumBossesDefeated) + 5 * NumBossesDefeated;
   name = nameRandomiser();
 }
@@ -22,7 +21,6 @@ string BaseItem::getName() { return name; }
 
 string BaseItem::nameRandomiser() {
   // 1% chance for a rare prefix
-  srand(time(0));
   bool isRare = (rand() % 100) < 1;
 
   // Array of rare prefixes
@@ -60,6 +58,5 @@ string BaseItem::nameRandomiser() {
 }
 
 string BaseItem::getRandomElement(const string elements[], int size) {
-  srand(time(0));
   return elements[rand() % size];
 }

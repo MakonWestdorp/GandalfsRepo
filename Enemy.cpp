@@ -18,15 +18,13 @@ Enemy::Enemy(int NumBossesDeafeated) {
   defence = NumBossesDeafeated * 5 + 5;
   magic = NumBossesDeafeated * 5 + 5;
   isAlive = true;
-  srand(time(0));
   name = RandomEnemyName();
   ChallengeRating = healthPoints + strength + defence + magic;
   ChallengeRating = ChallengeRating / 4;
 }
-string Enemy::getName() { return name; }
+
 string Enemy::RandomEnemyName() {
   // Randomly choose a prefix, suffix, and type
-  srand(time(0));
   string prefix = prefixes[rand() % 10];
   string suffix = suffixes[rand() % 10];
   string type = types[rand() % 10];
@@ -35,6 +33,7 @@ string Enemy::RandomEnemyName() {
   return prefix + " " + type + " of the " + suffix;
 }
 int Enemy::getChallengeRating() { return ChallengeRating; }
+string Enemy::getName() { return name; }
 void Enemy::TakeTurn(Entity* Target, int CurrentRound, int roundBuffUsed) {
   BaseItem* InventoryPTR = &Inventory;
   BuffItem* buffItem = dynamic_cast<BuffItem*>(InventoryPTR);
@@ -45,7 +44,6 @@ void Enemy::TakeTurn(Entity* Target, int CurrentRound, int roundBuffUsed) {
       BuffItemUsed = false;
     }
   }
-  srand(time(0));
   if (rand() % 2 < 1) {
     Attack(Target);
   } else {
@@ -58,7 +56,6 @@ void Enemy::TakeTurn(Entity* Target, int CurrentRound, int roundBuffUsed) {
 }
 BaseItem Enemy::RandomItemForEnemy(int NumBossesDeafeated) {
   BaseItem RandomItem;
-  srand(time(0));
   if (rand() % 2 < 1) {
     RandomItem = AttackItem(NumBossesDeafeated);
   } else {
