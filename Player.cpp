@@ -13,7 +13,15 @@ Player::Player(string inputName, int inputHP, int inputSTR, int inputDEF,
   isAlive = true;
 }
 
-void Player::TakeTurn() {}
+void Player::TakeTurn() {
+  string divider =
+      "+------------------------------------------------------------------+";
+  cout << endl << endl << endl << endl << endl << endl;
+  cout << divider << endl
+       << "   |   Character Name : " << this->name
+       << "   |   Current HP: " << healthPoints << endl
+       << divider << endl;
+}
 
 void Player::AddItemToInventory(BaseItem Item) {
   BaseItem* TempInventory = new BaseItem[CurrentInventorySize + 1];

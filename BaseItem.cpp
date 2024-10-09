@@ -9,10 +9,11 @@ void BaseItem::UseItem(Entity* Target) {
 }
 
 BaseItem::BaseItem() {
-  DamageOrBuff = rand();
+  DamageOrBuff = rand() % 5;
   name = nameRandomiser();
 }
 BaseItem::BaseItem(int NumBossesDefeated) {
+  ChallengeRating = NumBossesDefeated;
   DamageOrBuff = (rand() % 5 * NumBossesDefeated) + 5 * NumBossesDefeated;
   name = nameRandomiser();
 }

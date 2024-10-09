@@ -14,7 +14,7 @@ class BaseItem {
   string name;
   int DamageOrBuff;
   string DamageTypeOrNameOfStat;
-
+  int ChallengeRating;
   string damageTypes[4] = {"Magic", "Piercing", "Bludgeoning", "Slashing"};
   int damageTypesSize = sizeof(damageTypes) / sizeof(damageTypes[0]);
   string nameOfStats[4] = {"HP", "STR", "DEF", "MAG"};
