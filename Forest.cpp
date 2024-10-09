@@ -27,7 +27,6 @@ Forest::Forest(string name, string description, string asciiDescription, int num
     treasure = false;   
     enemies = new Enemy*[5];
     for (int i = 0; i < 5; i++) {
-        srand(time(0));
         enemies[i] = new Enemy(numBossesDefeated);
     }
 
