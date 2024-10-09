@@ -123,7 +123,7 @@ void UnitTest::BasicShopTest() {
       "Steel & Sorcery offers finely crafted blades, \nfrom master-forged "
       "steel to rare enchanted swords";
   Shop WeaponsShop(numBossesDefeated, prices, forSaleStatus, "Steel & Sorcery",
-                   "Timmy", shopDescription, "");
+                   "Timmy", shopDescription, "","Attack");
 
   // Test shop interface
   int cashOnHand = 50;

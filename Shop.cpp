@@ -1,5 +1,7 @@
 #include "Shop.h"
 #include "BaseItem.h"
+#include "AttackItem.h"
+#include "BuffItem.h"
 
 // Include libraries for pause and namepsaces
 #include <chrono>
@@ -25,7 +27,7 @@ Shop::Shop()
 
 }
 
-Shop::Shop(int &numBossesDefeated, int *prices, bool *forSaleStatus, string shopName, string shopKeeperName, string description, string asciiDescription)
+Shop::Shop(int &numBossesDefeated, int *prices, bool *forSaleStatus, string shopName, string shopKeeperName, string description, string asciiDescription, string type)
 {
     this->prices = prices; 
     this->forSaleStatus = forSaleStatus;
@@ -39,8 +41,19 @@ Shop::Shop(int &numBossesDefeated, int *prices, bool *forSaleStatus, string shop
 
     // Generate inventory
     this->inventory = new BaseItem[5];
-    for (int i = 0; i < inventorySize; i++) {
-        inventory[i] = BaseItem(numBossesDefeated);
+
+    if (type == "Attack") {
+        for (int i = 0; i < inventorySize; i++) {
+            inventory[i] = AttackItem(numBossesDefeated);
+        }
+    } else if (type == "Buff") {
+        for (int i = 0; i < inventorySize; i++) {
+            inventory[i] = BuffItem(numBossesDefeated);
+        }
+    } else {
+        for (int i = 0; i < inventorySize; i++) {
+            inventory[i] = BaseItem(numBossesDefeated);
+        }
     }
 
 }
