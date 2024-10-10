@@ -11,6 +11,7 @@ void BaseItem::UseItem(Entity* Target) {
 }
 
 BaseItem::BaseItem() {
+  ChallengeRating = 0;
   DamageOrBuff = rand() % 5;
   name = nameRandomiser();
 }
