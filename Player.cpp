@@ -142,9 +142,7 @@ void Player::TakeTurn(Entity* Target, int CurrentRound, bool KeepFighting) {
   cout << "1. Attack normally" << endl;
 
   for (int i = 0; i < CurrentInventorySize; i++) {
-    BaseItem TempItem = Inventory[i];
-    BuffItem* buffItem = dynamic_cast<BuffItem*>(&TempItem);
-    if (buffItem) {
+    if (Inventory[i].IsBuff) {
       cout << i + 2 << ". Use Item: " << Inventory[i].getName()
            << " | Item Type:" << "Buff" << endl;
     } else {
