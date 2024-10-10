@@ -32,18 +32,18 @@ Forest::Forest(string name, string description, string asciiDescription, int num
 
 }
 
-void Forest::travelToLocation(Game &game, Location *location, Player *player, Enemy *enemy, int numBossesDefeated) {
+void Forest::travelToLocation(Game &game, Location *location, Player *player, int numBossesDefeated) {
   if (location->getName() == game.viewLocations()[0]->getName()) {
     game.travel(location);
-    game.viewCurrentLocation()->showLocation(game,player,enemy,numBossesDefeated);
+    game.viewCurrentLocation()->showLocation(game,player,numBossesDefeated);
   }
 }
 
-void Forest::showLocation(Game &game, Player *player, Enemy *enemy, int numBossesDefeated)
+void Forest::showLocation(Game &game, Player *player, int numBossesDefeated)
 {
     string divider = "+------------------------------------------------------------------+"; 
     int userDecision = 0;
-    Location::showLocation(game,player,enemy,numBossesDefeated);
+    Location::showLocation(game,player,numBossesDefeated);
     cout << "1. Travel to Town" << endl << "2. Explore" << endl << "3. Search for treasure" 
          << endl << "4. View Enemies" << endl << divider << endl;
     cin >> userDecision; 
@@ -57,7 +57,7 @@ void Forest::showLocation(Game &game, Player *player, Enemy *enemy, int numBosse
     switch (userDecision) {
         case 1:
             sleep_for(seconds(1));
-            travelToLocation(game,game.viewLocations()[0],player,enemy,numBossesDefeated);
+            travelToLocation(game,game.viewLocations()[0],player,numBossesDefeated);
             break;
         case 2:
             explore(numBossesDefeated);
@@ -71,7 +71,7 @@ void Forest::showLocation(Game &game, Player *player, Enemy *enemy, int numBosse
             break;
         case 4:
             sleep_for(seconds(1));
-            viewEnemies(game,player,enemy,numBossesDefeated);
+            viewEnemies(game,player,numBossesDefeated);
             break;
         default:
           sleep_for(seconds(1));
@@ -118,7 +118,7 @@ void Forest::openTreasure(Player *player, int numBossesDefeated)
     }
 }
 
-void Forest::viewEnemies(Game &game, Player *player, Enemy *enemy, int numBossesDefeated)
+void Forest::viewEnemies(Game &game, Player *player, int numBossesDefeated)
 {
     int userDecision = 0, cashLost = 0; // Used to select an enemy to fight
 
@@ -129,7 +129,7 @@ void Forest::viewEnemies(Game &game, Player *player, Enemy *enemy, int numBosses
     string divider = "+------------------------------------------------------------------+"; 
 
     // Show location
-    Location::showLocation(game,player,enemy,numBossesDefeated);
+    Location::showLocation(game,player,numBossesDefeated);
     cout << "Select the enemy you wish to fight | Player challenge rating: " << "CR" << endl << divider << endl;
     for (int i = 0; i < 5; i++) {
         cout << i + 1 << " " << enemies[i]->getName() << " | Challenge rating : " << enemies[i]->getChallengeRating() << endl;
@@ -144,7 +144,7 @@ void Forest::viewEnemies(Game &game, Player *player, Enemy *enemy, int numBosses
     cout << divider << endl;
     
     if (userDecision > 0 && userDecision <= 5) {
-      callForBattle(player,enemy);
+      callForBattle(player,enemies[userDecision-1]);
       sleep_for(seconds(1));
     } else if (userDecision == 6) {
       cout << "You return to the safety of the main path" << endl << divider << endl;
@@ -158,5 +158,7 @@ void Forest::viewEnemies(Game &game, Player *player, Enemy *enemy, int numBosses
       << endl << divider << endl;
       sleep_for(seconds(1));
     }
+
+  
 
 }

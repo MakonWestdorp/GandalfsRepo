@@ -21,12 +21,12 @@ Town::Town(string name, string description, string asciiDescription) : Location(
 {
 }
 
-void Town::travelToLocation(Game &game, Location *location, Player *player, Enemy *enemy, int numBossesDefeated)
+void Town::travelToLocation(Game &game, Location *location, Player *player, int numBossesDefeated)
 {   
     if (location->getName() == game.viewLocations()[1]->getName() || 
         location->getName() == game.viewLocations()[2]->getName()) {
         game.travel(location);
-        game.viewCurrentLocation()->showLocation(game,player,enemy,numBossesDefeated);
+        game.viewCurrentLocation()->showLocation(game,player,numBossesDefeated);
     }
 }
 
@@ -35,11 +35,11 @@ void Town::enterShop(Shop &shopName, Player *player)
     while (shopName.showShopInterface(player) == true) {}
 }
 
-void Town::showLocation(Game &game, Player *player, Enemy *enemy, int numBossesDefeated)
+void Town::showLocation(Game &game, Player *player, int numBossesDefeated)
 {
     string divider = "+------------------------------------------------------------------+"; 
     int userDecision = 0;
-    Location::showLocation(game,player,enemy,numBossesDefeated);
+    Location::showLocation(game,player,numBossesDefeated);
     cout << "1. Travel to Weapons Shop" << endl << "2. Travel to Magic Shop" << endl 
          << "3. Travel to Armour Shop" << endl << "4. Travel to General Shop" << endl
          << "5. Travel to Forest" << endl << "6. Travel to Arena" << endl << "7. Save Game (N/A)" 
@@ -70,11 +70,11 @@ void Town::showLocation(Game &game, Player *player, Enemy *enemy, int numBossesD
             break;
         case 5:
             sleep_for(seconds(1));
-            travelToLocation(game,game.viewLocations()[1],player,enemy,numBossesDefeated);
+            travelToLocation(game,game.viewLocations()[1],player,numBossesDefeated);
             break;
         case 6:
             sleep_for(seconds(1));
-            travelToLocation(game,game.viewLocations()[2],player,enemy,numBossesDefeated);
+            travelToLocation(game,game.viewLocations()[2],player,numBossesDefeated);
             break;
         case 7:
             sleep_for(seconds(1));

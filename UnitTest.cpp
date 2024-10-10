@@ -80,8 +80,6 @@ void UnitTest::LocationTravel() {
   // Create temporary game
   Game LocationTest;
 
-  int cashOnHand = 0;  // Needed to call function
-
   /*
     Runs a short test that
     - Outputs current locations name
@@ -103,47 +101,17 @@ void UnitTest::BasicShopTest() {
   int numBossesDefeated = 1;
   Player *player = new Player("Player",5,5,5,5,"");
 
-  // Create inventory
-  int *prices = new int[5];
-  prices[0] = 10;
-  prices[1] = 5;
-  prices[2] = 100;
-  prices[3] = 30;
-  prices[4] = 60;
-
-  bool *forSaleStatus = new bool[5];
-  forSaleStatus[0] = true;
-  forSaleStatus[1] = true;
-  forSaleStatus[2] = true;
-  forSaleStatus[3] = true;
-  forSaleStatus[4] = true;
-
   // Create shop
   string shopDescription =
       "Steel & Sorcery offers finely crafted blades, \nfrom master-forged "
       "steel to rare enchanted swords";
-  Shop WeaponsShop(numBossesDefeated, prices, forSaleStatus, "Steel & Sorcery",
-                   "Timmy", shopDescription, "","Attack");
+  Shop WeaponsShop(numBossesDefeated, "Steel & Sorcery","Timmy", shopDescription, "","Attack");
 
   // Test shop interface
-  int cashOnHand = 50;
   while (WeaponsShop.showShopInterface(player) == true) {
   }
 
-  // Create new inventory
-  prices[0] = 20;
-  prices[1] = 2;
-  prices[2] = 200;
-  prices[3] = 60;
-  prices[4] = 120;
-
-  forSaleStatus[0] = true;
-  forSaleStatus[1] = true;
-  forSaleStatus[2] = true;
-  forSaleStatus[3] = true;
-  forSaleStatus[4] = true;
-
-  WeaponsShop.updateShop(numBossesDefeated, prices, forSaleStatus);
+  WeaponsShop.updateShop(numBossesDefeated);
 
   // Test shop interface
   while (WeaponsShop.showShopInterface(player) == true) {

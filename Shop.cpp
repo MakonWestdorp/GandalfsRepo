@@ -28,10 +28,8 @@ Shop::Shop()
 
 }
 
-Shop::Shop(int &numBossesDefeated, int *prices, bool *forSaleStatus, string shopName, string shopKeeperName, string description, string asciiDescription, string type)
+Shop::Shop(int &numBossesDefeated, string shopName, string shopKeeperName, string description, string asciiDescription, string type)
 {
-    this->prices = prices; 
-    this->forSaleStatus = forSaleStatus;
     this->shopName = shopName;
     this->shopKeeperName = shopKeeperName; 
     this->description = description;
@@ -56,6 +54,16 @@ Shop::Shop(int &numBossesDefeated, int *prices, bool *forSaleStatus, string shop
             inventory[i] = BaseItem(numBossesDefeated);
         }
     }
+
+    // Set prices
+    prices = new int[5];
+    for (int i = 0; i < inventorySize; i++) {
+        prices[i] = inventory[i].GetChallengeRating() * 10;
+    }
+
+    // Set for sale statuses
+    forSaleStatus = new bool[5];
+    fill(forSaleStatus,forSaleStatus + inventorySize,true);
 
 }
 
@@ -156,18 +164,23 @@ bool Shop::showShopInterface(Player *player)
 
 }
 
-void Shop::updateShop(int &numBossesDefeated, int *prices, bool *forSaleStatus)
+void Shop::updateShop(int &numBossesDefeated)
 {
     // Delete old inventory
     //delete this->inventory; 
     //delete this->prices; 
     //delete this->forSaleStatus; 
 
-    // Implement new inventory
-    this->prices = prices; 
-    this->forSaleStatus = forSaleStatus;
-
+    // Change to new inventory
     for (int i = 0; i < inventorySize; i++) {
         inventory[i] = BaseItem(numBossesDefeated);
     }
+
+    for (int i = 0; i < inventorySize; i++) {
+        prices[i] = inventory[i].GetChallengeRating() * 10;
+    }
+
+    fill(forSaleStatus,forSaleStatus + inventorySize,true);
+
+
 }

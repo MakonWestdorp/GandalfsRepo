@@ -30,31 +30,12 @@ void Game::initialiseShops() {
   string ArmourAscii = "";
   string GeneralAscii = "";
 
-  // Shop prices - temporary 
-  int *WeaponPrices = new int[5];
-  fill(WeaponPrices,WeaponPrices + 5,20);
-  int *MagicPrices = new int[5];
-  fill(MagicPrices,MagicPrices + 5,30);
-  int *ArmourPrices = new int[5];
-  fill(ArmourPrices,ArmourPrices + 5,40);
-  int *GeneralPrices = new int[5];
-  fill(GeneralPrices,GeneralPrices + 5,10);
-
-  // Shop for sale statues - temporary
-  bool *WeaponForSale = new bool[5];
-  fill(WeaponForSale,WeaponForSale+5,true);
-  bool *MagicForSale = new bool[5];
-  fill(MagicForSale,MagicForSale+5,true);
-  bool *ArmourForSale = new bool[5];
-  fill(ArmourForSale,ArmourForSale+5,true);
-  bool *GeneralForSale = new bool[5];
-  fill(GeneralForSale,GeneralForSale+5,true);
 
   // Specific constructors will be used later
-  WeaponShop = Shop(numBossesDefeated,WeaponPrices,WeaponForSale,"Steel & Sorcery","Timmy", WeaponDescription, WeaponAscii,"Attack");
-  MagicShop = Shop(numBossesDefeated,MagicPrices,MagicForSale,"The Eldritch Emporium","Rufus",MagicDescription,MagicAscii,"Attack");
-  ArmourShop = Shop(numBossesDefeated,ArmourPrices,ArmourForSale,"Defender's Den","Keith",ArmourDescription,ArmourAscii,"Buff");
-  GeneralShop = Shop(numBossesDefeated,GeneralPrices,GeneralForSale,"The Adventurer's Arsenal","James",GeneralDescription,GeneralAscii,"Buff");
+  WeaponShop = Shop(numBossesDefeated,"Steel & Sorcery","Timmy", WeaponDescription, WeaponAscii,"Attack");
+  MagicShop = Shop(numBossesDefeated,"The Eldritch Emporium","Rufus",MagicDescription,MagicAscii,"Attack");
+  ArmourShop = Shop(numBossesDefeated,"Defender's Den","Keith",ArmourDescription,ArmourAscii,"Buff");
+  GeneralShop = Shop(numBossesDefeated,"The Adventurer's Arsenal","James",GeneralDescription,GeneralAscii,"Buff");
 
   Shops = new Shop[4];
   Shops[0] = WeaponShop;
@@ -90,10 +71,6 @@ void Game::initialiseLocations() {
   Locations[1] = ForestName;
   Locations[2] = ArenaName;
 }
-
-void Game::playTutorial() {}
-
-void Game::openCharacterCreator() {}
 
 bool Game::saveGame() { return false; }
 

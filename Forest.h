@@ -19,12 +19,12 @@ class Forest : public Location {
     public:
         Forest();
         Forest(string name, string description, string asciiDescription, int numBossesDefeated);
-        void travelToLocation(Game &game, Location *location,Player *player, Enemy *enemy, int numBossesDefeated);
-        void showLocation(Game &game,Player *player, Enemy *enemy, int numBossesDefeated);
+        void travelToLocation(Game &game, Location *location,Player *player, int numBossesDefeated);
+        void showLocation(Game &game,Player *player, int numBossesDefeated);
         void callForBattle(Player *player, Enemy *enemy);
         void explore(int numBossesDefeated);
         void openTreasure(Player *player, int numBossesDefeated);
-        void viewEnemies(Game &game, Player *player, Enemy *enemy, int numBossesDefeated);
+        void viewEnemies(Game &game, Player *player, int numBossesDefeated);
 }; 
 
 #endif

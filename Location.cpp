@@ -18,7 +18,7 @@ Location::Location(string name, string description, string asciiDescription)
     this->asciiDescription = asciiDescription;   
 }
 
-void Location::showLocation(Game &game, Player *player, Enemy *enemy, int numBossesDefeated)
+void Location::showLocation(Game &game, Player *player, int numBossesDefeated)
 {   
     // Divider to seperate elements of the visual
     string divider = "+------------------------------------------------------------------+"; 
@@ -33,10 +33,10 @@ void Location::showLocation(Game &game, Player *player, Enemy *enemy, int numBos
     
 }
 
-void Location::travelToLocation(Game& game, Location *destination,Player *player, Enemy *enemy, int numBossesDefeated)
+void Location::travelToLocation(Game& game, Location *destination,Player *player, int numBossesDefeated)
 {   
     game.travel(destination);
-    game.viewCurrentLocation()->showLocation(game,player,enemy,numBossesDefeated);
+    game.viewCurrentLocation()->showLocation(game,player,numBossesDefeated);
 }
 
 string Location::getName()

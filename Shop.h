@@ -24,14 +24,14 @@ class Shop {
         float ownerAnnoyanceLevel; 
     public:
         Shop(); // Default Constructor 
-        Shop(int &numBossesDefeated, int *prices, bool *forSaleStatus, string shopName, 
-             string shopKeeperName, string description, string asciiDescription, string type); // Constructor 
+        Shop(int &numBossesDefeated, string shopName, string shopKeeperName, 
+             string description, string asciiDescription, string type); // Constructor 
         BaseItem *viewInventory(); // Returns inventory
         int *viewPrices(); // Returns prices
         bool *viewForSaleStatus(); // Returns for sale statuses 
         string purchaseItem(int itemNumber, Player *player); // Allows user to purchase item
         bool showShopInterface(Player *player); // Shows the shop interface and items
-        void updateShop(int &numBossesDefeated, int *prices, bool *forSaleStatus); // Updates inventory
+        void updateShop(int &numBossesDefeated); // Updates inventory
 
 
 };

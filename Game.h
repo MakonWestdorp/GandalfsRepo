@@ -22,6 +22,7 @@ class Game {
   friend class Entity;
   friend class UnitTest;
   friend class Location;
+  friend class Town;
 
  private:
   // Variables for keeping track of the game
@@ -41,13 +42,10 @@ class Game {
   Forest ForestName;
   Arena ArenaName;
 
- protected:
+ public:
   Game();                       // Default constructor
   void initialiseShops();       // Initialises shops
   void initialiseLocations();   // Initialises locations
-  void playTutorial();          // Plays the tutorial
-  void openCharacterCreator();  // Runs the character creator
- public:
   bool saveGame();                     // Saves the game
   void exitGame();                     // Exits the game
   bool loadGame();                     // Loads the game
