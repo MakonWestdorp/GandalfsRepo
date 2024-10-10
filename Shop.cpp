@@ -58,7 +58,7 @@ Shop::Shop(int numBossesDefeated, string shopName, string shopKeeperName, string
     // Set prices
     prices = new int[5];
     for (int i = 0; i < inventorySize; i++) {
-        prices[i] = inventory[i].GetChallengeRating() * 10;
+        prices[i] = inventory[i].GetChallengeRating() * 10 + 5;
     }
 
     // Set for sale statuses
