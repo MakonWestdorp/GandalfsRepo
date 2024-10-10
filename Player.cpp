@@ -169,7 +169,6 @@ void Player::TakeTurn(Entity* Target, int CurrentRound, bool KeepFighting) {
       break;  // valid input, exit loop
     }
   }
-  cout << "User input is" << UserInput << endl;
   if (UserInput == 1) {
     Attack(Target);
     // Attack
