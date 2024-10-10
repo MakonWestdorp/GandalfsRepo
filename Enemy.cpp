@@ -46,10 +46,13 @@ void Enemy::TakeTurn(Entity* Target, int CurrentRound) {
   }
   if (rand() % 2 < 1) {
     Attack(Target);
+    cout << "Enemy is Attacking Player!" << endl;
   } else {
     if (buffItem) {
+      cout << "Enemy is using a BuffItem!" << endl;
       buffItem->UseItem(this, "Apply");
     } else {
+      cout << "Enemy is attacking using its item!" << endl;
       Inventory.UseItem(Target);
     }
   }
