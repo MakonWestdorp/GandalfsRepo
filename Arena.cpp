@@ -77,7 +77,6 @@ void Arena::viewPlayerStats(Game &game, Player *player, Enemy *enemy, int numBos
       cin.ignore(1000, '\n');
       userDecision = 3;
     }
-    cout << divider << endl;
     
     switch (userDecision) {
         case 1:
