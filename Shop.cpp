@@ -28,7 +28,7 @@ Shop::Shop()
 
 }
 
-Shop::Shop(int &numBossesDefeated, string shopName, string shopKeeperName, string description, string asciiDescription, string type)
+Shop::Shop(int numBossesDefeated, string shopName, string shopKeeperName, string description, string asciiDescription, string type)
 {
     this->shopName = shopName;
     this->shopKeeperName = shopKeeperName; 
@@ -164,7 +164,7 @@ bool Shop::showShopInterface(Player *player)
 
 }
 
-void Shop::updateShop(int &numBossesDefeated)
+void Shop::updateShop(int numBossesDefeated)
 {
     // Delete old inventory
     //delete this->inventory; 

@@ -87,7 +87,7 @@ void Forest::callForBattle(Game &game, Player *player, Enemy *enemy, int numBoss
   bool keepFighting = true; 
   while (player->GetIsAlive() == true && enemy->GetIsAlive() == true && keepFighting == true) {
     Location::showLocation(game, player, numBossesDefeated);
-    player->TakeTurn(enemy,currentRound);
+    player->TakeTurn(enemy,currentRound,keepFighting);
     enemy->TakeTurn(player,currentRound);
     currentRound++;
   }
