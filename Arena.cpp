@@ -57,7 +57,7 @@ void Arena::showLocation(Game &game, Player *player, int numBossesDefeated)
             break; 
         case 3:
             sleep_for(seconds(1));
-            callForBattle(player);
+            callForBattle(game,player,Opponent,numBossesDefeated);
             break;
         default:
             sleep_for(seconds(1));
@@ -99,7 +99,15 @@ void Arena::viewPlayerStats(Game &game, Player *player, int numBossesDefeated)
     }
 }
 
-void Arena::callForBattle(Player *player) 
+void Arena::callForBattle(Game &game, Player *player, Enemy *enemy, int numBossesDefeated) 
 {
-
+    int currentRound = 0;
+    bool keepFighting = true;
+  while (player->GetIsAlive() == true && enemy->GetIsAlive() == true && keepFighting == true) {
+        Location::showLocation(game, player, numBossesDefeated);
+        player->TakeTurn();
+        enemy->TakeTurn(player,currentRound,0);
+        currentRound++;
+  }
 }
+

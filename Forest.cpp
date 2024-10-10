@@ -82,9 +82,11 @@ void Forest::showLocation(Game &game, Player *player, int numBossesDefeated)
   }
 }
 
-void Forest::callForBattle(Player *player, Enemy *enemy) {
+void Forest::callForBattle(Game &game, Player *player, Enemy *enemy, int numBossesDefeated) {
   int currentRound = 0;
-  while (player->GetIsAlive() == true && enemy->GetIsAlive() == true) {
+  bool keepFighting = true; 
+  while (player->GetIsAlive() == true && enemy->GetIsAlive() == true && keepFighting == true) {
+    Location::showLocation(game, player, numBossesDefeated);
     player->TakeTurn();
     enemy->TakeTurn(player,currentRound,0);
     currentRound++;
@@ -148,7 +150,7 @@ void Forest::viewEnemies(Game &game, Player *player, int numBossesDefeated)
     cout << divider << endl;
     
     if (userDecision > 0 && userDecision <= 5) {
-      callForBattle(player,enemies[userDecision-1]);
+      callForBattle(game,player,enemies[userDecision-1],numBossesDefeated);
       sleep_for(seconds(1));
     } else if (userDecision == 6) {
       cout << "You return to the safety of the main path" << endl << divider << endl;
