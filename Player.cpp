@@ -142,6 +142,9 @@ void Player::TakeTurn(Entity* Target, int CurrentRound, bool KeepFighting) {
   cout << "1. Attack normally" << endl;
 
   for (int i = 0; i < CurrentInventorySize; i++) {
+    if (CurrentInventorySize == 0) {
+      break;
+    }
     if (Inventory[i].IsBuff) {
       cout << i + 2 << ". Use Item: " << Inventory[i].getName()
            << " | Item Type:" << "Buff" << endl;
