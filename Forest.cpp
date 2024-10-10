@@ -28,6 +28,10 @@ Forest::Forest(string name, string description, string asciiDescription) : Locat
     enemies = new Enemy*[5];
     for (int i = 0; i < 5; i++) {
         enemies[i] = new Enemy(0);
+        enemies[i]->getHP();
+        enemies[i]->getSTR();
+        enemies[i]->getDEF();
+        enemies[i]->getMAG();
     }
 
 }
