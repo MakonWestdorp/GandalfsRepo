@@ -16,6 +16,8 @@ class Arena : public Location {
         Arena(string name, string description, string asciiDescription);
         void travelToLocation(Game &game, Location *location, Player *player, Enemy *enemy, int numBossesDefeated);
         void showLocation(Game &game, Player *player, Enemy *enemy, int numBossesDefeated);
+        void viewPlayerStats(Game &game, Player *player, Enemy *enemy, int numBossesDefeated);
+        void callForBattle(Player *player, Enemy *enemy);
 };
 
 #endif
