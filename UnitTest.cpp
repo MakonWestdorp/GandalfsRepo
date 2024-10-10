@@ -119,7 +119,8 @@ void UnitTest::BasicShopTest() {
 
 void UnitTest::FirstTownTest() {
   Game game;
-  Player *player = new Player("Player",5,5,5,5,"");
+  Player *player = new Player();
+  player->setCashOnHand(50);
   int numBossesDefeated = 0;
   game.initialiseLocations();
   game.initialiseShops();
