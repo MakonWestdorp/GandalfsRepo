@@ -9,11 +9,11 @@ class Player : public Entity {
          int inputMAG,
          string inputResistance);  // Call this constructor in the class creator
                                    // part of the game
-  void TakeTurn();
+  void TakeTurn(Entity* Target, int CurrentRound);
   void AddItemToInventory(BaseItem Item);
 
  private:
-  BaseItem *Inventory;
+  BaseItem* Inventory;
   int CurrentInventorySize = 0;
 };
 #endif

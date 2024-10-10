@@ -31,6 +31,8 @@ class Entity {
   void ApplyBuff(int Buff, string Stat);
   void WithdrawBuff(int Buff, string Stat);
 
+  int getChallengeRating();
+
  protected:
   int getHP();
   int getSTR();
@@ -45,6 +47,7 @@ class Entity {
   void setMAG(int InputMAG);
   void setName(string InputName);
   void setRes(string InputName);
+  int ChallengeRating;
   int CashOnHand;
   int NumBossesDeafeated;
   std::string name, Resistance;

@@ -34,12 +34,12 @@ string Enemy::RandomEnemyName() {
 }
 int Enemy::getChallengeRating() { return ChallengeRating; }
 string Enemy::getName() { return name; }
-void Enemy::TakeTurn(Entity* Target, int CurrentRound, int roundBuffUsed) {
+void Enemy::TakeTurn(Entity* Target, int CurrentRound) {
   BaseItem* InventoryPTR = &Inventory;
   BuffItem* buffItem = dynamic_cast<BuffItem*>(InventoryPTR);
   bool BuffItemUsed = false;
   if (BuffItemUsed) {
-    if (roundBuffUsed == CurrentRound - 1) {
+    if (RoundBuffUsed == CurrentRound - 1) {
       buffItem->UseItem(this, "Withdraw");
       BuffItemUsed = false;
     }
@@ -54,6 +54,7 @@ void Enemy::TakeTurn(Entity* Target, int CurrentRound, int roundBuffUsed) {
     }
   }
 }
+int Enemy::getRoundBuffUsed() { return RoundBuffUsed; }
 BaseItem Enemy::RandomItemForEnemy(int NumBossesDeafeated) {
   BaseItem RandomItem;
   if (rand() % 2 < 1) {

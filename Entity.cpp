@@ -89,6 +89,8 @@ void Entity::Attack(Entity* Target, string TypeOfAttack, string StatUsed,
   }
 }
 
+int Entity::getChallengeRating() { return ChallengeRating; }
+
 // If you need a comment to explain a Getter/Setter, please seek help.
 int Entity::getHP() { return healthPoints; }
 

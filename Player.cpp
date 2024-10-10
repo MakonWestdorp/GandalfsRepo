@@ -1,4 +1,6 @@
 #include "Player.h"
+
+#include "BuffItem.h"
 Player::Player() {
   int NumberOfPointsToDistrubute = 20;
   strength = 0;
@@ -120,15 +122,38 @@ Player::Player(string inputName, int inputHP, int inputSTR, int inputDEF,
   isAlive = true;
 }
 
-void Player::TakeTurn() {
-  string divider =
-      "+------------------------------------------------------------------+";
-  cout << endl << endl << endl << endl << endl << endl << endl << endl;
-  cout << divider << endl
-       << "   |   Character Name : " << this->name
-       << "   |   Current HP: " << healthPoints << endl
-       << divider << endl;
+void Player::TakeTurn(Entity* Target, int CurrentRound) {
+  cout << "1. Attack normally" << endl;
+
+  for (int i = 0; i < CurrentInventorySize; i++) {
+    BaseItem TempItem = Inventory[i];
+    BuffItem* buffItem = dynamic_cast<BuffItem*>(&TempItem);
+    if (buffItem) {
+      cout << i + 2 << ". Use Item: " << Inventory[i].getName()
+           << " | Item Type:" << "Buff" << endl;
+    } else {
+      cout << i + 2 << ". Use Item: " << Inventory[i].getName()
+           << " | Item Type:" << "Attack" << endl;
+    }
+  }
+  cout << CurrentInventorySize + 3 << ". Leave Fight" << endl;
+  int UserInput;
+  while (true) {
+    std::cin >> UserInput;
+
+    if (std::cin.fail() || UserInput < 0 ||
+        UserInput > CurrentInventorySize + 3) {
+      std::cin.clear();  // clear the error flag
+      std::cout
+          << "That doesnt look right! Please enter a number between 1 and "
+          << CurrentInventorySize + 3 << ": ";
+    } else {
+      break;  // valid input, exit loop
+    }
+    }
 }
+// for loop, 1 option per Item in inventory
+// Leave Fight *Warning* this causes you to take damage.
 
 void Player::AddItemToInventory(BaseItem Item) {
   BaseItem* TempInventory = new BaseItem[CurrentInventorySize + 1];

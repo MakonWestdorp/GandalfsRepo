@@ -8,9 +8,11 @@ class Enemy : public Entity {
   Enemy(int NumBossesDeafeated);
   string getName();
   int getChallengeRating();
-  void TakeTurn(Entity* Target, int CurrentRound, int roundBuffUsed);
+  void TakeTurn(Entity* Target, int CurrentRound);
+  int getRoundBuffUsed();
 
  private:
+  int RoundBuffUsed = -200;
   const string prefixes[10] = {"Dark",  "Flame",  "Shadow", "Frost", "Venom",
                                "Steel", "Cursed", "Wild",   "Blood", "Ghost"};
   const string suffixes[10] = {"Fang",    "Claw",   "Gaze",    "Blade",
