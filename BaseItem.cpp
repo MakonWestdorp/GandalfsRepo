@@ -14,8 +14,10 @@ BaseItem::BaseItem() {
   ChallengeRating = 0;
   DamageOrBuff = rand() % 5;
   name = nameRandomiser();
+  IsBuff = false;
 }
 BaseItem::BaseItem(int NumBossesDefeated) {
+  IsBuff = false;
   ChallengeRating = NumBossesDefeated;
   DamageOrBuff = (rand() % 5 * NumBossesDefeated) + 5 * NumBossesDefeated;
   name = nameRandomiser();
