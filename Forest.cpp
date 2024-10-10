@@ -90,14 +90,12 @@ void Forest::callForBattle(Player *player, Enemy *enemy) {
 void Forest::explore(int numBossesDefeated) {
   // Generate new enemies
   for (int i = 0; i < 5; i++) {
-    srand(time(0));
+  
     enemies[i] = new Enemy(numBossesDefeated);  // Change to Enemy later
   }
 
   cout << "New Enemies have appeared!" << endl;
 
-  // Get a different random number each time the program runs
-  srand(time(0));
 
   // Generate a random number between 1 and 3
   int randomNumber = (rand() % 3) + 1;
@@ -152,7 +150,6 @@ void Forest::viewEnemies(Game &game, Player *player, Enemy *enemy, int numBosses
       cout << "You return to the safety of the main path" << endl << divider << endl;
       sleep_for(seconds(1));
     } else {
-      srand(time(0));
       cashLost = (rand() % 5) + 1;
       player->setCashOnHand(player->getCashOnHand()-cashLost);
 
