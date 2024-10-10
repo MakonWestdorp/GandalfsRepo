@@ -158,7 +158,7 @@ void Player::TakeTurn(Entity* Target, int CurrentRound, bool KeepFighting) {
            << " | Item Type:" << "Attack" << endl;
     }
   }
-  cout << CurrentInventorySize + 3 << ". Leave Fight" << endl;
+  cout << CurrentInventorySize + 2 << ". Leave Fight" << endl;
   int UserInput;
   while (true) {
     std::cin >> UserInput;
@@ -180,9 +180,9 @@ void Player::TakeTurn(Entity* Target, int CurrentRound, bool KeepFighting) {
     KeepFighting = false;
     // Leave
   } else {
-    BaseItem* InventoryPTR = &Inventory[UserInput - 2];
-    BuffItem* buffItem = dynamic_cast<BuffItem*>(InventoryPTR);
-    if (buffItem) {
+    if (Inventory[UserInput - 2].IsBuff == true) {
+      BaseItem* InventoryPTR = &Inventory[UserInput - 2];
+      BuffItem* buffItem = dynamic_cast<BuffItem*>(InventoryPTR);
       buffItem->UseItem(this, "Apply");
     } else {
       Inventory[UserInput - 2].UseItem(Target);
