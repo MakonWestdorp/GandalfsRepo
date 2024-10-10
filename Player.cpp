@@ -1,6 +1,4 @@
 #include "Player.h"
-
-#include <limits>
 Player::Player() {
   int NumberOfPointsToDistrubute = 20;
   strength = 0;
@@ -105,6 +103,10 @@ Player::Player() {
       break;
     }
   }
+  string name;
+  cout << "Please enter a name for your character:";
+  std::cin >> name;
+  cout << endl;
 }
 
 Player::Player(string inputName, int inputHP, int inputSTR, int inputDEF,
