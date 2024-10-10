@@ -25,7 +25,7 @@ class Shop {
     public:
         Shop(); // Default Constructor 
         Shop(int numBossesDefeated, string shopName, string shopKeeperName, 
-             string description, string asciiDescription, string type); // Constructor 
+             string description, string asciiDescription, int type); // Constructor 
         BaseItem *viewInventory(); // Returns inventory
         int *viewPrices(); // Returns prices
         bool *viewForSaleStatus(); // Returns for sale statuses 

@@ -28,7 +28,7 @@ Shop::Shop()
 
 }
 
-Shop::Shop(int numBossesDefeated, string shopName, string shopKeeperName, string description, string asciiDescription, string type)
+Shop::Shop(int numBossesDefeated, string shopName, string shopKeeperName, string description, string asciiDescription, int type)
 {
     this->shopName = shopName;
     this->shopKeeperName = shopKeeperName; 
@@ -41,11 +41,11 @@ Shop::Shop(int numBossesDefeated, string shopName, string shopKeeperName, string
     // Generate inventory
     this->inventory = new BaseItem[5];
 
-    if (type == "Attack") {
+    if (type == 1) {
         for (int i = 0; i < inventorySize; i++) {
             inventory[i] = AttackItem(numBossesDefeated);
         }
-    } else if (type == "Buff") {
+    } else if (type == 2) {
         for (int i = 0; i < inventorySize; i++) {
             inventory[i] = BuffItem(numBossesDefeated);
         }

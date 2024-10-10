@@ -32,10 +32,10 @@ void Game::initialiseShops() {
 
 
   // Specific constructors will be used later
-  WeaponShop = Shop(numBossesDefeated,"Steel & Sorcery","Timmy", WeaponDescription, WeaponAscii,"Attack");
-  MagicShop = Shop(numBossesDefeated,"The Eldritch Emporium","Rufus",MagicDescription,MagicAscii,"Attack");
-  ArmourShop = Shop(numBossesDefeated,"Defender's Den","Keith",ArmourDescription,ArmourAscii,"Buff");
-  GeneralShop = Shop(numBossesDefeated,"The Adventurer's Arsenal","James",GeneralDescription,GeneralAscii,"Buff");
+  WeaponShop = Shop(numBossesDefeated,"Steel & Sorcery","Timmy", WeaponDescription, WeaponAscii,1);
+  MagicShop = Shop(numBossesDefeated,"The Eldritch Emporium","Rufus",MagicDescription,MagicAscii,1);
+  ArmourShop = Shop(numBossesDefeated,"Defender's Den","Keith",ArmourDescription,ArmourAscii,2);
+  GeneralShop = Shop(numBossesDefeated,"The Adventurer's Arsenal","James",GeneralDescription,GeneralAscii,2);
 
   Shops = new Shop[4];
   Shops[0] = WeaponShop;

@@ -104,7 +104,7 @@ void UnitTest::BasicShopTest() {
   string shopDescription =
       "Steel & Sorcery offers finely crafted blades, \nfrom master-forged "
       "steel to rare enchanted swords";
-  Shop WeaponsShop(numBossesDefeated, "Steel & Sorcery","Timmy", shopDescription, "","Attack");
+  Shop WeaponsShop(numBossesDefeated, "Steel & Sorcery","Timmy", shopDescription, "",1);
 
   // Test shop interface
   while (WeaponsShop.showShopInterface(player) == true) {
