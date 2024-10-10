@@ -33,7 +33,6 @@ class Entity {
 
   int getChallengeRating();
 
- protected:
   int getHP();
   int getSTR();
   int getDEF();
@@ -47,6 +46,8 @@ class Entity {
   void setMAG(int InputMAG);
   void setName(string InputName);
   void setRes(string InputName);
+
+ protected:
   int ChallengeRating;
   int CashOnHand;
   int NumBossesDeafeated;

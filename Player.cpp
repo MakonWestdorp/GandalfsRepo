@@ -123,6 +123,14 @@ Player::Player(string inputName, int inputHP, int inputSTR, int inputDEF,
 }
 
 void Player::TakeTurn(Entity* Target, int CurrentRound, bool KeepFighting) {
+  string divider =
+      "+------------------------------------------------------------------+";
+  cout << "Player HP: " << healthPoints
+       << "  |  Current Round: " << CurrentRound
+       << "  |  Enemy HP: " << Target->getHP() << endl
+       << divider << endl;
+  // Player Health  |  Current Round  |  Enemy Health//
+  // Divider
   cout << "1. Attack normally" << endl;
 
   for (int i = 0; i < CurrentInventorySize; i++) {
