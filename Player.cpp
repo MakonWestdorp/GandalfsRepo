@@ -122,7 +122,7 @@ Player::Player(string inputName, int inputHP, int inputSTR, int inputDEF,
   isAlive = true;
 }
 
-void Player::TakeTurn(Entity* Target, int CurrentRound) {
+void Player::TakeTurn(Entity* Target, int CurrentRound, bool KeepFighting) {
   cout << "1. Attack normally" << endl;
 
   for (int i = 0; i < CurrentInventorySize; i++) {
@@ -150,7 +150,23 @@ void Player::TakeTurn(Entity* Target, int CurrentRound) {
     } else {
       break;  // valid input, exit loop
     }
+  }
+  if (UserInput == 1) {
+    Attack(Target);
+    // Attack
+  } else if (UserInput == CurrentInventorySize + 3) {
+    KeepFighting = false;
+    // Leave
+  } else {
+    BaseItem* InventoryPTR = &Inventory[UserInput - 2];
+    BuffItem* buffItem = dynamic_cast<BuffItem*>(InventoryPTR);
+    if (buffItem) {
+      buffItem->UseItem(this, "Apply");
+    } else {
+      Inventory[UserInput - 2].UseItem(Target);
     }
+    // Use inventory item
+  }
 }
 // for loop, 1 option per Item in inventory
 // Leave Fight *Warning* this causes you to take damage.
