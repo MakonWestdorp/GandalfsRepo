@@ -90,8 +90,11 @@ void Forest::callForBattle(Game &game, Player *player, Enemy *enemy, int numBoss
     player->TakeTurn(enemy,currentRound,keepFighting);
     if (player->GetIsAlive() == false) {
       game.endGame();
-    } 
-    enemy->TakeTurn(player,currentRound);
+    } else if (keepFighting == false){
+      break;
+    } else {
+      enemy->TakeTurn(player,currentRound);
+    }
     currentRound++;
   }
   if (player->GetIsAlive() == false) {
