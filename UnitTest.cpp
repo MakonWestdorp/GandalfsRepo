@@ -119,6 +119,7 @@ void UnitTest::BasicShopTest() {
 
 void UnitTest::FirstTownTest() {
   Game game;
+  srand(time(0));
   Player *player = new Player();
   int numBossesDefeated = 0;
   game.initialiseLocations();

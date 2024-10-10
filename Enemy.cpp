@@ -17,6 +17,10 @@ Enemy::Enemy(int NumBossesDeafeated) {
   strength = NumBossesDeafeated * 5 + 5;
   defence = NumBossesDeafeated * 5 + 5;
   magic = NumBossesDeafeated * 5 + 5;
+  string damageTypes[4] = {"Magic", "Piercing", "Bludgeoning", "Slashing"};
+  int damageTypesSize = sizeof(damageTypes) / sizeof(damageTypes[0]);
+  //Resistance = damageTypes[rand() % damageTypesSize];
+  Resistance = "Magic";
   isAlive = true;
   name = RandomEnemyName();
   ChallengeRating = healthPoints + strength + defence + magic;
@@ -33,7 +37,9 @@ string Enemy::RandomEnemyName() {
   return prefix + " " + type + " of the " + suffix;
 }
 int Enemy::getChallengeRating() { return ChallengeRating; }
+
 string Enemy::getName() { return name; }
+
 void Enemy::TakeTurn(Entity* Target, int CurrentRound) {
   BaseItem* InventoryPTR = &Inventory;
   BuffItem* buffItem = dynamic_cast<BuffItem*>(InventoryPTR);

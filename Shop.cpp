@@ -39,17 +39,20 @@ Shop::Shop(int numBossesDefeated, string shopName, string shopKeeperName, string
     this->inventorySize = 5; 
 
     // Generate inventory
-    this->inventory = new BaseItem[5];
+   
 
     if (type == 1) {
+        this->inventory = new AttackItem[5];
         for (int i = 0; i < inventorySize; i++) {
             inventory[i] = AttackItem(numBossesDefeated);
         }
     } else if (type == 2) {
+        this->inventory = new BuffItem[5];
         for (int i = 0; i < inventorySize; i++) {
             inventory[i] = BuffItem(numBossesDefeated);
         }
     } else {
+        this->inventory = new BaseItem[5];
         for (int i = 0; i < inventorySize; i++) {
             inventory[i] = BaseItem(numBossesDefeated);
         }

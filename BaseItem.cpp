@@ -12,14 +12,14 @@ void BaseItem::UseItem(Entity* Target) {
 
 BaseItem::BaseItem() {
   ChallengeRating = 0;
-  DamageOrBuff = rand() % 5;
+  DamageOrBuff = (rand() % 5) + 1;
   name = nameRandomiser();
   IsBuff = false;
 }
 BaseItem::BaseItem(int NumBossesDefeated) {
   IsBuff = false;
   ChallengeRating = NumBossesDefeated;
-  DamageOrBuff = (rand() % 5 * NumBossesDefeated) + 5 * NumBossesDefeated;
+  DamageOrBuff = (rand() % 5) + 1 + 5 * NumBossesDefeated;
   name = nameRandomiser();
 }
 

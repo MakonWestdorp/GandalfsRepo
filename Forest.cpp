@@ -28,10 +28,6 @@ Forest::Forest(string name, string description, string asciiDescription) : Locat
     enemies = new Enemy*[5];
     for (int i = 0; i < 5; i++) {
         enemies[i] = new Enemy(0);
-        enemies[i]->getHP();
-        enemies[i]->getSTR();
-        enemies[i]->getDEF();
-        enemies[i]->getMAG();
     }
 
 }
@@ -89,6 +85,7 @@ void Forest::showLocation(Game &game, Player *player, int numBossesDefeated)
 void Forest::callForBattle(Game &game, Player *player, Enemy *enemy, int numBossesDefeated) {
   int currentRound = 0;
   bool keepFighting = true; 
+  string divider = "+------------------------------------------------------------------+"; 
   while (player->GetIsAlive() == true && enemy->GetIsAlive() == true && keepFighting == true) {
     Location::showLocation(game, player, numBossesDefeated);
     player->TakeTurn(enemy,currentRound,keepFighting);
@@ -100,6 +97,8 @@ void Forest::callForBattle(Game &game, Player *player, Enemy *enemy, int numBoss
       enemy->TakeTurn(player,currentRound);
     }
     currentRound++;
+    sleep_for(seconds(1));
+    cout << divider << endl;
   }
   if (player->GetIsAlive() == false) {
     game.endGame();

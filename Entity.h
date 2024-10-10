@@ -21,6 +21,7 @@ class Entity {
   // The attack/recieve attack functions.
   void takeDamage(int Damage, string DamageType);
   void Attack(Entity* Target);
+  void Attack(Entity* Target, int damage, string damageType);
   void Attack(Entity* Target, string TypeOfAttack, string StatUsed,
               int DamageBuff);
   void takeTurn(Entity* Target);

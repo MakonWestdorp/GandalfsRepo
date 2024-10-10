@@ -1,6 +1,8 @@
 #include "Player.h"
-
 #include "BuffItem.h"
+#include "Entity.h"
+#include "Enemy.h"
+
 Player::Player() {
   isAlive = true;
   CashOnHand = 50;
@@ -132,7 +134,7 @@ Player::Player(string inputName, int inputHP, int inputSTR, int inputDEF,
   isAlive = true;
 }
 
-void Player::TakeTurn(Entity* Target, int CurrentRound, bool KeepFighting) {
+int Player::TakeTurn(Enemy* Target, int CurrentRound, bool &KeepFighting) {
   string divider =
       "+------------------------------------------------------------------+";
   cout << "Player HP: " << healthPoints
@@ -141,51 +143,60 @@ void Player::TakeTurn(Entity* Target, int CurrentRound, bool KeepFighting) {
        << divider << endl;
 
   cout << "1. Attack normally" << endl;
-
-  for (int i = 0; i < CurrentInventorySize; i++) {
-    if (CurrentInventorySize == 0) {
-      break;
-    }
-    if (Inventory[i].IsBuff) {
-      cout << i + 2 << ". Use Item: " << Inventory[i].getName()
-           << " | Item Type:" << "Buff" << endl;
-    } else {
-      cout << i + 2 << ". Use Item: " << Inventory[i].getName()
-           << " | Item Type:" << "Attack" << endl;
+  if (CurrentInventorySize != 0) {
+    for (int i = 0; i < CurrentInventorySize; i++) {
+      if (Inventory[i].IsBuff) {
+        cout << i + 2 << ". Use Item: " << Inventory[i].getName()
+            << " | Item Type:" << "Buff" << endl;
+      } else {
+        cout << i + 2 << ". Use Item: " << Inventory[i].getName()
+            << " | Item Type:" << "Attack" << endl;
+      }
     }
   }
   cout << CurrentInventorySize + 2 << ". Leave Fight" << endl;
-  int UserInput;
-  while (true) {
+  int UserInput = 0;
     std::cin >> UserInput;
 
-    if (std::cin.fail() || UserInput < 0 ||
+    // Check if input is correct
+    while (std::cin.fail() || UserInput < 1 ||
         UserInput > CurrentInventorySize + 3) {
       std::cin.clear();  // clear the error flag
+      std::cin.ignore(1000, '\n');
       std::cout
           << "That doesnt look right! Please enter a number between 1 and "
           << CurrentInventorySize + 3 << ": ";
-    } else {
-      break;  // valid input, exit loop
+      std::cin >> UserInput;
     }
-  }
+
+
   if (UserInput == 1) {
     Attack(Target);
+    cout << "1\n";
     // Attack
-  } else if (UserInput == CurrentInventorySize + 3) {
+  } else if (UserInput == CurrentInventorySize + 2) {
     KeepFighting = false;
+    cout << "2\n";
     // Leave
-  } else {
-    if (Inventory[UserInput - 2].IsBuff == true) {
-      BaseItem* InventoryPTR = &Inventory[UserInput - 2];
-      BuffItem* buffItem = dynamic_cast<BuffItem*>(InventoryPTR);
-      buffItem->UseItem(this, "Apply");
-    } else {
-      Inventory[UserInput - 2].UseItem(Target);
-    }
-    // Use inventory item
+  } else if (UserInput > 1 && (UserInput-2) <= CurrentInventorySize) {
+    cout << "AHH\n";
+      if (Inventory[UserInput - 2].IsBuff == true) {
+        BaseItem* InventoryPTR = &Inventory[UserInput - 2];
+        BuffItem* buffItem = dynamic_cast<BuffItem*>(InventoryPTR);
+        buffItem->UseItem(this, "Apply");
+        cout << "3\n";
+      } else {
+        Inventory[UserInput - 2].UseItem(Target);
+        cout << Inventory[0].getName() << endl;
+        cout << "4\n";
+      }
   }
+
+    // Use inventory item
+    return KeepFighting;
 }
+  
+
 // for loop, 1 option per Item in inventory
 // Leave Fight *Warning* this causes you to take damage.
 

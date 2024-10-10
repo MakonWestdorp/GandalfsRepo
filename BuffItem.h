@@ -5,6 +5,7 @@
 class BuffItem : public BaseItem {
  public:
   using BaseItem::UseItem;
+  BuffItem() : BaseItem() {}
   BuffItem(int NumBossesDefeated);
   void UseItem(Entity* Target, string ApplyWithdraw);
   bool IsBuff = true;

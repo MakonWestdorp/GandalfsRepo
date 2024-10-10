@@ -2,6 +2,7 @@
 #define PLAYER_H
 #include "BaseItem.h"
 #include "Entity.h"
+#include "Enemy.h"
 class Player : public Entity {
  public:
   Player();  // This constructor should never be called.
@@ -9,7 +10,7 @@ class Player : public Entity {
          int inputMAG,
          string inputResistance);  // Call this constructor in the class creator
                                    // part of the game
-  void TakeTurn(Entity* Target, int CurrentRound, bool KeepFighting);
+  int TakeTurn(Enemy* Target, int CurrentRound, bool &KeepFighting);
   void AddItemToInventory(BaseItem Item);
 
  private:

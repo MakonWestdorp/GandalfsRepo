@@ -29,13 +29,12 @@ Entity::Entity(string InputName, int InputHP, int InputSTR, int InputDEF,
 // TakeDamage function decreasing the health of the entity by the specified
 // damage. Damage is halfed if entity is resistant to the damage type.
 void Entity::takeDamage(int Damage, string DamageType) {
-  int InputDamage = Damage;
   // If the Target is resistant to the damage type, it will take half the total
   // damage
   if (DamageType == Resistance) {
-    InputDamage = InputDamage / 2;
+    Damage = Damage / 2;
   }
-  this->healthPoints = healthPoints - InputDamage;
+  this->healthPoints = healthPoints - Damage;
   // Check to see if Target is dead.
   if (healthPoints <= 0) {
     this->isAlive = false;
@@ -43,7 +42,11 @@ void Entity::takeDamage(int Damage, string DamageType) {
 }
 
 void Entity::Attack(Entity* Target) {
-  Target->takeDamage(rand() % (strength), "Bludgeoning");
+  Target->takeDamage((rand() % (strength)) + 1, "Bludgeoning");
+}
+
+void Entity::Attack(Entity* Target, int damage, string damageType) {
+  Target->takeDamage(damage,damageType);
 }
 
 void Entity::takeTurn(Entity* Target) { Attack(Target); }
