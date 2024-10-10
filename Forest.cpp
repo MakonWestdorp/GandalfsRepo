@@ -165,6 +165,7 @@ void Forest::viewEnemies(Game &game, Player *player, int numBossesDefeated)
       cout << "You return to the safety of the main path" << endl << divider << endl;
       sleep_for(seconds(1));
     } else {
+      srand(time(0));
       cashLost = (rand() % 5) + 1;
       player->setCashOnHand(player->getCashOnHand()-cashLost);
 
