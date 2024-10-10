@@ -6,8 +6,10 @@ using namespace std;
 // UnitTest class as a friend, giving the Unit Test class access to the setters
 // and getters
 class UnitTest;
+class Arena;
 class Entity {
   friend class UnitTest;
+  friend class Arena;
 
  public:
   // Default Constructor for Entity. Enemies will use Default constructor, so
