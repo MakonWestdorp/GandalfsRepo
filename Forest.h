@@ -18,7 +18,7 @@ class Forest : public Location {
         bool treasure; 
     public:
         Forest();
-        Forest(string name, string description, string asciiDescription, int numBossesDefeated);
+        Forest(string name, string description, string asciiDescription);
         void travelToLocation(Game &game, Location *location,Player *player, int numBossesDefeated);
         void showLocation(Game &game,Player *player, int numBossesDefeated);
         void callForBattle(Game &game, Player *player, Enemy *enemy, int numBossesDefeated);
