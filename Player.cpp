@@ -118,6 +118,11 @@ Player::Player() {
   cout << endl;
   ChallengeRating = healthPoints + strength + defence + magic;
   ChallengeRating = ChallengeRating / 4;
+  Resistance = "Magic";
+  cout << "HP=" << healthPoints << " Defence=" << defence << 'Strength='
+       << strength << "magic=" << magic << "IsAlive=" << isAlive
+       << "ChallengeRating=" << ChallengeRating << "CashOnHand=" << CashOnHand
+       << endl;
 }
 
 Player::Player(string inputName, int inputHP, int inputSTR, int inputDEF,
