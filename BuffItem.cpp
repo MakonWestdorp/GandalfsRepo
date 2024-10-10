@@ -4,6 +4,7 @@ BuffItem::BuffItem(int NumBossesDefeated) {
   ChallengeRating = NumBossesDefeated;
   DamageOrBuff = DamageOrBuff % 5 * NumBossesDefeated + 5 * NumBossesDefeated;
   DamageTypeOrNameOfStat = getRandomElement(nameOfStats, nameOfStatsSize);
+  IsBuff = true;
 }
 
 void BuffItem::UseItem(Entity* Target, string ApplyWithdraw) {
