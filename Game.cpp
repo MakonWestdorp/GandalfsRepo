@@ -17,7 +17,7 @@ Game::Game() {
 }
 
 void Game::initialiseShops() {
-  int numBossesDefeated = 1; // Temporary
+  int numBossesDefeated = 0; // Temporary
   // Shop Descriptions
   string WeaponDescription = "Steel & Sorcery offers finely crafted blades, \nfrom master-forged steel to rare enchanted swords";
   string MagicDescription = "A mystical emporium filled with enchanting staves, \neach imbued with the essence of elemental magic";

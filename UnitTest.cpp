@@ -97,7 +97,7 @@ void UnitTest::LocationTravel() {
 
 void UnitTest::BasicShopTest() {
   // Needed for test
-  int numBossesDefeated = 1;
+  int numBossesDefeated = 0;
   Player *player = new Player("Player",5,5,5,5,"");
 
   // Create shop
@@ -131,7 +131,7 @@ void UnitTest::FirstTownTest() {
 }
 
 void UnitTest::BaseItemNameGeneratorTest() {
-  int numBossesDefeated = 1;
+  int numBossesDefeated = 0;
   BaseItem Item1 = BaseItem(numBossesDefeated);
   BaseItem Item2 = BaseItem(numBossesDefeated);
   BaseItem Item3 = BaseItem(numBossesDefeated);
