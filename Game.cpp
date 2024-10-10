@@ -63,7 +63,7 @@ void Game::initialiseLocations() {
 
   // Specific constructors will be used later
   Town* TownName = new Town("Hidden Grove Settlement",townDescription,townAscii);
-  Forest* ForestName = new Forest("Shadowleaf Woods",forestDescription,forestAscii,1);
+  Forest* ForestName = new Forest("Shadowleaf Woods",forestDescription,forestAscii);
   Arena* ArenaName = new Arena("The Colosseum of Champions",arenaDescription,arenaAscii);
 
   Locations = new Location*[3]; 

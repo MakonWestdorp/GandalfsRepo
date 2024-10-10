@@ -22,12 +22,12 @@ Forest::Forest() : Location() {
   treasure = false;
 }
 
-Forest::Forest(string name, string description, string asciiDescription, int numBossesDefeated) : Location(name,description,asciiDescription)
+Forest::Forest(string name, string description, string asciiDescription) : Location(name,description,asciiDescription)
 {
     treasure = false;   
     enemies = new Enemy*[5];
     for (int i = 0; i < 5; i++) {
-        enemies[i] = new Enemy(numBossesDefeated);
+        enemies[i] = new Enemy(0);
     }
 
 }
