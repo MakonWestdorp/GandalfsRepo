@@ -62,7 +62,6 @@ void UnitTest::EntityAttack() {
 void UnitTest::LocationTravel() {
   // Not required for test but needed for function calls
   Player *player = new Player("Player",5,5,5,5,"");
-  Enemy *enemy = new Enemy(1);
   int numBossesDefeated = 0;
   // Descriptions
   string forestDescription =
@@ -90,10 +89,10 @@ void UnitTest::LocationTravel() {
   */
   LocationTest.setCurrentLocation(Forest);
   cout << LocationTest.viewCurrentLocation()->getName() << endl;
-  LocationTest.viewCurrentLocation()->showLocation(LocationTest,player, enemy, numBossesDefeated);
-  LocationTest.viewCurrentLocation()->travelToLocation(LocationTest, Town, player, enemy,numBossesDefeated);
+  LocationTest.viewCurrentLocation()->showLocation(LocationTest,player, numBossesDefeated);
+  LocationTest.viewCurrentLocation()->travelToLocation(LocationTest, Town, player,numBossesDefeated);
   cout << LocationTest.viewCurrentLocation()->getName() << endl;
-  LocationTest.viewCurrentLocation()->showLocation(LocationTest, player, enemy, numBossesDefeated);
+  LocationTest.viewCurrentLocation()->showLocation(LocationTest, player, numBossesDefeated);
 }
 
 void UnitTest::BasicShopTest() {
@@ -121,14 +120,13 @@ void UnitTest::BasicShopTest() {
 void UnitTest::FirstTownTest() {
   Game game;
   Player *player = new Player("Player",5,5,5,5,"");
-  Enemy *enemy = new Enemy(1);
   int numBossesDefeated = 0;
   game.initialiseLocations();
   game.initialiseShops();
   game.setCurrentLocation(game.viewLocations()[0]);
 
   while (game.isGameRunning() == true) {
-    game.viewCurrentLocation()->showLocation(game, player, enemy, numBossesDefeated);
+    game.viewCurrentLocation()->showLocation(game, player, numBossesDefeated);
   }
 }
 
