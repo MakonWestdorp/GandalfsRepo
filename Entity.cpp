@@ -35,10 +35,10 @@ void Entity::takeDamage(int Damage, string DamageType) {
   if (DamageType == Resistance) {
     InputDamage = InputDamage / 2;
   }
-  healthPoints = healthPoints - InputDamage;
+  this->healthPoints = healthPoints - InputDamage;
   // Check to see if Target is dead.
   if (healthPoints <= 0) {
-    isAlive = false;
+    this->isAlive = false;
   }
 }
 
