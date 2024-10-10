@@ -40,7 +40,8 @@ void Forest::travelToLocation(Game &game, Location *location, Player *player, in
 }
 
 void Forest::showLocation(Game &game, Player *player, int numBossesDefeated)
-{
+{   
+    // Show Location 
     string divider = "+------------------------------------------------------------------+"; 
     int userDecision = 0;
     Location::showLocation(game,player,numBossesDefeated);
@@ -82,8 +83,11 @@ void Forest::showLocation(Game &game, Player *player, int numBossesDefeated)
 }
 
 void Forest::callForBattle(Player *player, Enemy *enemy) {
+  int currentRound = 0;
   while (player->GetIsAlive() == true && enemy->GetIsAlive() == true) {
-
+    player->TakeTurn();
+    enemy->TakeTurn(player,currentRound,0);
+    currentRound++;
   }
 }
 
