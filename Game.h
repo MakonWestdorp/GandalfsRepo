@@ -46,7 +46,7 @@ class Game {
   Game();                       // Default constructor
   void initialiseShops();       // Initialises shops
   void initialiseLocations();   // Initialises locations
-  bool saveGame();                     // Saves the game
+  void saveGame();                     // Saves the game
   void exitGame();                     // Exits the game
   bool loadGame();                     // Loads the game
   void endGame();                      // Ends the game if the player dies

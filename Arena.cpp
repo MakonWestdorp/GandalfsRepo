@@ -109,5 +109,9 @@ void Arena::callForBattle(Game &game, Player *player, Enemy *enemy, int numBosse
         enemy->TakeTurn(player,currentRound);
         currentRound++;
   }
+
+  if (player->GetIsAlive() == false) {
+    game.endGame();
+  }
 }
 

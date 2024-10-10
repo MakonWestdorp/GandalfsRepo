@@ -91,6 +91,9 @@ void Forest::callForBattle(Game &game, Player *player, Enemy *enemy, int numBoss
     enemy->TakeTurn(player,currentRound);
     currentRound++;
   }
+  if (player->GetIsAlive() == false) {
+    game.endGame();
+  }
 }
 
 void Forest::explore(int numBossesDefeated) {

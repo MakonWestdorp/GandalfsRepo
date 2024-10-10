@@ -82,7 +82,7 @@ void Town::showLocation(Game &game, Player *player, int numBossesDefeated)
             break;
         case 8: 
             sleep_for(seconds(1));
-            game.endGame();
+            game.exitGame();
             break;
         default: 
             sleep_for(seconds(1));
