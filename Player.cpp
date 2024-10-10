@@ -2,6 +2,9 @@
 
 #include "BuffItem.h"
 Player::Player() {
+  isAlive = true;
+  CashOnHand = 50;
+
   int NumberOfPointsToDistrubute = 20;
   strength = 0;
   healthPoints = 0;
@@ -12,8 +15,8 @@ Player::Player() {
   cout << endl << endl << endl << endl << endl << endl << endl << endl;
   cout << divider << endl
        << "Welcome to the Character Creator!" << endl
-       << "You have:" << NumberOfPointsToDistrubute
-       << " to distribute among your Character Stats." << endl
+       << "You have: " << NumberOfPointsToDistrubute
+       << " points to distribute among your Character Stats." << endl
        << divider << endl;
   cout << "Yours Character has 4 Stats.Health Points, Strength, Defence and "
           "Magic."
@@ -21,7 +24,7 @@ Player::Player() {
 
   while (true) {
     cout << "You have: " << NumberOfPointsToDistrubute
-         << "left to distribute to your stats." << endl;
+         << " left to distribute to your stats." << endl;
     cout << "How many points would you like to allocate to your Health Points?"
          << endl;
     // READ IN USER INPUT FOR HP;
@@ -40,10 +43,11 @@ Player::Player() {
         break;  // valid input, exit loop
       }
     }
+    cout << divider << endl;
     healthPoints += UserInput;
     NumberOfPointsToDistrubute = NumberOfPointsToDistrubute - UserInput;
     cout << "You have: " << NumberOfPointsToDistrubute
-         << "left to distribute to your stats." << endl;
+         << " left to distribute to your stats." << endl;
     cout << "How many points would you like to allocate to Strength?" << endl;
     // READ IN USER INPUT FOR STR;
     while (true) {
@@ -59,10 +63,11 @@ Player::Player() {
         break;  // valid input, exit loop
       }
     }
+    cout << divider << endl;
     strength += UserInput;
     NumberOfPointsToDistrubute = NumberOfPointsToDistrubute - UserInput;
     cout << "You have: " << NumberOfPointsToDistrubute
-         << "left to distribute to your stats." << endl;
+         << " left to distribute to your stats." << endl;
     cout << "How many points would you like to allocate to Defence?" << endl;
     // READ IN USER INPUT FOR DEF;
     while (true) {
@@ -78,6 +83,7 @@ Player::Player() {
         break;  // valid input, exit loop
       }
     }
+    cout << divider << endl;
     defence += UserInput;
     NumberOfPointsToDistrubute = NumberOfPointsToDistrubute - UserInput;
     cout << "You have: " << NumberOfPointsToDistrubute
@@ -97,6 +103,7 @@ Player::Player() {
         break;  // valid input, exit loop
       }
     }
+    cout << divider << endl;
     magic += UserInput;
     NumberOfPointsToDistrubute = NumberOfPointsToDistrubute - UserInput;
     cout << "You have: " << NumberOfPointsToDistrubute
@@ -109,6 +116,8 @@ Player::Player() {
   cout << "Please enter a name for your character:";
   std::cin >> name;
   cout << endl;
+  ChallengeRating = healthPoints + strength + defence + magic;
+  ChallengeRating = ChallengeRating / 4;
 }
 
 Player::Player(string inputName, int inputHP, int inputSTR, int inputDEF,
