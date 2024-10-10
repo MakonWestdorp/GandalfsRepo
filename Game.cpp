@@ -72,9 +72,12 @@ void Game::initialiseLocations() {
   Locations[2] = ArenaName;
 }
 
-bool Game::saveGame() { return false; }
+void Game::saveGame() {}
 
-void Game::exitGame() {}
+void Game::exitGame() {
+  saveGame();
+  gameRunning = false;
+}
 
 bool Game::loadGame() { return false; }
 
