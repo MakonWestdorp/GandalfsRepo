@@ -105,8 +105,8 @@ void Arena::callForBattle(Game &game, Player *player, Enemy *enemy, int numBosse
     bool keepFighting = true;
   while (player->GetIsAlive() == true && enemy->GetIsAlive() == true && keepFighting == true) {
         Location::showLocation(game, player, numBossesDefeated);
-        player->TakeTurn();
-        enemy->TakeTurn(player,currentRound,0);
+        player->TakeTurn(enemy,currentRound);
+        enemy->TakeTurn(player,currentRound);
         currentRound++;
   }
 }
