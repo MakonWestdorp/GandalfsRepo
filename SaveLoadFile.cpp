@@ -29,5 +29,9 @@ int main() {
         cout << "File could not be opened" << endl;
     }
 
+    // Reading values
+    string name = "No Name", resistance = "No Resistance";
+    int health = 0, strength = 0, defence = 0, magic = 0, bossesDefeated = 0;
+
     return 0;
 }
