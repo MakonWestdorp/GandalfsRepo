@@ -4,10 +4,11 @@
 // Include libraries
 #include <iostream>
 #include <string> 
+#include "BaseItem.h"
+#include "Player.h"
 
 using namespace std; 
 
-// Temporary forward declare as BaseItem class does not yet exist
 class BaseItem;
 class Player;
 
@@ -31,7 +32,7 @@ class Shop {
         bool *viewForSaleStatus(); // Returns for sale statuses 
         string purchaseItem(int itemNumber, Player *player); // Allows user to purchase item
         bool showShopInterface(Player *player); // Shows the shop interface and items
-        void updateShop(int numBossesDefeated); // Updates inventory
+        void updateShop(int numBossesDefeated, int type); // Updates inventory
 
 
 };

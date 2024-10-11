@@ -36,6 +36,8 @@ void Forest::travelToLocation(Game &game, Location *location, Player *player, in
   if (location->getName() == game.viewLocations()[0]->getName()) {
     game.travel(location);
     game.viewCurrentLocation()->showLocation(game,player,numBossesDefeated);
+  } else {
+    cout << "You cannot travel to that location!" << endl;
   }
 }
 

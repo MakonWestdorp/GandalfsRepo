@@ -15,6 +15,7 @@ using namespace this_thread;
 
 Shop::Shop()
 {
+    // Setting all variables to 0, nullptr or some equivalent
     this->inventory = nullptr; 
     this->prices = nullptr; 
     this->forSaleStatus = nullptr;
@@ -30,6 +31,7 @@ Shop::Shop()
 
 Shop::Shop(int numBossesDefeated, string shopName, string shopKeeperName, string description, string asciiDescription, int type)
 {
+    // Setting all values to input values
     this->shopName = shopName;
     this->shopKeeperName = shopKeeperName; 
     this->description = description;
@@ -38,20 +40,18 @@ Shop::Shop(int numBossesDefeated, string shopName, string shopKeeperName, string
     this->ownerAnnoyanceLevel = 0; 
     this->inventorySize = 5; 
 
-    // Generate inventory
-   
-
-    if (type == 1) {
+    // Generate inventory depending on type
+    if (type == 1) { // If type = 1 the shop will have an attack item inventory
         this->inventory = new AttackItem[5];
         for (int i = 0; i < inventorySize; i++) {
             inventory[i] = AttackItem(numBossesDefeated);
         }
-    } else if (type == 2) {
+    } else if (type == 2) { // If type = 2 the shop will have a base item inventory
         this->inventory = new BuffItem[5];
         for (int i = 0; i < inventorySize; i++) {
             inventory[i] = BuffItem(numBossesDefeated);
         }
-    } else {
+    } else { // Not used within the game, if accidentally called a base item inventory will be called
         this->inventory = new BaseItem[5];
         for (int i = 0; i < inventorySize; i++) {
             inventory[i] = BaseItem(numBossesDefeated);
@@ -61,7 +61,8 @@ Shop::Shop(int numBossesDefeated, string shopName, string shopKeeperName, string
     // Set prices
     prices = new int[5];
     for (int i = 0; i < inventorySize; i++) {
-        prices[i] = inventory[i].GetChallengeRating() * 10 + 5;
+        // Price = ChallengeRating (bosses defeated) times 10 + 10 + a random value between -2 and 5 to vary price
+        prices[i] = inventory[i].GetChallengeRating() * 10 + ((rand() % 7) - 2) + 10; 
     }
 
     // Set for sale statuses
@@ -96,22 +97,28 @@ string Shop::purchaseItem(int itemNumber, Player *player)
     } else {
         itemNumber -= 1; // Decreases item number by 1 so it can be used to access the correct element of the array
 
-        if (forSaleStatus[itemNumber] == false) {
+        if (forSaleStatus[itemNumber] == false) { // Check if item is for sale
             return "Item not for sale"; 
 
         } else {
-            if (prices[itemNumber] > player->getCashOnHand()) {
+            if (prices[itemNumber] > player->getCashOnHand()) { // Check if player has enough cash
                 return "Insufficient funds";
 
-            } else {
+            } else { // Add item to inventory
                 forSaleStatus[itemNumber] = false;
-                player->setCashOnHand(player->getCashOnHand()-prices[itemNumber]);
-                player->AddItemToInventory(inventory[itemNumber]);
+                player->setCashOnHand(player->getCashOnHand()-prices[itemNumber]); // Take payment
+                
+                if (inventory[itemNumber].IsBuff == true) { // Call buff item add inventory
+                    player->AddItemToInventory(inventory[itemNumber]);
+                } else { // Call attack item add inventory
+                    player->AddItemToInventory(inventory[itemNumber]);
+                }
+                
                 return "Item purchased";
             }
         }
 
-        return "Error"; 
+        return "Error"; // If none of the above returns have been called an error has occured 
     }
 
     
@@ -125,7 +132,7 @@ bool Shop::showShopInterface(Player *player)
     int userDecision = 0, count = 0; ; 
 
     // Clears terminal
-    cout << endl << endl << endl << endl << endl << endl; 
+    cout << endl << endl << endl << endl << endl << endl << endl << endl; 
 
     // Show shop visuals 
     cout << divider << endl << this->shopName << "   |   Shop Keeper : " << this->shopKeeperName 
@@ -142,48 +149,66 @@ bool Shop::showShopInterface(Player *player)
     count++; 
     cout << count << ". Leave Shop" << endl << divider << endl;
     cin >> userDecision; 
+
+    // Check if cin failed
     if (cin.fail() == true) {
-      cin.clear();
+      cin.clear(); 
       cin.ignore(1000, '\n');
-      userDecision = 10;
+      userDecision = inventorySize * 2; // Ensures else will be called in the if statement below
     }
+
     cout << divider << endl; 
 
-    if (userDecision <= inventorySize && userDecision > 0) {
+    // Process user decision
+    if (userDecision <= inventorySize && userDecision > 0) { // If input matches item number buy item
         cout << purchaseItem(userDecision,player) << endl << divider << endl; 
         sleep_for(seconds(2));
         return true; // User will stay in the shop
-    } else if (userDecision == count) {
+    } else if (userDecision == count) { // If input matches leave shop option
         cout << "Have a good day!" << endl << divider << endl; 
         sleep_for(seconds(2));
         return false; // User will leave
-    } else {
+    } else { // If input matches niether of the above
         cout << "I think you mispoke" << endl << divider << endl;
         sleep_for(seconds(2));
         return true; // User will stay
-    }
-     
-
-
+    }     
 }
 
-void Shop::updateShop(int numBossesDefeated)
+void Shop::updateShop(int numBossesDefeated, int type)
 {
-    // Delete old inventory
+    //Delete old inventory
     //delete this->inventory; 
     //delete this->prices; 
     //delete this->forSaleStatus; 
 
-    // Change to new inventory
-    for (int i = 0; i < inventorySize; i++) {
-        inventory[i] = BaseItem(numBossesDefeated);
+    // Generate inventory depending on type
+    if (type == 1) { // If type = 1 the shop will have an attack item inventory
+        this->inventory = new AttackItem[5];
+        for (int i = 0; i < inventorySize; i++) {
+            inventory[i] = AttackItem(numBossesDefeated);
+        }
+    } else if (type == 2) { // If type = 2 the shop will have a base item inventory
+        this->inventory = new BuffItem[5];
+        for (int i = 0; i < inventorySize; i++) {
+            inventory[i] = BuffItem(numBossesDefeated);
+        }
+    } else { // Not used within the game, if accidentally called a base item inventory will be called
+        this->inventory = new BaseItem[5];
+        for (int i = 0; i < inventorySize; i++) {
+            inventory[i] = BaseItem(numBossesDefeated);
+        }
     }
 
+    // Set prices
+    prices = new int[5];
     for (int i = 0; i < inventorySize; i++) {
-        prices[i] = inventory[i].GetChallengeRating() * 10;
+        // Price = ChallengeRating (bosses defeated) times 10 + 10 + a random value between -2 and 5 to vary price
+        prices[i] = inventory[i].GetChallengeRating() * 10 + ((rand() % 7) - 2 + 10); 
     }
 
+    // Set for sale statuses
+    forSaleStatus = new bool[5];
     fill(forSaleStatus,forSaleStatus + inventorySize,true);
-
 
 }

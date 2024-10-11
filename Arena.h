@@ -11,6 +11,7 @@ class Game;
 
 class Arena : public Location {
     private:
+        Enemy *Opponent;
     public:
         Arena();
         Arena(string name, string description, string asciiDescription);

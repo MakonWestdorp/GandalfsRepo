@@ -14,6 +14,8 @@ using namespace this_thread;
 
 Arena::Arena() : Location()
 {
+    // No enemy currently
+    Opponent = nullptr;
 }
 
 Arena::Arena(string name, string description, string asciiDescription) : Location(name,description,asciiDescription)
@@ -21,24 +23,40 @@ Arena::Arena(string name, string description, string asciiDescription) : Locatio
 }
 
 void Arena::travelToLocation(Game &game, Location *location, Player *player, int numBossesDefeated)
-{
+{   
+    /*
+        Allows the user to travel to the Town from the Arena Only
+        Player should not be able to travel to Forest from Arena
+
+        If input location's name matches the name of town stored by game
+        the game will set the current location to the input and call
+        the new locations show location function
+
+        An error message will be printed if a location other than town is passed
+    */
     if (location->getName() == game.viewLocations()[0]->getName()) {
         game.travel(location);
         game.viewCurrentLocation()->showLocation(game,player,numBossesDefeated);
+    } else {
+        cout << "You cannot travel to that location!" << endl;
     }
 }
 
 void Arena::showLocation(Game &game, Player *player, int numBossesDefeated)
 {   
-    // Generate enemy
-    Enemy *Opponent = new Enemy(numBossesDefeated);
-
-    // Show Location
+    // Variables needed for displaying location
     string divider = "+------------------------------------------------------------------+"; 
     int userDecision = 0;
+
+    // Calls base classes show location function
     Location::showLocation(game,player,numBossesDefeated);
-    cout << "1. Travel to Town" << endl << "2. View Player Stats " << endl << "3. Fight enemy | Challenge Rating: " << Opponent->getChallengeRating() << endl << divider << endl;
+    // Prints options
+    cout << "1. Travel to Town" << endl << "2. View Player Stats " << endl 
+         << "3. Fight enemy | Challenge Rating: " << Opponent->getChallengeRating() 
+        << endl << divider << endl;
     cin >> userDecision; 
+
+    // Checking if cin failed
     if (cin.fail() == true) {
       cin.clear();
       cin.ignore(1000, '\n');
@@ -46,20 +64,21 @@ void Arena::showLocation(Game &game, Player *player, int numBossesDefeated)
     }
     cout << divider << endl;
     
+    // Processes users decision
     switch (userDecision) {
-        case 1:
+        case 1: // Travels to town
             sleep_for(seconds(1));
             travelToLocation(game,game.viewLocations()[0],player,numBossesDefeated);
             break;
-        case 2: 
+        case 2: // Shows players stats
             sleep_for(seconds(1));
             viewPlayerStats(game,player,numBossesDefeated);
             break; 
-        case 3:
+        case 3: // Call for battle
             sleep_for(seconds(1));
             callForBattle(game,player,Opponent,numBossesDefeated);
             break;
-        default:
+        default: // If user input isn't valid do nothing
             sleep_for(seconds(1));
             cout << "You seem lost. Perhaps you should stay where you are" << endl << divider << endl;
             break;
@@ -68,8 +87,11 @@ void Arena::showLocation(Game &game, Player *player, int numBossesDefeated)
 
 void Arena::viewPlayerStats(Game &game, Player *player, int numBossesDefeated) 
 {
+    // Variables needed for displaying stats
     string divider = "+------------------------------------------------------------------+"; 
     int userDecision = 0;
+
+    // 
     Location::showLocation(game,player,numBossesDefeated);
     cout << "Health Points (HP) = " << player->getHP() << endl << "Strength (STR) = " << player->getSTR() 
          << endl << "Defence (DEF) = " << player->getDEF() << endl << "Magic (MAG) = " << player->getMAG() 

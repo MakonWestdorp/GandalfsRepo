@@ -110,7 +110,7 @@ void UnitTest::BasicShopTest() {
   while (WeaponsShop.showShopInterface(player) == true) {
   }
 
-  WeaponsShop.updateShop(numBossesDefeated);
+  WeaponsShop.updateShop(numBossesDefeated,1);
 
   // Test shop interface
   while (WeaponsShop.showShopInterface(player) == true) {
