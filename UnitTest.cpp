@@ -1,6 +1,8 @@
 #include "UnitTest.h"
-#include "Player.h"
+
 #include <iostream>
+
+#include "Player.h"
 using namespace std;
 void UnitTest::StartAllTests() {
   void StartEntityTests();
@@ -61,7 +63,7 @@ void UnitTest::EntityAttack() {
 // Location test functions
 void UnitTest::LocationTravel() {
   // Not required for test but needed for function calls
-  Player *player = new Player("Player",5,5,5,5,"");
+  Player *player = new Player("Player", 5, 5, 5, 5, "");
   int numBossesDefeated = 0;
   // Descriptions
   string forestDescription =
@@ -89,28 +91,32 @@ void UnitTest::LocationTravel() {
   */
   LocationTest.setCurrentLocation(Forest);
   cout << LocationTest.viewCurrentLocation()->getName() << endl;
-  LocationTest.viewCurrentLocation()->showLocation(LocationTest,player, numBossesDefeated);
-  LocationTest.viewCurrentLocation()->travelToLocation(LocationTest, Town, player,numBossesDefeated);
+  LocationTest.viewCurrentLocation()->showLocation(LocationTest, player,
+                                                   numBossesDefeated);
+  LocationTest.viewCurrentLocation()->travelToLocation(
+      LocationTest, Town, player, numBossesDefeated);
   cout << LocationTest.viewCurrentLocation()->getName() << endl;
-  LocationTest.viewCurrentLocation()->showLocation(LocationTest, player, numBossesDefeated);
+  LocationTest.viewCurrentLocation()->showLocation(LocationTest, player,
+                                                   numBossesDefeated);
 }
 
 void UnitTest::BasicShopTest() {
   // Needed for test
   int numBossesDefeated = 0;
-  Player *player = new Player("Player",5,5,5,5,"");
+  Player *player = new Player("Player", 5, 5, 5, 5, "");
 
   // Create shop
   string shopDescription =
       "Steel & Sorcery offers finely crafted blades, \nfrom master-forged "
       "steel to rare enchanted swords";
-  Shop WeaponsShop(numBossesDefeated, "Steel & Sorcery","Timmy", shopDescription, "",1);
+  Shop WeaponsShop(numBossesDefeated, "Steel & Sorcery", "Timmy",
+                   shopDescription, "", 1);
 
   // Test shop interface
   while (WeaponsShop.showShopInterface(player) == true) {
   }
 
-  WeaponsShop.updateShop(numBossesDefeated,1);
+  WeaponsShop.updateShop(numBossesDefeated, 1);
 
   // Test shop interface
   while (WeaponsShop.showShopInterface(player) == true) {
@@ -133,10 +139,13 @@ void UnitTest::FirstTownTest() {
 
 void UnitTest::BaseItemNameGeneratorTest() {
   int numBossesDefeated = 0;
-  BaseItem Item1 = BaseItem(numBossesDefeated);
-  BaseItem Item2 = BaseItem(numBossesDefeated);
-  BaseItem Item3 = BaseItem(numBossesDefeated);
-  cout << "Item1 name: " << Item1.getName() << endl;
-  cout << "Item2 name: " << Item2.getName() << endl;
-  cout << "Item3 name: " << Item3.getName() << endl;
+  AttackItem AttackItem1 = AttackItem(numBossesDefeated);
+  BaseItem *Item1 = &AttackItem1;
+  BuffItem BuffItem2 = BuffItem(numBossesDefeated);
+  BaseItem *Item2 = &BuffItem2;
+  AttackItem AttackItem3 = AttackItem(numBossesDefeated);
+  BaseItem *Item3 = &AttackItem3;
+  cout << "Item1 name: " << Item1->getName() << endl;
+  cout << "Item2 name: " << Item2->getName() << endl;
+  cout << "Item3 name: " << Item3->getName() << endl;
 }

@@ -2,14 +2,16 @@
 #define UNITTEST_H
 
 #include "Arena.h"
+#include "AttackItem.h"
 #include "BaseItem.h"
+#include "BuffItem.h"
 #include "Entity.h"
 #include "Forest.h"
 #include "Game.h"
 #include "Location.h"
+#include "Player.h"
 #include "Shop.h"
 #include "Town.h"
-#include "Player.h"
 
 class UnitTest {
  public:
