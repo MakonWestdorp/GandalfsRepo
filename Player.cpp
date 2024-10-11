@@ -38,14 +38,16 @@ Player::Player() {
 
       if (std::cin.fail() || UserInput < 0 ||
           UserInput > NumberOfPointsToDistrubute) {
-        std::cin.clear();  // clear the error flag
+        std::cin.clear();             // Clear the error flags
+        std::cin.ignore(1000, '\n');  // Ignore the rest of the invalid input
         std::cout
-            << "That doesnt look right! Please enter a number between 0 and "
+            << "That doesn't look right! Please enter a number between 0 and "
             << NumberOfPointsToDistrubute << ": ";
       } else {
-        break;  // valid input, exit loop
+        break;  // Valid input, exit loop
       }
     }
+
     cout << divider << endl;
     healthPoints += UserInput;
     NumberOfPointsToDistrubute = NumberOfPointsToDistrubute - UserInput;
@@ -58,14 +60,16 @@ Player::Player() {
 
       if (std::cin.fail() || UserInput < 0 ||
           UserInput > NumberOfPointsToDistrubute) {
-        std::cin.clear();  // clear the error flag
+        std::cin.clear();             // Clear the error flags
+        std::cin.ignore(1000, '\n');  // Ignore the rest of the invalid input
         std::cout
-            << "That doesnt look right! Please enter a number between 0 and "
+            << "That doesn't look right! Please enter a number between 0 and "
             << NumberOfPointsToDistrubute << ": ";
       } else {
-        break;  // valid input, exit loop
+        break;  // Valid input, exit loop
       }
     }
+
     cout << divider << endl;
     strength += UserInput;
     NumberOfPointsToDistrubute = NumberOfPointsToDistrubute - UserInput;
@@ -78,14 +82,16 @@ Player::Player() {
 
       if (std::cin.fail() || UserInput < 0 ||
           UserInput > NumberOfPointsToDistrubute) {
-        std::cin.clear();  // clear the error flag
+        std::cin.clear();             // Clear the error flags
+        std::cin.ignore(1000, '\n');  // Ignore the rest of the invalid input
         std::cout
-            << "That doesnt look right! Please enter a number between 0 and "
+            << "That doesn't look right! Please enter a number between 0 and "
             << NumberOfPointsToDistrubute << ": ";
       } else {
-        break;  // valid input, exit loop
+        break;  // Valid input, exit loop
       }
     }
+
     cout << divider << endl;
     defence += UserInput;
     NumberOfPointsToDistrubute = NumberOfPointsToDistrubute - UserInput;
@@ -98,14 +104,16 @@ Player::Player() {
 
       if (std::cin.fail() || UserInput < 0 ||
           UserInput > NumberOfPointsToDistrubute) {
-        std::cin.clear();  // clear the error flag
+        std::cin.clear();             // Clear the error flags
+        std::cin.ignore(1000, '\n');  // Ignore the rest of the invalid input
         std::cout
-            << "That doesnt look right! Please enter a number between 0 and "
+            << "That doesn't look right! Please enter a number between 0 and "
             << NumberOfPointsToDistrubute << ": ";
       } else {
-        break;  // valid input, exit loop
+        break;  // Valid input, exit loop
       }
     }
+
     cout << divider << endl;
     magic += UserInput;
     NumberOfPointsToDistrubute = NumberOfPointsToDistrubute - UserInput;

@@ -28,17 +28,17 @@ int main() {
   // Start Game menu
 
   // New || Load Game
-  Player *player;
+  Player player = Player();
   // Tutorial
 
   // Game Loop
   ChampionsOfSand.setCurrentLocation(ChampionsOfSand.viewLocations()[0]);
 
   while (ChampionsOfSand.isGameRunning() == true) {
-    ChampionsOfSand.viewCurrentLocation()->showLocation(ChampionsOfSand, player,
-                                                        numBossesDefeated);
+    ChampionsOfSand.viewCurrentLocation()->showLocation(
+        ChampionsOfSand, &player, numBossesDefeated);
   }
-  if (!player->GetIsAlive()) {
+  if (!player.GetIsAlive()) {
     cout << "Game Over! We hope you enjoyed this game of Champions of the Sand!"
          << endl;
   }
