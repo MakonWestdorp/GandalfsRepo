@@ -43,15 +43,13 @@ Shop::Shop(int numBossesDefeated, string shopName, string shopKeeperName,
   if (type == 1) {  // If type = 1 the shop will have an attack item inventory
     this->inventory = new BaseItem *[5];
     for (int i = 0; i < inventorySize; i++) {
-      AttackItem AttackInventory[5];
-      inventory[i] = &AttackInventory[i];
+      inventory[i] = new AttackItem();
     }
   } else if (type ==
              2) {  // If type = 2 the shop will have a base item inventory
     this->inventory = new BaseItem *[5];
     for (int i = 0; i < inventorySize; i++) {
-      BuffItem BuffInventory[5];
-      inventory[i] = &BuffInventory[i];
+      inventory[i] = new BuffItem();
     }
   }
 
@@ -182,15 +180,13 @@ void Shop::updateShop(int numBossesDefeated, int type) {
   if (type == 1) {  // If type = 1 the shop will have an attack item inventory
     this->inventory = new BaseItem *[5];
     for (int i = 0; i < inventorySize; i++) {
-      AttackItem AttackInventory[5];
-      inventory[i] = &AttackInventory[i];
+      inventory[i] = new AttackItem();
     }
   } else if (type ==
              2) {  // If type = 2 the shop will have a base item inventory
     this->inventory = new BaseItem *[5];
     for (int i = 0; i < inventorySize; i++) {
-      BuffItem BuffInventory[5];
-      inventory[i] = &BuffInventory[i];
+      inventory[i] = new BuffItem();
     }
   }
 
