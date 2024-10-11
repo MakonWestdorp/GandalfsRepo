@@ -1,6 +1,6 @@
 #ifndef ENEMY_H
 #define ENEMY_H
-#include "BaseItem.h"
+#include "AttackItem.h"
 #include "Entity.h"
 class Enemy : public Entity {
  public:
@@ -9,10 +9,8 @@ class Enemy : public Entity {
   string getName();
   int getChallengeRating();
   void TakeTurn(Entity* Target, int CurrentRound);
-  int getRoundBuffUsed();
 
  private:
-  int RoundBuffUsed = -200;
   const string prefixes[10] = {"Dark",  "Flame",  "Shadow", "Frost", "Venom",
                                "Steel", "Cursed", "Wild",   "Blood", "Ghost"};
   const string suffixes[10] = {"Fang",    "Claw",   "Gaze",    "Blade",
@@ -23,7 +21,7 @@ class Enemy : public Entity {
   int CurrentNumBossesDefeated = 1;
   int ChallengeRating;
   string RandomEnemyName();
-  BaseItem RandomItemForEnemy(int NumBossesDefeated);
-  BaseItem Inventory = RandomItemForEnemy(CurrentNumBossesDefeated);
+  AttackItem EnemyAttackItem;
+  BaseItem* Inventory = &EnemyAttackItem;
 };
 #endif

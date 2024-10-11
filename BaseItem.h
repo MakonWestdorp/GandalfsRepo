@@ -22,7 +22,7 @@ class BaseItem {
 
  public:
   int GetChallengeRating();
-  virtual void UseItem(Entity* Target);
+  virtual void UseItem(Entity* Target) = 0;
   BaseItem();
   BaseItem(int NumBossesDefeated);  // Defeault Constructor
   string getName();                 // Returns name

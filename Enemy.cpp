@@ -19,7 +19,7 @@ Enemy::Enemy(int NumBossesDeafeated) {
   magic = NumBossesDeafeated * 5 + 5;
   string damageTypes[4] = {"Magic", "Piercing", "Bludgeoning", "Slashing"};
   int damageTypesSize = sizeof(damageTypes) / sizeof(damageTypes[0]);
-  //Resistance = damageTypes[rand() % damageTypesSize];
+  // Resistance = damageTypes[rand() % damageTypesSize];
   Resistance = "Magic";
   isAlive = true;
   name = RandomEnemyName();
@@ -41,35 +41,12 @@ int Enemy::getChallengeRating() { return ChallengeRating; }
 string Enemy::getName() { return name; }
 
 void Enemy::TakeTurn(Entity* Target, int CurrentRound) {
-  BaseItem* InventoryPTR = &Inventory;
-  BuffItem* buffItem = dynamic_cast<BuffItem*>(InventoryPTR);
-  bool BuffItemUsed = false;
-  if (BuffItemUsed) {
-    if (RoundBuffUsed == CurrentRound - 1) {
-      buffItem->UseItem(this, "Withdraw");
-      BuffItemUsed = false;
-    }
-  }
   if (rand() % 2 < 1) {
     Attack(Target);
-    cout << "Enemy is Attacking Player!" << endl;
+    cout << "Enemy is punching you!" << endl;
   } else {
-    if (buffItem) {
-      cout << "Enemy is using a BuffItem!" << endl;
-      buffItem->UseItem(this, "Apply");
-    } else {
-      cout << "Enemy is attacking using its item!" << endl;
-      Inventory.UseItem(Target);
-    }
+    Inventory->UseItem(Target);
+    cout << "Enemy is using its " << Inventory->getName() << " to attack you!"
+         << endl;
   }
-}
-int Enemy::getRoundBuffUsed() { return RoundBuffUsed; }
-BaseItem Enemy::RandomItemForEnemy(int NumBossesDeafeated) {
-  BaseItem RandomItem;
-  if (rand() % 2 < 1) {
-    RandomItem = AttackItem(NumBossesDeafeated);
-  } else {
-    RandomItem = BuffItem(NumBossesDeafeated);
-  };
-  return RandomItem;
 }

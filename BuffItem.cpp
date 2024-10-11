@@ -7,6 +7,8 @@ BuffItem::BuffItem(int NumBossesDefeated) {
   IsBuff = true;
 }
 
+void BuffItem::UseItem(Entity* Target) { UseItem(Target, "Apply"); }
+
 void BuffItem::UseItem(Entity* Target, string ApplyWithdraw) {
   if (ApplyWithdraw == "Apply") {
     Target->ApplyBuff(DamageOrBuff, DamageTypeOrNameOfStat);
