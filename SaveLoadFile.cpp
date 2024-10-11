@@ -30,8 +30,8 @@ int main() {
     }
 
     // Reading values
-    string name = "No Name", resistance = "No Resistance";
-    int health = 0, strength = 0, defence = 0, magic = 0, bossesDefeated = 0;
+    name = "No Name", resistance = "No Resistance";
+    health = 0, strength = 0, defence = 0, magic = 0, bossesDefeated = 0;
 
     return 0;
 }
