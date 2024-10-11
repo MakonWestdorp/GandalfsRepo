@@ -20,6 +20,7 @@ Arena::Arena() : Location()
 
 Arena::Arena(string name, string description, string asciiDescription) : Location(name,description,asciiDescription)
 {
+    Opponent = new Enemy(0); 
 }
 
 void Arena::travelToLocation(Game &game, Location *location, Player *player, int numBossesDefeated)
@@ -76,7 +77,7 @@ void Arena::showLocation(Game &game, Player *player, int numBossesDefeated)
             break; 
         case 3: // Call for battle
             sleep_for(seconds(1));
-            callForBattle(game,player,Opponent,numBossesDefeated);
+            callForBattle(game,player,numBossesDefeated);
             break;
         default: // If user input isn't valid do nothing
             sleep_for(seconds(1));
@@ -121,25 +122,30 @@ void Arena::viewPlayerStats(Game &game, Player *player, int numBossesDefeated)
     }
 }
 
-void Arena::callForBattle(Game &game, Player *player, Enemy *enemy, int numBossesDefeated) 
+void Arena::callForBattle(Game &game, Player *player, int numBossesDefeated) 
 {
     int currentRound = 0;
     bool keepFighting = true;
-  while (player->GetIsAlive() == true && enemy->GetIsAlive() == true && keepFighting == true) {
+  while (player->GetIsAlive() == true && Opponent->GetIsAlive() == true && keepFighting == true) {
         Location::showLocation(game, player, numBossesDefeated);
-        player->TakeTurn(enemy,currentRound,keepFighting);
+        player->TakeTurn(Opponent,currentRound,keepFighting);
         if (player->GetIsAlive()) {
             game.endGame();
         } else if (keepFighting == false) {
             break;
+        } else if (Opponent->GetIsAlive() == false) { 
+            break;
         } else {
-            enemy->TakeTurn(player,currentRound);
+            Opponent->TakeTurn(player,currentRound);
         }
         currentRound++;
   }
 
   if (player->GetIsAlive() == false) {
     game.endGame();
+  } else if (Opponent->GetIsAlive() == false) {
+    Opponent = new Enemy(numBossesDefeated);
   }
+  
 }
 
