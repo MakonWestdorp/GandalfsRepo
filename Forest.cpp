@@ -159,12 +159,18 @@ void Forest::viewEnemies(Game &game, Player *player, int numBossesDefeated) {
   // Show location
   Location::showLocation(game, player, numBossesDefeated);
   cout << "Select the enemy you wish to fight | Player challenge rating: "
-       << "CR" << endl
+       << player->getChallengeRating() << endl
        << divider << endl;
   for (int i = 0; i < 5; i++) {
-    cout << i + 1 << " " << enemies[i]->getName()
-         << " | Challenge rating : " << enemies[i]->getChallengeRating()
-         << endl;
+    if (enemies[i]->GetIsAlive()) {
+      cout << i + 1 << " " << enemies[i]->getName()
+           << " | Challenge rating : " << enemies[i]->getChallengeRating()
+           << " | Status: Alive" << endl;
+    } else {
+      cout << i + 1 << " " << enemies[i]->getName()
+           << " | Challenge rating : " << enemies[i]->getChallengeRating()
+           << " | Status: Dead" << endl;
+    }
   }
   cout << "6. Return to the main paths safety" << endl << divider << endl;
   cin >> userDecision;
@@ -175,15 +181,18 @@ void Forest::viewEnemies(Game &game, Player *player, int numBossesDefeated) {
   }
   cout << divider << endl;
 
-  if (userDecision > 0 && userDecision <= 5) {
+  if (userDecision > 0 && userDecision <= 5 &&
+      enemies[userDecision - 1]->GetIsAlive()) {
     callForBattle(game, player, enemies[userDecision - 1], numBossesDefeated);
     sleep_for(seconds(1));
+  } else if (!enemies[userDecision - 1]->GetIsAlive()) {
+    cout << "Theres not much fun fighting a dead body... Choose again." << endl;
+    sleep_for(seconds(3));
   } else if (userDecision == 6) {
     cout << "You return to the safety of the main path" << endl
          << divider << endl;
     sleep_for(seconds(1));
   } else {
-    srand(time(0));
     cashLost = (rand() % 5) + 1;
     player->setCashOnHand(player->getCashOnHand() - cashLost);
 
