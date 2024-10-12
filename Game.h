@@ -46,9 +46,9 @@ class Game {
   Game();                       // Default constructor
   void initialiseShops();       // Initialises shops
   void initialiseLocations();   // Initialises locations
-  void saveGame();                     // Saves the game
-  void exitGame();                     // Exits the game
-  bool loadGame();                     // Loads the game
+  bool saveGame(Player *player, int &numBossesDefeated, string fileName);  // Saves the game
+  void exitGame();  // Exits the game
+  bool loadGame(Player *player, int &numBossesDefeated, string fileName); // Loads the game
   void endGame();                      // Ends the game if the player dies
   void travel(Location *destination);  // Switches location
   void setCurrentLocation(Location *location);  // Sets the location

@@ -17,11 +17,13 @@ void UnitTest::StartEntityTests() {
 
 void UnitTest::StartLocationTests() { LocationTravel(); }
 
-void UnitTest::StartShopTests() { BasicShopTest(); }
+void UnitTest::StartShopTests() { ShopTest(); }
 
-void UnitTest::StartTownTests() { FirstTownTest(); }
+void UnitTest::StartTownTests() { TownTest(); }
 
 void UnitTest::StartBaseItemTests() { BaseItemNameGeneratorTest(); }
+
+void UnitTest::StartSaveLoadTests() { saveAndLoadTest(); }
 
 // Entity test functions
 void UnitTest::EntityTakeDamage() {
@@ -60,7 +62,7 @@ void UnitTest::EntityAttack() {
   cout << "Sauron now has" << Sauron.getHP() << " health points" << endl;
 }
 
-// Location test functions
+// Location tests
 void UnitTest::LocationTravel() {
   // Not required for test but needed for function calls
   Player *player = new Player("Player", 5, 5, 5, 5, "");
@@ -100,7 +102,8 @@ void UnitTest::LocationTravel() {
                                                    numBossesDefeated);
 }
 
-void UnitTest::BasicShopTest() {
+// Shop tests
+void UnitTest::ShopTest() {
   // Needed for test
   int numBossesDefeated = 0;
   Player *player = new Player("Player", 5, 5, 5, 5, "");
@@ -123,7 +126,8 @@ void UnitTest::BasicShopTest() {
   }
 }
 
-void UnitTest::FirstTownTest() {
+// Town tests
+void UnitTest::TownTest() {
   Game game;
   srand(time(0));
   Player *player = new Player();
@@ -137,6 +141,7 @@ void UnitTest::FirstTownTest() {
   }
 }
 
+// Item name tests
 void UnitTest::BaseItemNameGeneratorTest() {
   int numBossesDefeated = 0;
   AttackItem AttackItem1 = AttackItem(numBossesDefeated);
@@ -148,4 +153,32 @@ void UnitTest::BaseItemNameGeneratorTest() {
   cout << "Item1 name: " << Item1->getName() << endl;
   cout << "Item2 name: " << Item2->getName() << endl;
   cout << "Item3 name: " << Item3->getName() << endl;
+}
+
+void UnitTest::saveAndLoadTest() {
+  Game game;
+  int numBossesDefeated = 1;
+  Player *player = new Player();
+
+  string name1 = player->getName(), res1 = player->getRes();
+  int health1 = player->getHP(), strength1 = player->getSTR(), 
+      defence1 = player->getMAG(), magic1 = player->getMAG(), 
+      cashOnHand1 = player->getCashOnHand(), challengeRating1 = player->getChallengeRating();
+
+  cout << (game.saveGame(player,numBossesDefeated,"playerStats") ? "Game saved" : "Game not saved") << endl;
+  numBossesDefeated++;
+  cout << (game.loadGame(player,numBossesDefeated,"playerStats") ? "Game loaded" : "Game not loaded") << endl;
+
+  string name2 = player->getName(), res2 = player->getRes();
+  int health2 = player->getHP(), strength2 = player->getSTR(), 
+      defence2 = player->getMAG(), magic2 = player->getMAG(), 
+      cashOnHand2 = player->getCashOnHand(), challengeRating2 = player->getChallengeRating();
+
+  if (name1 == name2 && res1 == res2 && health1 == health2 && strength1 == strength2 && 
+      defence1 == defence2 && magic1 == magic2 && numBossesDefeated == 1 && 
+      cashOnHand1 == cashOnHand2 && challengeRating1 == challengeRating2) {
+      cout << "Test successful" << endl;
+  } else {
+      cout << "Test Failed" << endl;
+  }
 }

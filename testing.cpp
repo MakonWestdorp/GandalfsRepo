@@ -26,6 +26,7 @@ int main() {
        << "4. Shop Tests" << endl
        << "5. Town tests" << endl
        << "6. BaseItem tests" << endl
+       << "7. SaveLoad tests" << endl
        << divider << endl;
 
   cin >> testSelector;
@@ -54,6 +55,9 @@ int main() {
       break;
     case 6:
       test.StartBaseItemTests();
+      break;
+    case 7:
+      test.StartSaveLoadTests();
       break;
     default:
       break;

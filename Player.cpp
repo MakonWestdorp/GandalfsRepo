@@ -36,13 +36,13 @@ Player::Player() {
     while (true) {
       std::cin >> UserInput;
 
-      if (std::cin.fail() || UserInput < 0 ||
+      if (cin.fail() || UserInput < 0 ||
           UserInput > NumberOfPointsToDistrubute) {
-        std::cin.clear();             // Clear the error flags
-        std::cin.ignore(1000, '\n');  // Ignore the rest of the invalid input
-        std::cout
-            << "That doesn't look right! Please enter a number between 0 and "
-            << NumberOfPointsToDistrubute << ": ";
+        cin.clear();             // Clear the error flags
+        cin.ignore(1000, '\n');  // Ignore the rest of the invalid input
+        cout
+          << "That doesn't look right! Please enter a number between 0 and "
+          << NumberOfPointsToDistrubute << ": ";
       } else {
         break;  // Valid input, exit loop
       }
@@ -56,13 +56,13 @@ Player::Player() {
     cout << "How many points would you like to allocate to Strength?" << endl;
     // READ IN USER INPUT FOR STR;
     while (true) {
-      std::cin >> UserInput;
+      cin >> UserInput;
 
-      if (std::cin.fail() || UserInput < 0 ||
+      if (cin.fail() || UserInput < 0 ||
           UserInput > NumberOfPointsToDistrubute) {
-        std::cin.clear();             // Clear the error flags
-        std::cin.ignore(1000, '\n');  // Ignore the rest of the invalid input
-        std::cout
+        cin.clear();             // Clear the error flags
+        cin.ignore(1000, '\n');  // Ignore the rest of the invalid input
+        cout
             << "That doesn't look right! Please enter a number between 0 and "
             << NumberOfPointsToDistrubute << ": ";
       } else {
@@ -78,15 +78,15 @@ Player::Player() {
     cout << "How many points would you like to allocate to Defence?" << endl;
     // READ IN USER INPUT FOR DEF;
     while (true) {
-      std::cin >> UserInput;
+      cin >> UserInput;
 
-      if (std::cin.fail() || UserInput < 0 ||
+      if (cin.fail() || UserInput < 0 ||
           UserInput > NumberOfPointsToDistrubute) {
-        std::cin.clear();             // Clear the error flags
-        std::cin.ignore(1000, '\n');  // Ignore the rest of the invalid input
-        std::cout
-            << "That doesn't look right! Please enter a number between 0 and "
-            << NumberOfPointsToDistrubute << ": ";
+        cin.clear();             // Clear the error flags
+        cin.ignore(1000, '\n');  // Ignore the rest of the invalid input
+        cout
+          << "That doesn't look right! Please enter a number between 0 and "
+          << NumberOfPointsToDistrubute << ": ";
       } else {
         break;  // Valid input, exit loop
       }
@@ -102,13 +102,13 @@ Player::Player() {
     while (true) {
       std::cin >> UserInput;
 
-      if (std::cin.fail() || UserInput < 0 ||
+      if (cin.fail() || UserInput < 0 ||
           UserInput > NumberOfPointsToDistrubute) {
-        std::cin.clear();             // Clear the error flags
-        std::cin.ignore(1000, '\n');  // Ignore the rest of the invalid input
-        std::cout
-            << "That doesn't look right! Please enter a number between 0 and "
-            << NumberOfPointsToDistrubute << ": ";
+        cin.clear();             // Clear the error flags
+        cin.ignore(1000, '\n');  // Ignore the rest of the invalid input
+        cout
+          << "That doesn't look right! Please enter a number between 0 and "
+          << NumberOfPointsToDistrubute << ": ";
       } else {
         break;  // Valid input, exit loop
       }
@@ -123,9 +123,9 @@ Player::Player() {
       break;
     }
   }
-  string name;
+  
   cout << "Please enter a name for your character:";
-  std::cin >> name;
+  cin >> name;
   cout << endl;
   ChallengeRating = healthPoints + strength + defence + magic;
   ChallengeRating = ChallengeRating / 4;
@@ -134,6 +134,7 @@ Player::Player() {
 
 Player::Player(string inputName, int inputHP, int inputSTR, int inputDEF,
                int inputMAG, string inputResistance) {
+  // Set values
   name = inputName;
   healthPoints = inputHP;
   defence = inputDEF;
@@ -141,6 +142,11 @@ Player::Player(string inputName, int inputHP, int inputSTR, int inputDEF,
   magic = inputMAG;
   Resistance = inputResistance;
   isAlive = true;
+  CashOnHand = 50;
+
+  // Calculate Challenge Rating
+  ChallengeRating = healthPoints + strength + defence + magic;
+  ChallengeRating = ChallengeRating / 4;
 }
 
 int Player::TakeTurn(Enemy* Target, int CurrentRound, bool& KeepFighting) {
@@ -165,16 +171,16 @@ int Player::TakeTurn(Enemy* Target, int CurrentRound, bool& KeepFighting) {
   }
   cout << CurrentInventorySize + 2 << ". Leave Fight" << endl;
   int UserInput = 0;
-  std::cin >> UserInput;
+  cin >> UserInput;
 
   // Check if input is correct
-  while (std::cin.fail() || UserInput < 1 ||
+  while (cin.fail() || UserInput < 1 ||
          UserInput > CurrentInventorySize + 3) {
-    std::cin.clear();  // clear the error flag
-    std::cin.ignore(1000, '\n');
-    std::cout << "That doesnt look right! Please enter a number between 1 and "
+    cin.clear();  // clear the error flag
+    cin.ignore(1000, '\n');
+    cout << "That doesnt look right! Please enter a number between 1 and "
               << CurrentInventorySize + 3 << ": ";
-    std::cin >> UserInput;
+    cin >> UserInput;
   }
 
   if (UserInput == 1) {

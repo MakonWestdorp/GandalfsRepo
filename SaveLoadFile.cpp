@@ -48,20 +48,13 @@ int main() {
 
     if (playerFileIn.is_open()) {
         string commentsHolder = "";
-        playerFileIn >> commentsHolder;
-        playerFileIn >> name;
-        playerFileIn >> commentsHolder;
-        playerFileIn >> health;
-        playerFileIn >> commentsHolder;
-        playerFileIn >> strength;
-        playerFileIn >> commentsHolder;
-        playerFileIn >> defence;
-        playerFileIn >> commentsHolder;
-        playerFileIn >> magic;
-        playerFileIn >> commentsHolder;
-        playerFileIn >> resistance;
-        playerFileIn >> commentsHolder;
-        playerFileIn >> bossesDefeated;
+        playerFileIn >> commentsHolder >> name;
+        playerFileIn >> commentsHolder >> health;
+        playerFileIn >> commentsHolder >> strength;
+        playerFileIn >> commentsHolder >> defence;
+        playerFileIn >> commentsHolder >> magic;
+        playerFileIn >> commentsHolder >> resistance;
+        playerFileIn >> commentsHolder >> bossesDefeated;
 
         playerFileIn.close();
     } else {

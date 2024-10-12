@@ -33,6 +33,7 @@ class Entity {
   void WithdrawBuff(int Buff, string Stat);
 
   int getChallengeRating();
+  void setChallengeRating(int InputChallengeRating);
 
   int getHP();
   int getSTR();

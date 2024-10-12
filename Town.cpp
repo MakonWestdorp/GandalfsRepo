@@ -42,8 +42,8 @@ void Town::showLocation(Game &game, Player *player, int numBossesDefeated)
     Location::showLocation(game,player,numBossesDefeated);
     cout << "1. Travel to Weapons Shop" << endl << "2. Travel to Magic Shop" << endl 
          << "3. Travel to Armour Shop" << endl << "4. Travel to General Shop" << endl
-         << "5. Travel to Forest" << endl << "6. Travel to Arena" << endl << "7. Save Game (N/A)" 
-         << endl << "8. Save and Leave Game" << endl << divider << endl;
+         << "5. Travel to Forest" << endl << "6. Travel to Arena" << endl << "7. Save Game" 
+         << endl << "8. Leave Game" << endl << divider << endl;
     cin >> userDecision; 
     if (cin.fail() == true) {
       cin.clear();
@@ -51,6 +51,9 @@ void Town::showLocation(Game &game, Player *player, int numBossesDefeated)
       userDecision = 9;
     }
     cout << divider << endl; 
+
+    string fileName = "";
+
     switch (userDecision) {
         case 1:
             sleep_for(seconds(1));
@@ -78,10 +81,13 @@ void Town::showLocation(Game &game, Player *player, int numBossesDefeated)
             break;
         case 7:
             sleep_for(seconds(1));
-            cout << "N/A" << endl << divider << endl;
+            cout << "Enter the name for your save file (without .txt): ";
+            cin >> fileName; 
+            cout << (game.saveGame(player,numBossesDefeated,fileName) ? "Game Saved" : "Game not Saved") 
+                 << endl << divider << endl;
+            sleep_for(seconds(1));
             break;
         case 8: 
-            sleep_for(seconds(1));
             game.exitGame();
             break;
         default: 

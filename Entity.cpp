@@ -92,9 +92,9 @@ void Entity::Attack(Entity* Target, string TypeOfAttack, string StatUsed,
   }
 }
 
+// If you need a comment to explain a Getter/Setter, please seek help.
 int Entity::getChallengeRating() { return ChallengeRating; }
 
-// If you need a comment to explain a Getter/Setter, please seek help.
 int Entity::getHP() { return healthPoints; }
 
 int Entity::getSTR() { return strength; }
@@ -106,6 +106,8 @@ int Entity::getMAG() { return magic; }
 string Entity::getName() { return name; }
 
 string Entity::getRes() { return Resistance; }
+
+void Entity::setChallengeRating(int InputChallengeRating) { ChallengeRating = InputChallengeRating;}
 
 void Entity::setHP(int InputHP) { healthPoints = InputHP; }
 

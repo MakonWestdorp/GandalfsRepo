@@ -53,6 +53,7 @@
         "algorithm": "cpp",
         "charconv": "cpp",
         "forward_list": "cpp",
-        "fstream": "cpp"
+        "fstream": "cpp",
+        "iomanip": "cpp"
     }
 }

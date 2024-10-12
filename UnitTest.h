@@ -21,22 +21,26 @@ class UnitTest {
   void StartShopTests();
   void StartTownTests();
   void StartBaseItemTests();
+  void StartSaveLoadTests();
 
  private:
   // Entity class tests
   void EntityTakeDamage();
   void EntityAttack();
-  void EntityRoundBasedAttacks();
 
   // Location class tests
   void LocationTravel();
 
   // Shop class tests
-  void BasicShopTest();
+  void ShopTest();
 
   // Town Class tests
-  void FirstTownTest();
+  void TownTest();
+
   // Base Item tests
   void BaseItemNameGeneratorTest();
+
+  // Save & Load tests
+  void saveAndLoadTest();
 };
 #endif
