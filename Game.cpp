@@ -187,22 +187,26 @@ bool Game::loadGame(Player *player, int &numBossesDefeated, string fileName) {
         int inventorySize = 0;
         playerFileIn >> commentsHolder >> inventorySize;
         player->setPlayerInventorySize(inventorySize);
+        cout << "IS " << inventorySize << endl;
         BaseItem **tempInventory = new BaseItem*[inventorySize];
         string itemName = "", damageTypeOrNameOfStat = "";
-        int damageOrBuff = 0, challengeRating = 0;
+        int damageOrBuff = 0, itemChallengeRating = 0;
         bool isBuff = false;
+
         for (int i = 0; i < inventorySize; i++) {
           itemName = "";
           damageTypeOrNameOfStat = "";
           damageOrBuff = 0;
-          challengeRating = 0;
+          itemChallengeRating = 0;
           isBuff = false;
-          getline(playerFileIn,commentsHolder);
+
+          playerFileIn >> commentsHolder;
           getline(playerFileIn,itemName);
           playerFileIn >> damageOrBuff;
-          getline(playerFileIn,damageTypeOrNameOfStat);
-          playerFileIn >> challengeRating; 
+          playerFileIn >> damageTypeOrNameOfStat;
+          playerFileIn >> itemChallengeRating; 
           playerFileIn >> isBuff;
+
           cout << itemName << "|" << damageTypeOrNameOfStat << "|" << damageOrBuff << "|" << challengeRating << endl;
           if (!isBuff) {
             tempInventory[i] = new AttackItem(itemName,damageOrBuff,damageTypeOrNameOfStat,challengeRating,isBuff);
