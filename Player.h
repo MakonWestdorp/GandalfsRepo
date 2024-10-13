@@ -12,6 +12,10 @@ class Player : public Entity {
                                    // part of the game
   int TakeTurn(Enemy* Target, int CurrentRound, bool& KeepFighting);
   void AddItemToInventory(BaseItem* Item);
+  int getPlayerInventorySize();
+  void setPlayerInventorySize(int inventorySize);
+  void setInventory(BaseItem **inventory);
+  BaseItem **viewInventory() {return Inventory; }
 
  private:
   BaseItem** Inventory;

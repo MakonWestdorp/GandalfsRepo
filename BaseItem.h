@@ -21,11 +21,20 @@ class BaseItem {
   int nameOfStatsSize = sizeof(nameOfStats) / sizeof(nameOfStats[0]);
 
  public:
-  int GetChallengeRating();
   virtual void UseItem(Entity* Target) = 0;
   BaseItem();
   BaseItem(int NumBossesDefeated);  // Defeault Constructor
+  BaseItem(string name, int damageOrBuff, string damageTypeOrNameOfStat, int challengeRating, bool isBuff);
   string getName();                 // Returns name
+  int getDamageOrBuff();
+  string getDamageOrNameStat();
+  int GetChallengeRating();
+  bool getIsBuff(); 
+  void setName(string name);
+  void setDamageOrBuff(int damageOrBuff);
+  void setSetDamageTypeOrNameOfStat(string damageTypeOrNameOfStat);
+  void setChallengRating(int challengeRating);
+  void setIsBool(bool isBuff);
   string nameRandomiser();          // Generates a random name for the item.
   string getRandomElement(const string elements[],
                           int size);  // Used inside nameRandomiser

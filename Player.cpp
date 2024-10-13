@@ -34,7 +34,7 @@ Player::Player() {
     int UserInput;
 
     while (true) {
-      std::cin >> UserInput;
+      cin >> UserInput;
 
       if (cin.fail() || UserInput < 0 ||
           UserInput > NumberOfPointsToDistrubute) {
@@ -100,7 +100,7 @@ Player::Player() {
     cout << "How many points would you like to allocate to Magic?" << endl;
     // READ IN USER INPUT FOR MAG;
     while (true) {
-      std::cin >> UserInput;
+      cin >> UserInput;
 
       if (cin.fail() || UserInput < 0 ||
           UserInput > NumberOfPointsToDistrubute) {
@@ -130,6 +130,9 @@ Player::Player() {
   ChallengeRating = healthPoints + strength + defence + magic;
   ChallengeRating = ChallengeRating / 4;
   Resistance = "Magic";
+
+  CurrentInventorySize = 0;
+  Inventory = nullptr;
 }
 
 Player::Player(string inputName, int inputHP, int inputSTR, int inputDEF,
@@ -147,6 +150,9 @@ Player::Player(string inputName, int inputHP, int inputSTR, int inputDEF,
   // Calculate Challenge Rating
   ChallengeRating = healthPoints + strength + defence + magic;
   ChallengeRating = ChallengeRating / 4;
+
+  CurrentInventorySize = 0;
+  Inventory = nullptr;
 }
 
 int Player::TakeTurn(Enemy* Target, int CurrentRound, bool& KeepFighting) {
@@ -221,3 +227,9 @@ void Player::AddItemToInventory(BaseItem* Item) {
   Inventory = TempInventory;
   CurrentInventorySize++;
 }
+
+int Player::getPlayerInventorySize() { return CurrentInventorySize; }
+
+void Player::setPlayerInventorySize(int inventorySize) { this->CurrentInventorySize = inventorySize; }
+
+void Player::setInventory(BaseItem** inventory) { this->Inventory = inventory; }

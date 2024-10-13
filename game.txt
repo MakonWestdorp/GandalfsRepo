@@ -13,6 +13,14 @@ Magic
 Bosses_defeated:
 0
 Cash_On_Hand:
-50
+39
 Challenge_Rating:
 5
+Player_Inventory_Size
+1
+Item_1
+Sword of Destruction
+5
+Bludgeoning
+5
+0

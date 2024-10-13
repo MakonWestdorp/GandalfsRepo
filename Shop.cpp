@@ -43,13 +43,13 @@ Shop::Shop(int numBossesDefeated, string shopName, string shopKeeperName,
   if (type == 1) {  // If type = 1 the shop will have an attack item inventory
     this->inventory = new BaseItem *[5];
     for (int i = 0; i < inventorySize; i++) {
-      inventory[i] = new AttackItem();
+      inventory[i] = new AttackItem(numBossesDefeated);
     }
   } else if (type ==
              2) {  // If type = 2 the shop will have a base item inventory
     this->inventory = new BaseItem *[5];
     for (int i = 0; i < inventorySize; i++) {
-      inventory[i] = new BuffItem();
+      inventory[i] = new BuffItem(numBossesDefeated);
     }
   }
 
@@ -59,7 +59,7 @@ Shop::Shop(int numBossesDefeated, string shopName, string shopKeeperName,
     // Price = ChallengeRating (bosses defeated) times 10 + 10 + a random value
     // between -2 and 5 to vary price
     prices[i] =
-        inventory[i]->GetChallengeRating() * 10 + ((rand() % 7) - 2) + 10;
+        inventory[i]->GetChallengeRating() * 2 + ((rand() % 7) - 2);
   }
 
   // Set for sale statuses
@@ -180,13 +180,13 @@ void Shop::updateShop(int numBossesDefeated, int type) {
   if (type == 1) {  // If type = 1 the shop will have an attack item inventory
     this->inventory = new BaseItem *[5];
     for (int i = 0; i < inventorySize; i++) {
-      inventory[i] = new AttackItem();
+      inventory[i] = new AttackItem(numBossesDefeated);
     }
   } else if (type ==
              2) {  // If type = 2 the shop will have a base item inventory
     this->inventory = new BaseItem *[5];
     for (int i = 0; i < inventorySize; i++) {
-      inventory[i] = new BuffItem();
+      inventory[i] = new BuffItem(numBossesDefeated);
     }
   }
 
@@ -196,7 +196,7 @@ void Shop::updateShop(int numBossesDefeated, int type) {
     // Price = ChallengeRating (bosses defeated) times 10 + 10 + a random value
     // between -2 and 5 to vary price
     prices[i] =
-        inventory[i]->GetChallengeRating() * 10 + ((rand() % 7) - 2 + 10);
+        inventory[i]->GetChallengeRating() * 2 + ((rand() % 7) - 2 + 10);
   }
 
   // Set for sale statuses

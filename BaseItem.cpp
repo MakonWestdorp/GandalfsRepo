@@ -3,8 +3,6 @@
 #include "Entity.h"
 #include "Game.h"
 
-int BaseItem::GetChallengeRating() { return ChallengeRating; }
-
 void BaseItem::UseItem(Entity* Target) {
   // BaseItem UseItem function does nothing, it gets overloaded by inherited
   // classes
@@ -23,7 +21,33 @@ BaseItem::BaseItem(int NumBossesDefeated) {
   name = nameRandomiser();
 }
 
+BaseItem::BaseItem(string name, int damageOrBuff, string damageTypeOrNameOfStat, int challengeRating, bool isBuff) {
+  this->name = name;
+  this->DamageOrBuff = damageOrBuff;
+  this->DamageTypeOrNameOfStat = damageTypeOrNameOfStat;
+  this->ChallengeRating = challengeRating;
+  this->IsBuff = isBuff;
+}
+
 string BaseItem::getName() { return name; }
+
+int BaseItem::getDamageOrBuff() { return DamageOrBuff; }
+
+string BaseItem::getDamageOrNameStat() { return DamageTypeOrNameOfStat; }
+
+int BaseItem::GetChallengeRating() { return ChallengeRating; }
+
+bool BaseItem::getIsBuff() { return IsBuff; }
+
+void BaseItem::setName(string name) { this->name = name;}
+
+void BaseItem::setDamageOrBuff(int damageOrBuff) {this->DamageOrBuff = damageOrBuff; }
+
+void BaseItem::setSetDamageTypeOrNameOfStat(string damageTypeOrNameOfStat) { this->DamageTypeOrNameOfStat = damageTypeOrNameOfStat; }
+
+void BaseItem::setChallengRating(int challengeRating) {this->ChallengeRating = challengeRating; }
+
+void BaseItem::setIsBool(bool isBuff) {this->IsBuff = isBuff; }
 
 string BaseItem::nameRandomiser() {
   // 1% chance for a rare prefix

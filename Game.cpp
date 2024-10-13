@@ -87,6 +87,7 @@ bool Game::saveGame(Player *player, int &numBossesDefeated, string fileName) {
           Returns false if values could not be written
         */
 
+        // Save player data
         savePlayerData << "Name:\n";
         savePlayerData << player->getName() << endl;
         savePlayerData << "Health:\n";
@@ -105,6 +106,19 @@ bool Game::saveGame(Player *player, int &numBossesDefeated, string fileName) {
         savePlayerData << player->getCashOnHand() << endl;
         savePlayerData << "Challenge_Rating:\n";
         savePlayerData << player->getChallengeRating() << endl;
+
+        // Save player inventory
+        int tempInventorySize = player->getPlayerInventorySize();
+        savePlayerData << "Player_Inventory_Size\n";
+        savePlayerData << player->getPlayerInventorySize() << endl;
+        for (int i = 0; i < tempInventorySize; i ++) {
+        savePlayerData << "Item_" << i+1 << endl;
+        savePlayerData << player->viewInventory()[i]->getName() << endl;
+        savePlayerData << player->viewInventory()[i]->getDamageOrBuff() << endl;
+        savePlayerData << player->viewInventory()[i]->getDamageOrNameStat() << endl;
+        savePlayerData << player->viewInventory()[i]->GetChallengeRating() << endl;
+        savePlayerData << player->viewInventory()[i]->getIsBuff() << endl;
+        }
 
         savePlayerData.close(); // Close file 
 
@@ -131,6 +145,7 @@ bool Game::loadGame(Player *player, int &numBossesDefeated, string fileName) {
     numBossesDefeated = -1;
 
     if (playerFileIn.is_open()) {
+        cout << "File has been opened\n";
         string commentsHolder = "";
 
         // Read in name
@@ -138,7 +153,7 @@ bool Game::loadGame(Player *player, int &numBossesDefeated, string fileName) {
         player->setName(name); // Set name
 
         // Read in health
-        playerFileIn >> commentsHolder >> health;
+        playerFileIn >> commentsHolder >> health; // Store comment in string to be discarded then value into temporary variable
         player->setHP(health);
       
         // Read in strength
@@ -168,17 +183,47 @@ bool Game::loadGame(Player *player, int &numBossesDefeated, string fileName) {
         playerFileIn >> commentsHolder >> challengeRating;
         player->setChallengeRating(challengeRating);
 
+        // Read in player inventory
+        int inventorySize = 0;
+        playerFileIn >> commentsHolder >> inventorySize;
+        player->setPlayerInventorySize(inventorySize);
+        BaseItem **tempInventory = new BaseItem*[inventorySize];
+        string itemName = "", damageTypeOrNameOfStat = "";
+        int damageOrBuff = 0, challengeRating = 0;
+        bool isBuff = false;
+        for (int i = 0; i < inventorySize; i++) {
+          itemName = "";
+          damageTypeOrNameOfStat = "";
+          damageOrBuff = 0;
+          challengeRating = 0;
+          isBuff = false;
+          getline(playerFileIn,commentsHolder);
+          getline(playerFileIn,itemName);
+          playerFileIn >> damageOrBuff;
+          getline(playerFileIn,damageTypeOrNameOfStat);
+          playerFileIn >> challengeRating; 
+          playerFileIn >> isBuff;
+          cout << itemName << "|" << damageTypeOrNameOfStat << "|" << damageOrBuff << "|" << challengeRating << endl;
+          if (!isBuff) {
+            tempInventory[i] = new AttackItem(itemName,damageOrBuff,damageTypeOrNameOfStat,challengeRating,isBuff);
+          } else {
+            tempInventory[i] = new BuffItem(itemName,damageOrBuff,damageTypeOrNameOfStat,challengeRating,isBuff);
+          }
+          
+        }
+        player->setInventory(tempInventory);
+
         playerFileIn.close();
 
         // Check if read in was successful
         if (name == "" || health == 0 || strength == 0 || defence == 0 || magic == 0 || 
             resistance == "" || numBossesDefeated == -1 || cashOnHand == -1 || challengeRating == 0) {
+          cout << "File failed here\n";
+          cout << name << endl << health << endl << strength << endl << defence << endl << magic << endl << resistance << endl << numBossesDefeated << endl << cashOnHand << endl << challengeRating << endl;
           return false;
         } else {
           Shops[0].updateShop(numBossesDefeated,1);
-          Shops[1].updateShop(numBossesDefeated,1);
-          Shops[2].updateShop(numBossesDefeated,2);
-          Shops[3].updateShop(numBossesDefeated,2);
+          Shops[1].updateShop(numBossesDefeated,2);
           return true;
         }
     } else {
