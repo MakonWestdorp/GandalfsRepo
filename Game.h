@@ -31,10 +31,8 @@ class Game {
 
   // Shops
   Shop *Shops;
-  Shop WeaponShop;
-  Shop MagicShop;
-  Shop ArmourShop;
-  Shop GeneralShop;
+  Shop attackShop;
+  Shop buffShop;
 
   // Locations
   Location **Locations;

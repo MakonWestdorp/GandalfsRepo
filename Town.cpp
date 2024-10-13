@@ -40,15 +40,14 @@ void Town::showLocation(Game &game, Player *player, int numBossesDefeated)
     string divider = "+------------------------------------------------------------------+"; 
     int userDecision = 0;
     Location::showLocation(game,player,numBossesDefeated);
-    cout << "1. Travel to Weapons Shop" << endl << "2. Travel to Magic Shop" << endl 
-         << "3. Travel to Armour Shop" << endl << "4. Travel to General Shop" << endl
-         << "5. Travel to Forest" << endl << "6. Travel to Arena" << endl << "7. Save Game" 
-         << endl << "8. Leave Game" << endl << divider << endl;
+    cout << "1. Travel to Attack Item Shop" << endl << "2. Travel to Buff Item Shop" << endl
+         << "3. Travel to Forest" << endl << "4. Travel to Arena" << endl << "5. Save Game" 
+         << endl << "6. Leave Game" << endl << divider << endl;
     cin >> userDecision; 
     if (cin.fail() == true) {
       cin.clear();
       cin.ignore(1000, '\n');
-      userDecision = 9;
+      userDecision = 0;
     }
     cout << divider << endl; 
 
@@ -65,21 +64,13 @@ void Town::showLocation(Game &game, Player *player, int numBossesDefeated)
             break;
         case 3:
             sleep_for(seconds(1));
-            enterShop(game.viewShops()[2],player);
+            travelToLocation(game,game.viewLocations()[1],player,numBossesDefeated);
             break;
         case 4:
             sleep_for(seconds(1));
-            enterShop(game.viewShops()[3],player);
-            break;
-        case 5:
-            sleep_for(seconds(1));
-            travelToLocation(game,game.viewLocations()[1],player,numBossesDefeated);
-            break;
-        case 6:
-            sleep_for(seconds(1));
             travelToLocation(game,game.viewLocations()[2],player,numBossesDefeated);
             break;
-        case 7:
+        case 5:
             sleep_for(seconds(1));
             cout << "Enter the name for your save file (without .txt): ";
             cin >> fileName; 
@@ -87,7 +78,7 @@ void Town::showLocation(Game &game, Player *player, int numBossesDefeated)
                  << endl << divider << endl;
             sleep_for(seconds(1));
             break;
-        case 8: 
+        case 6: 
             game.exitGame();
             break;
         default: 

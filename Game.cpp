@@ -20,42 +20,41 @@ Game::Game() {
 void Game::initialiseShops() {
   int numBossesDefeated = 0; // Temporary
   // Shop Descriptions
-  string WeaponDescription = "Steel & Sorcery offers finely crafted blades, \nfrom master-forged steel to rare enchanted swords";
-  string MagicDescription = "A mystical emporium filled with enchanting staves, \neach imbued with the essence of elemental magic";
-  string ArmourDescription = "A haven for warriors and mages a like, \nshowcasing a stunning array of handcrafted armor";
-  string GeneralDescription = "A bustling shop filled with essential adventurer supplies, \nfrom healing potions to magical buff items";
+  string attackShopDescription = 
+  "In the shadowy corners of this ancient weapons shop, enchanted swords, \n"
+  "mystical bows, and arcane artifacts line the walls, each weapon imbued\n"
+  "with a unique tale of valor, waiting for a hero worthy to wield \nits legendary power.";
+  string buffShopDescription = 
+  "In the dim glow of this magical apothecary, shelves are stacked with \nshimmering"
+  "potions and enchanted scrolls, each ready to bestow powerful \nbuffs and magical" 
+  "enhancements on brave travelers.";
   
   // Ascii Art
-  string WeaponAscii = "";
-  string MagicAscii = "";
-  string ArmourAscii = "";
-  string GeneralAscii = "";
+  string attackShopAscii = "";
+  string buffShopAscii = "";
 
 
   // Specific constructors will be used later
-  WeaponShop = Shop(numBossesDefeated,"Steel & Sorcery","Timmy", WeaponDescription, WeaponAscii,1);
-  MagicShop = Shop(numBossesDefeated,"The Eldritch Emporium","Rufus",MagicDescription,MagicAscii,1);
-  ArmourShop = Shop(numBossesDefeated,"Defender's Den","Keith",ArmourDescription,ArmourAscii,2);
-  GeneralShop = Shop(numBossesDefeated,"The Adventurer's Arsenal","James",GeneralDescription,GeneralAscii,2);
+  attackShop = Shop(numBossesDefeated,"Steel & Sorcery","Timmy", attackShopDescription, attackShopAscii,1);
+  buffShop = Shop(numBossesDefeated,"Charms & Brews","Rufus",buffShopDescription,buffShopAscii,2);
 
-  Shops = new Shop[4];
-  Shops[0] = WeaponShop;
-  Shops[1] = MagicShop;
-  Shops[2] = ArmourShop;
-  Shops[3] = GeneralShop;
+  Shops = new Shop[2];
+  Shops[0] = attackShop;
+  Shops[1] = buffShop;
+
 }
 
 void Game::initialiseLocations() {
   // Location Descriptions
   string townDescription = 
-      "The medieval town bustles with life, its cobblestone streets \n winding "
+      "The medieval town bustles with life, its cobblestone streets \nwinding "
       "past stone shops beneath the shadow of a towering castle";
   string forestDescription = 
       "In a dark, mist-shrouded forest teeming with fearsome monsters," 
       "\n hidden treasures glimmer among ancient ruins, luring adventurers";
   string arenaDescription =
       "Within these ancient walls, warriors gather to prove their strength," 
-      "\n skill, and cunning in the ultimate test of combat";
+      "\nskill, and cunning in the ultimate test of combat";
 
   // Ascii Descriptions
   string townAscii = "";

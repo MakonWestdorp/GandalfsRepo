@@ -7,6 +7,8 @@ BuffItem::BuffItem(int NumBossesDefeated) {
   IsBuff = true;
 }
 
+BuffItem::BuffItem(string name, int damageOrBuff, string damageTypeOrNameOfStat, int challengeRating, bool isBuff) {}
+
 void BuffItem::UseItem(Entity* Target) { UseItem(Target, "Apply"); }
 
 void BuffItem::UseItem(Entity* Target, string ApplyWithdraw) {

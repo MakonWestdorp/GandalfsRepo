@@ -158,5 +158,7 @@ void Arena::callForBattle(Game &game, Player *player, int numBossesDefeated) {
     game.endGame();
   } else if (Opponent->GetIsAlive() == false) {
     Opponent = new Enemy(numBossesDefeated);
+    numBossesDefeated++;
+    
   }
 }
