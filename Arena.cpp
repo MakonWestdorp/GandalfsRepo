@@ -1,5 +1,6 @@
 #include "Arena.h"
 
+#include "Boss.h"
 #include "Forest.h"
 #include "Game.h"
 #include "Location.h"
@@ -136,6 +137,10 @@ void Arena::viewPlayerStats(Game &game, Player *player, int numBossesDefeated) {
 }
 
 void Arena::callForBattle(Game &game, Player *player, int numBossesDefeated) {
+  if (EnemiesDefeated % 10 == 0 && EnemiesDefeated != 0) {
+    Boss CurrentBoss = Boss(numBossesDefeated);
+    Opponent = &CurrentBoss;
+  }
   int currentRound = 0;
   bool keepFighting = true;
   while (player->GetIsAlive() == true && Opponent->GetIsAlive() == true &&
@@ -158,7 +163,6 @@ void Arena::callForBattle(Game &game, Player *player, int numBossesDefeated) {
     game.endGame();
   } else if (Opponent->GetIsAlive() == false) {
     Opponent = new Enemy(numBossesDefeated);
-    numBossesDefeated++;
-    
+    EnemiesDefeated++;
   }
 }

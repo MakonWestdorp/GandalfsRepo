@@ -10,7 +10,7 @@ class Enemy : public Entity {
   int getChallengeRating();
   void TakeTurn(Entity* Target, int CurrentRound);
 
- private:
+ protected:
   const string prefixes[10] = {"Dark",  "Flame",  "Shadow", "Frost", "Venom",
                                "Steel", "Cursed", "Wild",   "Blood", "Ghost"};
   const string suffixes[10] = {"Fang",    "Claw",   "Gaze",    "Blade",
