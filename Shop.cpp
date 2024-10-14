@@ -3,8 +3,8 @@
 #include "AttackItem.h"
 #include "BaseItem.h"
 #include "BuffItem.h"
-#include "Player.h"
 #include "Game.h"
+#include "Player.h"
 
 // Include libraries for pause and namepsaces
 #include <chrono>
@@ -59,8 +59,7 @@ Shop::Shop(int numBossesDefeated, string shopName, string shopKeeperName,
   for (int i = 0; i < inventorySize; i++) {
     // Price = ChallengeRating (bosses defeated) times 10 + 10 + a random value
     // between -2 and 5 to vary price
-    prices[i] =
-        inventory[i]->GetChallengeRating() * 2 + ((rand() % 7) - 2);
+    prices[i] = inventory[i]->GetChallengeRating() * 2 + ((rand() % 7) - 2);
   }
 
   // Set for sale statuses
@@ -98,7 +97,7 @@ string Shop::purchaseItem(int itemNumber, Player *player) {
         player->setCashOnHand(player->getCashOnHand() -
                               prices[itemNumber]);  // Take payment
 
-        if (inventory[itemNumber]->IsBuff ==
+        if (inventory[itemNumber]->getIsBuff() ==
             true) {  // Call buff item add inventory
           player->AddItemToInventory(inventory[itemNumber]);
         } else {  // Call attack item add inventory
@@ -145,7 +144,7 @@ bool Shop::showShopInterface(Player *player, Game &game) {
   cin >> userDecision;
 
   // Check if cin failed or input invalid
-  userDecision = game.cinChecker(1,count,userDecision);
+  userDecision = game.cinChecker(1, count, userDecision);
 
   cout << divider << endl;
 

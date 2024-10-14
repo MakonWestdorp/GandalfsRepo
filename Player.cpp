@@ -164,7 +164,7 @@ int Player::TakeTurn(Enemy* Target, int CurrentRound, bool& KeepFighting) {
   cout << "1. Attack normally" << endl;
   if (CurrentInventorySize != 0) {
     for (int i = 0; i < CurrentInventorySize; i++) {
-      if (Inventory[i]->IsBuff) {
+      if (Inventory[i]->getIsBuff() == true) {
         cout << i + 2 << ". Use Item: " << Inventory[i]->getName()
              << " | Item Type:" << "Buff" << endl;
       } else {
@@ -196,7 +196,7 @@ int Player::TakeTurn(Enemy* Target, int CurrentRound, bool& KeepFighting) {
     // Leave
   } else if (UserInput > 1 && (UserInput - 2) <= CurrentInventorySize) {
     cout << "AHH\n";
-    if (Inventory[UserInput - 2]->IsBuff == true) {
+    if (Inventory[UserInput - 2]->getIsBuff() == true) {
       BuffItem* buffItem = dynamic_cast<BuffItem*>(Inventory[UserInput - 2]);
       buffItem->UseItem(this, "Apply");
       cout << "3\n";
