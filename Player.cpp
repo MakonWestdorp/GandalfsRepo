@@ -5,6 +5,7 @@
 #include "Entity.h"
 
 Player::Player() {
+  // Player wil obviously start the game alive, and has $50 to buy items.
   isAlive = true;
   CashOnHand = 50;
 
@@ -18,10 +19,11 @@ Player::Player() {
   cout << endl << endl << endl << endl << endl << endl << endl << endl;
   cout << divider << endl
        << "Welcome to the Character Creator!" << endl
+       << divider << endl
        << "You have: " << NumberOfPointsToDistrubute
        << " points to distribute among your Character Stats." << endl
        << divider << endl;
-  cout << "Yours Character has 4 Stats.Health Points, Strength, Defence and "
+  cout << "Yours Character has 4 Stats. Health Points, Strength, Defence and "
           "Magic."
        << endl;
 
@@ -40,9 +42,8 @@ Player::Player() {
           UserInput > NumberOfPointsToDistrubute) {
         cin.clear();             // Clear the error flags
         cin.ignore(1000, '\n');  // Ignore the rest of the invalid input
-        cout
-          << "That doesn't look right! Please enter a number between 0 and "
-          << NumberOfPointsToDistrubute << ": ";
+        cout << "That doesn't look right! Please enter a number between 0 and "
+             << NumberOfPointsToDistrubute << ": ";
       } else {
         break;  // Valid input, exit loop
       }
@@ -62,9 +63,8 @@ Player::Player() {
           UserInput > NumberOfPointsToDistrubute) {
         cin.clear();             // Clear the error flags
         cin.ignore(1000, '\n');  // Ignore the rest of the invalid input
-        cout
-            << "That doesn't look right! Please enter a number between 0 and "
-            << NumberOfPointsToDistrubute << ": ";
+        cout << "That doesn't look right! Please enter a number between 0 and "
+             << NumberOfPointsToDistrubute << ": ";
       } else {
         break;  // Valid input, exit loop
       }
@@ -84,9 +84,8 @@ Player::Player() {
           UserInput > NumberOfPointsToDistrubute) {
         cin.clear();             // Clear the error flags
         cin.ignore(1000, '\n');  // Ignore the rest of the invalid input
-        cout
-          << "That doesn't look right! Please enter a number between 0 and "
-          << NumberOfPointsToDistrubute << ": ";
+        cout << "That doesn't look right! Please enter a number between 0 and "
+             << NumberOfPointsToDistrubute << ": ";
       } else {
         break;  // Valid input, exit loop
       }
@@ -106,9 +105,8 @@ Player::Player() {
           UserInput > NumberOfPointsToDistrubute) {
         cin.clear();             // Clear the error flags
         cin.ignore(1000, '\n');  // Ignore the rest of the invalid input
-        cout
-          << "That doesn't look right! Please enter a number between 0 and "
-          << NumberOfPointsToDistrubute << ": ";
+        cout << "That doesn't look right! Please enter a number between 0 and "
+             << NumberOfPointsToDistrubute << ": ";
       } else {
         break;  // Valid input, exit loop
       }
@@ -123,7 +121,7 @@ Player::Player() {
       break;
     }
   }
-  
+
   cout << "Please enter a name for your character:";
   cin >> name;
   cout << endl;
@@ -180,12 +178,11 @@ int Player::TakeTurn(Enemy* Target, int CurrentRound, bool& KeepFighting) {
   cin >> UserInput;
 
   // Check if input is correct
-  while (cin.fail() || UserInput < 1 ||
-         UserInput > CurrentInventorySize + 3) {
+  while (cin.fail() || UserInput < 1 || UserInput > CurrentInventorySize + 3) {
     cin.clear();  // clear the error flag
     cin.ignore(1000, '\n');
     cout << "That doesnt look right! Please enter a number between 1 and "
-              << CurrentInventorySize + 3 << ": ";
+         << CurrentInventorySize + 3 << ": ";
     cin >> UserInput;
   }
 
@@ -230,6 +227,8 @@ void Player::AddItemToInventory(BaseItem* Item) {
 
 int Player::getPlayerInventorySize() { return CurrentInventorySize; }
 
-void Player::setPlayerInventorySize(int inventorySize) { this->CurrentInventorySize = inventorySize; }
+void Player::setPlayerInventorySize(int inventorySize) {
+  this->CurrentInventorySize = inventorySize;
+}
 
 void Player::setInventory(BaseItem** inventory) { this->Inventory = inventory; }

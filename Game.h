@@ -41,12 +41,14 @@ class Game {
   Arena ArenaName;
 
  public:
-  Game();                       // Default constructor
-  void initialiseShops();       // Initialises shops
-  void initialiseLocations();   // Initialises locations
-  bool saveGame(Player *player, int &numBossesDefeated, string fileName);  // Saves the game
-  void exitGame();  // Exits the game
-  bool loadGame(Player *player, int &numBossesDefeated, string fileName); // Loads the game
+  Game();                      // Default constructor
+  void initialiseShops();      // Initialises shops
+  void initialiseLocations();  // Initialises locations
+  bool saveGame(Player *player, int &numBossesDefeated,
+                string fileName);  // Saves the game
+  void exitGame();                 // Exits the game
+  bool loadGame(Player *player, int &numBossesDefeated,
+                string fileName);      // Loads the game
   void endGame();                      // Ends the game if the player dies
   void travel(Location *destination);  // Switches location
   void setCurrentLocation(Location *location);  // Sets the location
@@ -54,8 +56,10 @@ class Game {
   Shop *viewShops();                            // Returns list of shops
   Location **viewLocations();                   // Returns list of locations
 
-  bool isGameRunning();  // Returns true if the game is still run, false if not
-  int cinChecker(int lowerParameter, int upperParameter, int userDecision); // Cin checker
+  bool
+  isGameRunning();  // Returns true if the game is still running, false if not
+  int cinChecker(int lowerParameter, int upperParameter,
+                 int userDecision);  // Cin checker
 };
 
 #endif
