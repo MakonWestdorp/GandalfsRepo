@@ -259,7 +259,20 @@ Location **Game::viewLocations()
     return this->Locations;
 }
 
-  bool Game::isGameRunning()
-  {
-      return gameRunning;
+bool Game::isGameRunning()
+{
+  return gameRunning;
+}
+
+int Game::cinChecker(int lowerParameter, int upperParameter, int userDecision) {
+  string divider =
+  "+------------------------------------------------------------------+";
+  while (userDecision < lowerParameter || userDecision > upperParameter || cin.fail() == true) {
+    cin.clear();
+    cin.ignore(1000, '\n');
+    cout << "Invalid input. Please try again" << endl << divider << endl;
+    cin >> userDecision;
   }
+
+  return userDecision;
+}

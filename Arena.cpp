@@ -56,15 +56,12 @@ void Arena::showLocation(Game &game, Player *player, int numBossesDefeated) {
        << "2. View Player Stats " << endl
        << "3. Fight enemy | Challenge Rating: "
        << Opponent->getChallengeRating() << endl
+       << "4. Change player Resistance" << endl
        << divider << endl;
   cin >> userDecision;
 
   // Checking if cin failed
-  if (cin.fail() == true) {
-    cin.clear();
-    cin.ignore(1000, '\n');
-    userDecision = 4;
-  }
+  userDecision = game.cinChecker(1,4,userDecision);
   cout << divider << endl;
 
   // Processes users decision
@@ -102,29 +99,68 @@ void Arena::viewPlayerStats(Game &game, Player *player, int numBossesDefeated) {
        << "Strength (STR) = " << player->getSTR() << endl
        << "Defence (DEF) = " << player->getDEF() << endl
        << "Magic (MAG) = " << player->getMAG() << endl
+       << "Resistance (RES) = " << player->getRes() << endl
        << divider << endl
        << "1. Return to Arena" << endl
        << "2. Travel to Town" << endl
+       << "3. Change player Resistance" << endl
        << divider << endl;
   cin >> userDecision;
   cout << divider << endl;
-  if (cin.fail() == true) {
-    cin.clear();
-    cin.ignore(1000, '\n');
-    userDecision = 3;
-  }
+  userDecision = game.cinChecker(1,4,userDecision);
 
   switch (userDecision) {
     case 1:
+      cout << "Returning to Arena" << endl << divider << endl;
       sleep_for(seconds(1));
-      travelToLocation(game, game.viewLocations()[2], player,
-                       numBossesDefeated);
       break;
     case 2:
+      cout << "Traveling to Town" << endl << divider << endl;
       sleep_for(seconds(1));
       travelToLocation(game, game.viewLocations()[0], player,
                        numBossesDefeated);
       break;
+    case 3:
+      sleep_for(seconds(1));
+      userDecision = 0;
+      cout << "Change resistance to: " << endl
+           << "1. Magic" << endl
+           << "2. Piercing" << endl
+           << "3. Bludgeoning" << endl
+           << "4. Slashing" << endl
+           << "5. Return to Arena" << endl
+           << divider << endl;
+      cin >> userDecision;
+      userDecision = game.cinChecker(1,5,userDecision);
+      cout << userDecision << endl;
+      switch (userDecision) {
+        case 1:
+          player->setRes("Magic");
+          cout << "Resistance set to Magic" << endl;
+          sleep_for(seconds(1));
+          break;
+        case 2:
+          player->setRes("Piercing");
+          cout << "Resistance set to Piercing" << endl;
+          sleep_for(seconds(1));
+          break;
+        case 3:
+          player->setRes("Bludgeoning");
+          cout << "Resistance set to Bludgeoning" << endl;
+          sleep_for(seconds(1));
+          break;
+        case 4:
+          player->setRes("Slashing");
+          cout << "Resistance set to Slashing" << endl;
+          sleep_for(seconds(1));
+          break;
+        case 5:
+          cout << "Returning to Arena" << endl;
+          sleep_for(seconds(1));
+        default:
+          sleep_for(seconds(1)); // Shouldn't occur, if default occurs player will just be sent back to the arena
+      }
+
     default:
       sleep_for(seconds(1));
       cout << "You seem confused. Perhaps you should return to the Arena"
@@ -164,5 +200,7 @@ void Arena::callForBattle(Game &game, Player *player, int numBossesDefeated) {
   } else if (Opponent->GetIsAlive() == false) {
     Opponent = new Enemy(numBossesDefeated);
     EnemiesDefeated++;
+    game.viewShops()[0].updateShop(numBossesDefeated,1);
+    game.viewShops()[1].updateShop(numBossesDefeated,2);
   }
 }

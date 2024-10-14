@@ -30,9 +30,9 @@ void Town::travelToLocation(Game &game, Location *location, Player *player, int 
     }
 }
 
-void Town::enterShop(Shop &shopName, Player *player)
+void Town::enterShop(Shop &shopName, Player *player, Game &game)
 {   
-    while (shopName.showShopInterface(player) == true) {}
+    while (shopName.showShopInterface(player,game) == true) {}
 }
 
 void Town::showLocation(Game &game, Player *player, int numBossesDefeated)
@@ -44,11 +44,7 @@ void Town::showLocation(Game &game, Player *player, int numBossesDefeated)
          << "3. Travel to Forest" << endl << "4. Travel to Arena" << endl << "5. Save Game" 
          << endl << "6. Leave Game" << endl << divider << endl;
     cin >> userDecision; 
-    if (cin.fail() == true) {
-      cin.clear();
-      cin.ignore(1000, '\n');
-      userDecision = 0;
-    }
+    userDecision = game.cinChecker(1,6,userDecision);
     cout << divider << endl; 
 
     string fileName = "";
@@ -56,11 +52,11 @@ void Town::showLocation(Game &game, Player *player, int numBossesDefeated)
     switch (userDecision) {
         case 1:
             sleep_for(seconds(1));
-            enterShop(game.viewShops()[0],player);
+            enterShop(game.viewShops()[0],player,game);
             break;
         case 2:
             sleep_for(seconds(1));
-            enterShop(game.viewShops()[1],player);
+            enterShop(game.viewShops()[1],player,game);
             break;
         case 3:
             sleep_for(seconds(1));

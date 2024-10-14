@@ -106,6 +106,7 @@ void UnitTest::LocationTravel() {
 void UnitTest::ShopTest() {
   // Needed for test
   int numBossesDefeated = 0;
+  Game game;
   Player *player = new Player("Player", 5, 5, 5, 5, "");
 
   // Create shop
@@ -116,13 +117,13 @@ void UnitTest::ShopTest() {
                    shopDescription, "", 1);
 
   // Test shop interface
-  while (WeaponsShop.showShopInterface(player) == true) {
+  while (WeaponsShop.showShopInterface(player,game) == true) {
   }
 
   WeaponsShop.updateShop(numBossesDefeated, 1);
 
   // Test shop interface
-  while (WeaponsShop.showShopInterface(player) == true) {
+  while (WeaponsShop.showShopInterface(player,game) == true) {
   }
 }
 

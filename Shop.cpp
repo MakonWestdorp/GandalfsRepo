@@ -4,6 +4,7 @@
 #include "BaseItem.h"
 #include "BuffItem.h"
 #include "Player.h"
+#include "Game.h"
 
 // Include libraries for pause and namepsaces
 #include <chrono>
@@ -113,7 +114,7 @@ string Shop::purchaseItem(int itemNumber, Player *player) {
   }
 }
 
-bool Shop::showShopInterface(Player *player) {
+bool Shop::showShopInterface(Player *player, Game &game) {
   // Divider to seperate elements of the visual
   string divider =
       "+------------------------------------------------------------------+";
@@ -143,13 +144,8 @@ bool Shop::showShopInterface(Player *player) {
   cout << count << ". Leave Shop" << endl << divider << endl;
   cin >> userDecision;
 
-  // Check if cin failed
-  if (cin.fail() == true) {
-    cin.clear();
-    cin.ignore(1000, '\n');
-    userDecision = inventorySize *
-                   2;  // Ensures else will be called in the if statement below
-  }
+  // Check if cin failed or input invalid
+  userDecision = game.cinChecker(1,count,userDecision);
 
   cout << divider << endl;
 

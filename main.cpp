@@ -23,28 +23,15 @@ using namespace std;
 using namespace chrono;
 using namespace this_thread;
 
-// Global variables
-string divider =
-  "+------------------------------------------------------------------+";
-int userDecision = 0;
-
-// Function that checks user input
-void cinChecker(int lowerParameter, int upperParameter) {
-  while (userDecision < lowerParameter || userDecision > upperParameter || cin.fail() == true) {
-    cin.clear();
-    cin.ignore(1000, '\n');
-    cout << "Invalid input. Please try again" << endl << divider << endl;
-    cin >> userDecision;
-  }
-}
-
 int main() {
   // Create game
   Game ChampionsOfSand;
-  int numBossesDefeated = 0;
+  int numBossesDefeated = 0, userDecision = 0;
   Player *player = new Player("",0,0,0,0,"");
   string fileName = "";
   bool showTutorial = true;
+  string divider =
+  "+------------------------------------------------------------------+";
 
 
   // Initialies shops and locations
@@ -57,7 +44,7 @@ int main() {
   endl << divider << endl;
 
   cin >> userDecision;
-  cinChecker(1,3);
+  userDecision = ChampionsOfSand.cinChecker(1,3,userDecision);
   cout << divider << endl;
   sleep_for(seconds(1));
 
@@ -74,7 +61,7 @@ int main() {
            << endl << divider << endl << "1. Load another file" << endl
            << "2. Exit Game" << endl << divider << endl;
       cin >> userDecision;
-      cinChecker(1,2);
+      userDecision = ChampionsOfSand.cinChecker(1,2,userDecision);
       if (userDecision == 1) {
         cout << "Enter the name of the file you wish to enter (without .txt): ";
         cin >> fileName;

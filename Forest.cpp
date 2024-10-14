@@ -53,11 +53,7 @@ void Forest::showLocation(Game &game, Player *player, int numBossesDefeated) {
        << "4. View Enemies" << endl
        << divider << endl;
   cin >> userDecision;
-  if (cin.fail() == true) {
-    cin.clear();
-    cin.ignore(1000, '\n');
-    userDecision = 5;
-  }
+  userDecision = game.cinChecker(1,4,userDecision);
   cout << divider << endl;
 
   switch (userDecision) {
@@ -174,11 +170,7 @@ void Forest::viewEnemies(Game &game, Player *player, int numBossesDefeated) {
   }
   cout << "6. Return to the main paths safety" << endl << divider << endl;
   cin >> userDecision;
-  if (cin.fail() == true) {
-    cin.clear();
-    cin.ignore(1000, '\n');
-    userDecision = 10;
-  }
+  userDecision = game.cinChecker(1,6,userDecision);
   cout << divider << endl;
 
   if (userDecision > 0 && userDecision <= 5 &&

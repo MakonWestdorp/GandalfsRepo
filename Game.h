@@ -55,6 +55,7 @@ class Game {
   Location **viewLocations();                   // Returns list of locations
 
   bool isGameRunning();  // Returns true if the game is still run, false if not
+  int cinChecker(int lowerParameter, int upperParameter, int userDecision); // Cin checker
 };
 
 #endif
