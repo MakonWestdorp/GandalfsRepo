@@ -145,7 +145,6 @@ bool Game::loadGame(Player *player, int &numBossesDefeated, string fileName) {
     numBossesDefeated = -1;
 
     if (playerFileIn.is_open()) {
-        cout << "File has been opened\n";
         string commentsHolder = "";
 
         // Read in name
@@ -187,13 +186,13 @@ bool Game::loadGame(Player *player, int &numBossesDefeated, string fileName) {
         int inventorySize = 0;
         playerFileIn >> commentsHolder >> inventorySize;
         player->setPlayerInventorySize(inventorySize);
-        cout << "IS " << inventorySize << endl;
         BaseItem **tempInventory = new BaseItem*[inventorySize];
         string itemName = "", damageTypeOrNameOfStat = "";
         int damageOrBuff = 0, itemChallengeRating = 0;
         bool isBuff = false;
 
         for (int i = 0; i < inventorySize; i++) {
+          cout << "Running loop" << endl;
           itemName = "";
           damageTypeOrNameOfStat = "";
           damageOrBuff = 0;
@@ -201,13 +200,13 @@ bool Game::loadGame(Player *player, int &numBossesDefeated, string fileName) {
           isBuff = false;
 
           playerFileIn >> commentsHolder;
+          playerFileIn.ignore();
           getline(playerFileIn,itemName);
           playerFileIn >> damageOrBuff;
           playerFileIn >> damageTypeOrNameOfStat;
           playerFileIn >> itemChallengeRating; 
           playerFileIn >> isBuff;
 
-          cout << itemName << "|" << damageTypeOrNameOfStat << "|" << damageOrBuff << "|" << challengeRating << endl;
           if (!isBuff) {
             tempInventory[i] = new AttackItem(itemName,damageOrBuff,damageTypeOrNameOfStat,challengeRating,isBuff);
           } else {
@@ -222,7 +221,6 @@ bool Game::loadGame(Player *player, int &numBossesDefeated, string fileName) {
         // Check if read in was successful
         if (name == "" || health == 0 || strength == 0 || defence == 0 || magic == 0 || 
             resistance == "" || numBossesDefeated == -1 || cashOnHand == -1 || challengeRating == 0) {
-          cout << "File failed here\n";
           cout << name << endl << health << endl << strength << endl << defence << endl << magic << endl << resistance << endl << numBossesDefeated << endl << cashOnHand << endl << challengeRating << endl;
           return false;
         } else {
