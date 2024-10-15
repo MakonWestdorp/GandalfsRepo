@@ -116,7 +116,7 @@ void Forest::callForBattle(Game &game, Player *player, Enemy *enemy,
     cout << "You died!" << endl;
     game.endGame();
   }
-  if (player->GetIsAlive() == true) {
+  if (player->GetIsAlive() == true && keepFighting == true) {
     cout << "You killed " << enemy->getName() << endl;
   }
   sleep_for(seconds(1));
@@ -141,7 +141,7 @@ void Forest::explore(int numBossesDefeated) {
 }
 
 void Forest::openTreasure(Player *player, int numBossesDefeated) {
-int cashGained = 0;
+  int cashGained = 0;
   if (treasure == true) {
     cashGained = (5 * numBossesDefeated) + (rand() % 10) + 1;
     player->setCashOnHand(cashGained);
