@@ -33,6 +33,7 @@ int main() {
   string fileName = "";
   string divider =
       "+------------------------------------------------------------------+";
+  bool newGame = false;
 
   // Initialies shops and locations
   ChampionsOfSand.initialiseShops();
@@ -53,7 +54,7 @@ int main() {
   sleep_for(seconds(1));
 
   if (userDecision == 1) {
-    player = new Player();
+    newGame = true;
   } else if (userDecision == 2) {
     cout << "Enter the name of the file you wish to enter (without .txt): ";
     cin >> fileName;
@@ -84,6 +85,7 @@ int main() {
   }
 
   // Tutorial
+  cout << endl << endl << endl << endl << endl << endl << endl;
   cout << divider << endl << "Do you wish to view the tutorial?" 
        << endl << divider << endl << "1. Yes I do" << endl 
        << "2. No I do not" << endl;
@@ -151,6 +153,9 @@ int main() {
     cin.get(); // Wait for enter
   } 
  
+  if (newGame) {
+    player = new Player(); // If new game true enter character creator
+  }
 
   // Game Loop
   ChampionsOfSand.setCurrentLocation(ChampionsOfSand.viewLocations()[0]);
