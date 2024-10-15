@@ -53,7 +53,7 @@ void Forest::showLocation(Game &game, Player *player, int numBossesDefeated) {
        << "4. View Enemies" << endl
        << divider << endl;
   cin >> userDecision;
-  userDecision = game.cinChecker(1,4,userDecision);
+  userDecision = game.cinChecker(1, 4, userDecision);
   cout << divider << endl;
 
   switch (userDecision) {
@@ -111,6 +111,7 @@ void Forest::callForBattle(Game &game, Player *player, Enemy *enemy,
     cout << "You died!" << endl;
     game.endGame();
   }
+  cout << "You killed " << enemy->getName() << endl;
 }
 
 void Forest::explore(int numBossesDefeated) {
@@ -161,7 +162,7 @@ void Forest::viewEnemies(Game &game, Player *player, int numBossesDefeated) {
     if (enemies[i]->GetIsAlive()) {
       cout << i + 1 << " " << enemies[i]->getName()
            << " | CR : " << enemies[i]->getChallengeRating()
-           << " | Status: Alive" 
+           << " | Status: Alive"
            << " | Res: " << enemies[i]->getRes() << endl;
     } else {
       cout << i + 1 << " " << enemies[i]->getName()
@@ -172,7 +173,7 @@ void Forest::viewEnemies(Game &game, Player *player, int numBossesDefeated) {
   }
   cout << "6. Return to the main paths safety" << endl << divider << endl;
   cin >> userDecision;
-  userDecision = game.cinChecker(1,6,userDecision);
+  userDecision = game.cinChecker(1, 6, userDecision);
   cout << divider << endl;
 
   if (userDecision > 0 && userDecision <= 5 &&
@@ -182,7 +183,7 @@ void Forest::viewEnemies(Game &game, Player *player, int numBossesDefeated) {
   } else if (userDecision > 0 && userDecision <= 5) {
     cout << "Theres not much fun fighting a dead body... Choose again." << endl;
     sleep_for(seconds(1));
-    viewEnemies(game,player,numBossesDefeated);
+    viewEnemies(game, player, numBossesDefeated);
   } else if (userDecision == 6) {
     cout << "You return to the safety of the main path" << endl
          << divider << endl;
