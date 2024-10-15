@@ -5,7 +5,7 @@ AttackItem::AttackItem(int numBossesDefeated) {
   // store,DamageOrBuff is how much damage the Item Deals.DamageTypeOrStat
   // determines what damage type the weapon deals:Used in damage recieving
   // calculations. Attack Item is not a Buff item, so isBuff is false.
-  DamageOrBuff = 5 * numBossesDefeated + rand() % 5;
+  DamageOrBuff = 5 * numBossesDefeated + rand() % 5 + 5;
   ChallengeRating = DamageOrBuff;
   DamageTypeOrNameOfStat = damageTypes[rand() % 4];
   setIsBool(false);
