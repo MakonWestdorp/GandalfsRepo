@@ -127,7 +127,39 @@ Player::Player() {
   cout << endl;
   ChallengeRating = healthPoints + strength + defence + magic;
   ChallengeRating = ChallengeRating / 4;
-  Resistance = "Magic";
+ cout << "Please choose what type of damage you would like to be resistant to:"
+       << endl
+       << "1. Magic" << endl
+       << "2. Piercing" << endl
+       << "3. Bludgeoning" << endl
+       << "4. Slashing" << endl;
+  int UserInput = 0;
+  while (true) {
+    cin >> UserInput;
+
+    if (cin.fail() || UserInput <= 0) {
+      cin.clear();             // Clear the error flags
+      cin.ignore(1000, '\n');  // Ignore the rest of the invalid input
+      cout << "That doesn't look right! Please enter a number between 1 and 4:";
+    } else {
+      break;  // Valid input, exit loop
+    }
+  }
+  switch (UserInput) {
+    case 1:
+      Resistance = "Magic";
+      break;
+    case 2:
+      Resistance = "Piercing";
+      break;
+    case 3:
+      Resistance = "Bludgeoning";
+      break;
+    case 4:
+      Resistance = "Slashing";
+      break;
+  }
+
 
   CurrentInventorySize = 0;
   Inventory = nullptr;
