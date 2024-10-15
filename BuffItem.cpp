@@ -21,7 +21,6 @@ void BuffItem::UseItem(Entity* Target, string ApplyWithdraw) {
   } else if (ApplyWithdraw == "Withdraw") {
     Target->WithdrawBuff(DamageOrBuff, DamageTypeOrNameOfStat);
   }
-  cout << "called\n";
 }
 
 string BuffItem::BuffNameRandomiser() {
