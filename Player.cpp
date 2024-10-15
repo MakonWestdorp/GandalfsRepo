@@ -188,18 +188,14 @@ int Player::TakeTurn(Enemy* Target, int CurrentRound, bool& KeepFighting) {
 
   if (UserInput == 1) {
     Attack(Target);
-    cout << "1\n";
     // Attack
   } else if (UserInput == CurrentInventorySize + 2) {
     KeepFighting = false;
-    cout << "2\n";
     // Leave
   } else if (UserInput > 1 && (UserInput - 2) <= CurrentInventorySize) {
-    cout << "AHH\n";
     if (Inventory[UserInput - 2]->getIsBuff() == true) {
       BuffItem* buffItem = dynamic_cast<BuffItem*>(Inventory[UserInput - 2]);
       buffItem->UseItem(this, "Apply");
-      cout << "3\n";
     } else {
       Inventory[UserInput - 2]->UseItem(Target);
     }

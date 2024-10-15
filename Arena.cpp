@@ -56,7 +56,6 @@ void Arena::showLocation(Game &game, Player *player, int numBossesDefeated) {
        << "2. View Player Stats " << endl
        << "3. Fight enemy | Challenge Rating: "
        << Opponent->getChallengeRating() << endl
-       << "4. Change player Resistance" << endl
        << divider << endl;
   cin >> userDecision;
 
@@ -93,7 +92,7 @@ void Arena::viewPlayerStats(Game &game, Player *player, int numBossesDefeated) {
       "+------------------------------------------------------------------+";
   int userDecision = 0;
 
-  //
+  // Call default show location then display player stats
   Location::showLocation(game, player, numBossesDefeated);
   cout << "Health Points (HP) = " << player->getHP() << endl
        << "Strength (STR) = " << player->getSTR() << endl
@@ -107,7 +106,7 @@ void Arena::viewPlayerStats(Game &game, Player *player, int numBossesDefeated) {
        << divider << endl;
   cin >> userDecision;
   cout << divider << endl;
-  userDecision = game.cinChecker(1,4,userDecision);
+  userDecision = game.cinChecker(1,3,userDecision);
 
   switch (userDecision) {
     case 1:
@@ -122,6 +121,7 @@ void Arena::viewPlayerStats(Game &game, Player *player, int numBossesDefeated) {
       break;
     case 3:
       sleep_for(seconds(1));
+      cout << endl << endl << endl << endl << endl << endl << endl << divider << endl;
       userDecision = 0;
       cout << "Change resistance to: " << endl
            << "1. Magic" << endl

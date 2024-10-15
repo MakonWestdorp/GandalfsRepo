@@ -177,9 +177,10 @@ void Forest::viewEnemies(Game &game, Player *player, int numBossesDefeated) {
       enemies[userDecision - 1]->GetIsAlive()) {
     callForBattle(game, player, enemies[userDecision - 1], numBossesDefeated);
     sleep_for(seconds(1));
-  } else if (!enemies[userDecision - 1]->GetIsAlive()) {
+  } else if (userDecision > 0 && userDecision <= 5) {
     cout << "Theres not much fun fighting a dead body... Choose again." << endl;
-    sleep_for(seconds(3));
+    sleep_for(seconds(1));
+    viewEnemies(game,player,numBossesDefeated);
   } else if (userDecision == 6) {
     cout << "You return to the safety of the main path" << endl
          << divider << endl;

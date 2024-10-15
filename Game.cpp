@@ -221,7 +221,6 @@ bool Game::loadGame(Player *player, int &numBossesDefeated, string fileName) {
         // Check if read in was successful
         if (name == "" || health == 0 || strength == 0 || defence == 0 || magic == 0 || 
             resistance == "" || numBossesDefeated == -1 || cashOnHand == -1 || challengeRating == 0) {
-          cout << name << endl << health << endl << strength << endl << defence << endl << magic << endl << resistance << endl << numBossesDefeated << endl << cashOnHand << endl << challengeRating << endl;
           return false;
         } else {
           Shops[0].updateShop(numBossesDefeated,1);

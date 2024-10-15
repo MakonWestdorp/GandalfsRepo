@@ -133,9 +133,12 @@ bool Shop::showShopInterface(Player *player, Game &game) {
 
   // Show shop options
   for (count = 0; count < inventorySize; count++) {
-    cout << count + 1 << ". " << inventory[count]->getName() << " $"
+    cout << count + 1 << ". " << inventory[count]->getName() << " | $"
          << prices[count] << " "
-         << (forSaleStatus[count] ? "For Sale." : "Not for sale.") << endl;
+         << (forSaleStatus[count] ? "For Sale |" : "N/A |")
+         << " Damage: " << inventory[count]->GetChallengeRating() 
+         << " | Type: " << inventory[count]->getDamageOrNameStat() 
+         << endl;
   }
 
   // Prompt user for input

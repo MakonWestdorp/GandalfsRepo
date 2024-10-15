@@ -3,6 +3,13 @@
 #include "AttackItem.h"
 #include "BaseItem.h"
 #include "BuffItem.h"
+
+#include <chrono>
+#include <thread>
+
+using namespace chrono;
+using namespace this_thread;
+
 Enemy::Enemy() {
   healthPoints = 0;
   strength = 0;
@@ -49,4 +56,5 @@ void Enemy::TakeTurn(Entity* Target, int CurrentRound) {
     cout << "Enemy is using its " << Inventory->getName() << " to attack you!"
          << endl;
   }
+  sleep_for(seconds(1));
 }

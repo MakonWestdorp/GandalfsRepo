@@ -77,12 +77,13 @@ int main() {
   }
   
   // Tutorial
-  if (showTutorial == true) {}
+  if (showTutorial == true) {
+    
+  }
 
   // Intro fight
 
   // Game Loop
-  cout << player->getName() << endl;
   ChampionsOfSand.setCurrentLocation(ChampionsOfSand.viewLocations()[0]);
 
   while (ChampionsOfSand.isGameRunning() == true) {
