@@ -30,9 +30,9 @@ void Town::travelToLocation(Game &game, Location *location, Player *player, int 
     }
 }
 
-void Town::enterShop(Shop &shopName, Player *player, Game &game)
+void Town::enterShop(Shop &shopName, Player *player, Game &game, int type)
 {   
-    while (shopName.showShopInterface(player,game) == true) {}
+    while (shopName.showShopInterface(player,game,type) == true) {}
 }
 
 void Town::showLocation(Game &game, Player *player, int numBossesDefeated)
@@ -52,11 +52,11 @@ void Town::showLocation(Game &game, Player *player, int numBossesDefeated)
     switch (userDecision) {
         case 1:
             sleep_for(seconds(1));
-            enterShop(game.viewShops()[0],player,game);
+            enterShop(game.viewShops()[0],player,game,1);
             break;
         case 2:
             sleep_for(seconds(1));
-            enterShop(game.viewShops()[1],player,game);
+            enterShop(game.viewShops()[1],player,game,2);
             break;
         case 3:
             sleep_for(seconds(1));

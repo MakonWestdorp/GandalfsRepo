@@ -41,25 +41,22 @@ Shop::Shop(int numBossesDefeated, string shopName, string shopKeeperName,
   this->inventorySize = 5;
 
   // Generate inventory depending on type
+  prices = new int[5];
   if (type == 1) {  // If type = 1 the shop will have an attack item inventory
     this->inventory = new BaseItem *[5];
     for (int i = 0; i < inventorySize; i++) {
       inventory[i] = new AttackItem(numBossesDefeated);
+      // Set prices
+      prices[i] = inventory[i]->GetChallengeRating() * 2 + ((rand() % 7) - 2);
     }
+    
   } else if (type ==
              2) {  // If type = 2 the shop will have a base item inventory
     this->inventory = new BaseItem *[5];
     for (int i = 0; i < inventorySize; i++) {
       inventory[i] = new BuffItem(numBossesDefeated);
+      prices[i] = numBossesDefeated * 10 + 10 + ((rand() % 7) - 2);
     }
-  }
-
-  // Set prices
-  prices = new int[5];
-  for (int i = 0; i < inventorySize; i++) {
-    // Price = ChallengeRating (bosses defeated) times 10 + 10 + a random value
-    // between -2 and 5 to vary price
-    prices[i] = inventory[i]->GetChallengeRating() * 2 + ((rand() % 7) - 2);
   }
 
   // Set for sale statuses
@@ -113,7 +110,7 @@ string Shop::purchaseItem(int itemNumber, Player *player) {
   }
 }
 
-bool Shop::showShopInterface(Player *player, Game &game) {
+bool Shop::showShopInterface(Player *player, Game &game, int type) {
   // Divider to seperate elements of the visual
   string divider =
       "+------------------------------------------------------------------+";
@@ -135,10 +132,13 @@ bool Shop::showShopInterface(Player *player, Game &game) {
   for (count = 0; count < inventorySize; count++) {
     cout << count + 1 << ". " << inventory[count]->getName() << " | $"
          << prices[count] << " "
-         << (forSaleStatus[count] ? "For Sale |" : "N/A |")
-         << " Damage: " << inventory[count]->GetChallengeRating() 
-         << " | Type: " << inventory[count]->getDamageOrNameStat() 
-         << endl;
+         << (forSaleStatus[count] ? "For Sale |" : "N/A |");
+        if (type == 1) {
+        cout << " Damage: " << inventory[count]->GetChallengeRating();
+        } else {
+        cout << " Buff: " << inventory[count]->GetChallengeRating();
+        }
+        cout << " | Type: " << inventory[count]->getDamageOrNameStat() << endl;
   }
 
   // Prompt user for input

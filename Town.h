@@ -16,7 +16,7 @@ class Town : public Location {
     Town();
     Town(string name, string description, string asciiDescription);
     void travelToLocation(Game &game, Location *location, Player *player,int numBossesDefeated);
-    void enterShop(Shop &shopName, Player *player, Game &game);
+    void enterShop(Shop &shopName, Player *player, Game &game, int type);
     void showLocation(Game &game, Player *player, int numBossesDefeated);
 
 

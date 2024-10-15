@@ -117,13 +117,13 @@ void UnitTest::ShopTest() {
                    shopDescription, "", 1);
 
   // Test shop interface
-  while (WeaponsShop.showShopInterface(player,game) == true) {
+  while (WeaponsShop.showShopInterface(player,game,1) == true) {
   }
 
   WeaponsShop.updateShop(numBossesDefeated, 1);
 
   // Test shop interface
-  while (WeaponsShop.showShopInterface(player,game) == true) {
+  while (WeaponsShop.showShopInterface(player,game,1) == true) {
   }
 }
 

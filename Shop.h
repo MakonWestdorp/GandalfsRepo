@@ -35,7 +35,7 @@ class Shop {
   bool *viewForSaleStatus();  // Returns for sale statuses
   string purchaseItem(int itemNumber,
                       Player *player);     // Allows user to purchase item
-  bool showShopInterface(Player *player, Game &game);  // Shows the shop interface and items
+  bool showShopInterface(Player *player, Game &game, int type);  // Shows the shop interface and items
   void updateShop(int numBossesDefeated, int type);  // Updates inventory
 };
 #endif
