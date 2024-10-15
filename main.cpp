@@ -85,7 +85,7 @@ int main() {
   }
 
   // Tutorial
-  cout << endl << endl << endl << endl << endl << endl << endl;
+  cout << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl;
   cout << divider << endl << "Do you wish to view the tutorial?" 
        << endl << divider << endl << "1. Yes I do" << endl 
        << "2. No I do not" << endl;
@@ -95,7 +95,7 @@ int main() {
   if (userDecision == 1) {
     cout << divider << endl 
     << "Welcome to Champions of Sand! A terminal turn based based fantasy fighting game developed in C++!" << endl
-    << divider << "To begin a new game you will need to assign points to your stats; health," 
+    << divider << endl << "To begin a new game you will need to assign points to your stats; health," 
     "strength, defence, and magic, and choose your resistance" << endl << endl
     << "Press enter when you are ready to learn about your players stats" << endl << divider;
 
@@ -146,7 +146,7 @@ int main() {
     cout << endl << endl << divider << endl
     << "This game uses numerical inputs to allow the player to choose what they wish to do." << endl
     << "To prevent unexpected errors or inputs please only enter a value when the game says to." << endl 
-    << "For the best experience we recommend you move the terminal into the editor window by" << endl
+    << "For the best experience we recommend you move the terminal into a new window by" << endl
     << "pressing zsh in the top right corner of your terminal, and zoom as needed" << endl
     << endl << "Press enter to begin the game. Have fun!" << endl;
 
