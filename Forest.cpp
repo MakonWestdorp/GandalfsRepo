@@ -48,7 +48,7 @@ void Forest::showLocation(Game &game, Player *player, int numBossesDefeated) {
   int userDecision = 0;
   Location::showLocation(game, player, numBossesDefeated);
   cout << "1. Travel to Town" << endl
-       << "2. Explore" << endl
+       << "2. Search for enemies and treasure" << endl
        << "3. Search for treasure" << endl
        << "4. View Enemies" << endl
        << divider << endl;
@@ -141,7 +141,7 @@ void Forest::explore(int numBossesDefeated) {
 
 void Forest::openTreasure(Player *player, int numBossesDefeated) {
   if (treasure == true) {
-    player->setCashOnHand((player->getCashOnHand() + 5 * numBossesDefeated));
+    player->setCashOnHand((player->getCashOnHand() + 5 * numBossesDefeated) + (rand() % 10) + 1);
     cout << 5 * numBossesDefeated << " coins collected!" << endl;
     treasure = false;
   } else {

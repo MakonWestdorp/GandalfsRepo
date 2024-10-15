@@ -181,7 +181,7 @@ void Arena::viewPlayerStats(Game &game, Player *player, int numBossesDefeated) {
 }
 
 void Arena::callForBattle(Game &game, Player *player, int numBossesDefeated) {
-  if (EnemiesDefeated % 10 == 0 && EnemiesDefeated != 0) {
+  if (EnemiesDefeated % 2 == 0 && EnemiesDefeated != 0) {
     Boss CurrentBoss = Boss(numBossesDefeated);
     Opponent = &CurrentBoss;
   }
