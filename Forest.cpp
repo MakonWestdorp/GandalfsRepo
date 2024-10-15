@@ -112,6 +112,7 @@ void Forest::callForBattle(Game &game, Player *player, Enemy *enemy,
     game.endGame();
   }
   cout << "You killed " << enemy->getName() << endl;
+  sleep_for(seconds(1));
 }
 
 void Forest::explore(int numBossesDefeated) {
