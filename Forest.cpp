@@ -162,7 +162,7 @@ void Forest::openTreasure(Player *player, int numBossesDefeated) {
 }
 
 void Forest::viewEnemies(Game &game, Player *player, int numBossesDefeated) {
-  int userDecision = 0, cashLost = 0;  // Used to select an enemy to fight
+  int userDecision = 0;  // Used to select an enemy to fight
 
   // Clears terminal
   cout << endl << endl << endl << endl << endl << endl << endl;
