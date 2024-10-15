@@ -192,7 +192,6 @@ bool Game::loadGame(Player *player, int &numBossesDefeated, string fileName) {
         bool isBuff = false;
 
         for (int i = 0; i < inventorySize; i++) {
-          cout << "Running loop" << endl;
           itemName = "";
           damageTypeOrNameOfStat = "";
           damageOrBuff = 0;
