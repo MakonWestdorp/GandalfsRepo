@@ -124,7 +124,7 @@ int main() {
     << "The Town is the centre of the game. Here you can access the shops," << endl 
     << "travel to the forest or the Arena, view the attack or buff item shops, " << endl
     << "save the game, and exit the game." << endl
-    << "The forest is where you set off in search of enemies and treasure." << endl 
+    << "The forest is where you search for in search of enemies and treasure." << endl 
     << "Here you can Fight limitless enemies for cash, or search for treasure to " << endl
     << "The Arena is the centre of battle within the game. Here you can" << endl 
     <<"fight enemies, or bosses that spawn every 2 enemies killed in the arena." << endl
