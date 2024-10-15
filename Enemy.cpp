@@ -1,11 +1,11 @@
 #include "Enemy.h"
 
+#include <chrono>
+#include <thread>
+
 #include "AttackItem.h"
 #include "BaseItem.h"
 #include "BuffItem.h"
-
-#include <chrono>
-#include <thread>
 
 using namespace chrono;
 using namespace this_thread;
@@ -26,8 +26,7 @@ Enemy::Enemy(int NumBossesDeafeated) {
   magic = NumBossesDeafeated * 5 + 5;
   string damageTypes[4] = {"Magic", "Piercing", "Bludgeoning", "Slashing"};
   int damageTypesSize = sizeof(damageTypes) / sizeof(damageTypes[0]);
-  // Resistance = damageTypes[rand() % damageTypesSize];
-  Resistance = "Magic";
+  Resistance = damageTypes[rand() % damageTypesSize];
   isAlive = true;
   name = RandomEnemyName();
   ChallengeRating = healthPoints + strength + defence + magic;
