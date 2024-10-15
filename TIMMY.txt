@@ -1,68 +1,38 @@
 Name:
 Timmy
 Health:
-3
+5
 Strength:
-15
+5
 Defence:
-0
+5
 Magic:
-0
+5
 Resistance:
 Magic
 Bosses_defeated:
 0
 Cash_On_Hand:
-10
+7
 Challenge_Rating:
 5
 Player_Inventory_Size
-8
+3
 Item_1
-Sword of Thunder
-3
+Katana of Destruction
+5
 Magic
-3
+5
 0
 Item_2
-Nunchucks of Destruction
-1
+Bow of Doom
+9
 Magic
-1
+9
 0
 Item_3
-Staff of Thunder
-0
+Staff of the Phoenix
+7
 Magic
+7
 0
-0
-Item_4
-Bow of Vengeance
-0
-Slashing
-0
-0
-Item_5
-Dagger of Fury
-2
-Piercing
-2
-0
-Item_6
-Talisman of the Tiger
-4
-HP
-4
-1
-Item_7
-Talisman of Vitality
-0
-STR
-0
-1
-Item_8
-Cloak of the Phoenix
-3
-DEF
-3
-1
