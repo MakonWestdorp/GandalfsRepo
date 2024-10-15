@@ -4,7 +4,7 @@ BuffItem::BuffItem(int NumBossesDefeated) {
   DamageOrBuff = DamageOrBuff % 5 * NumBossesDefeated + 5 * NumBossesDefeated;
   ChallengeRating = DamageOrBuff;
   DamageTypeOrNameOfStat = getRandomElement(nameOfStats, nameOfStatsSize);
-  IsBuff = true;
+  setIsBool(true);
   name = BuffNameRandomiser();
 }
 
