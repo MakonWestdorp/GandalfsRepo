@@ -20,7 +20,7 @@ Enemy::Enemy() {
   ChallengeRating = 0;
 }
 Enemy::Enemy(int NumBossesDeafeated) {
-  healthPoints = NumBossesDeafeated * 5 + 5;
+  healthPoints = NumBossesDeafeated * 5 + rand() % 10 + 5;
   strength = NumBossesDeafeated * 5 + 5;
   defence = NumBossesDeafeated * 5 + 5;
   magic = NumBossesDeafeated * 5 + 5;

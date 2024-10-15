@@ -1,7 +1,7 @@
 #include "BuffItem.h"
 
 BuffItem::BuffItem(int NumBossesDefeated) {
-  DamageOrBuff = DamageOrBuff % 5 * NumBossesDefeated + 5 * NumBossesDefeated;
+  DamageOrBuff = DamageOrBuff % 5 * NumBossesDefeated + rand() % 5;
   ChallengeRating = DamageOrBuff;
   DamageTypeOrNameOfStat = getRandomElement(nameOfStats, nameOfStatsSize);
   setIsBool(true);
@@ -17,6 +17,9 @@ void BuffItem::UseItem(Entity* Target) { UseItem(Target, "Apply"); }
 
 void BuffItem::UseItem(Entity* Target, string ApplyWithdraw) {
   if (ApplyWithdraw == "Apply") {
+    cout << this->getName() << " is applying a buff!" << endl;
+    cout << "+" << this->DamageOrBuff << " to " << DamageTypeOrNameOfStat
+         << endl;
     Target->ApplyBuff(DamageOrBuff, DamageTypeOrNameOfStat);
   } else if (ApplyWithdraw == "Withdraw") {
     Target->WithdrawBuff(DamageOrBuff, DamageTypeOrNameOfStat);

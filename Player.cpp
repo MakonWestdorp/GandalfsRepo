@@ -19,13 +19,13 @@ Player::Player() {
   cout << endl << endl << endl << endl << endl << endl << endl << endl;
   cout << divider << endl
        << "Welcome to the Character Creator!" << endl
-       << divider << endl
+       << "Your Character has 4 Stats. Health Points, Strength, Defence and "
+          "Magic."
+       << endl;
+  cout << divider << endl
        << "You have: " << NumberOfPointsToDistrubute
        << " points to distribute among your Character Stats." << endl
        << divider << endl;
-  cout << "Yours Character has 4 Stats. Health Points, Strength, Defence and "
-          "Magic."
-       << endl;
 
   while (true) {
     cout << "You have: " << NumberOfPointsToDistrubute
