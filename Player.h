@@ -5,7 +5,12 @@
 #include "Entity.h"
 class Player : public Entity {
  public:
-  ~Player() {};
+  ~Player() {
+    for (int i = 0; i < CurrentInventorySize; i++) {
+      delete Inventory[i];
+    }
+    delete[] Inventory;
+  };
   Player();  // Calls the "Character Creator". Displays Users Options to input
              // in a Name and Player Stats.
   Player(string inputName, int inputHP, int inputSTR, int inputDEF,
