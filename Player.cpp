@@ -210,7 +210,7 @@ int Player::TakeTurn(Enemy* Target, int CurrentRound, bool& KeepFighting) {
 
   cout << divider << endl 
   << "Player Stats | HP " << getHP() << " | STR " << getSTR() << " | DEF " 
-  << getDEF() << " | MAG " << getMAG() << endl << divider << endl
+  << getDEF() << " | MAG " << getMAG() << endl << divider << endl 
   << "Enemy Stats | HP " << Target->getHP() << " | STR " << Target->getSTR() << " | DEF " 
   << Target->getDEF() << " | MAG " << Target->getMAG() << endl << divider << endl;
   
