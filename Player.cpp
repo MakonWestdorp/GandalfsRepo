@@ -121,7 +121,7 @@ Player::Player() {
       break;
     }
   }
-
+  healthPoints += 10;
   cout << "Please enter a name for your character:";
   cin >> name;
   cout << endl;
