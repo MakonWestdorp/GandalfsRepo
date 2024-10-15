@@ -25,6 +25,7 @@ using namespace chrono;
 using namespace this_thread;
 
 int main() {
+  // Calls srand so all rands are properly random
   srand(time(0));
   // Create game
   Game ChampionsOfSand;
@@ -41,7 +42,6 @@ int main() {
   ChampionsOfSand.initialiseLocations();
 
   // Start Game menu
-  
   cout << newLine << divider << endl
        << "Champions of Sand!" << endl
        << divider << endl
@@ -55,9 +55,10 @@ int main() {
   cout << divider << endl;
   sleep_for(seconds(1));
 
-  if (userDecision == 1) {
+  // Process user decision
+  if (userDecision == 1) { // Start new game
     newGame = true;
-  } else if (userDecision == 2) {
+  } else if (userDecision == 2) { // Load file
     cout << "Enter the name of the file you wish to enter (without .txt): ";
     cin >> fileName;
     cout << divider << endl;
@@ -176,7 +177,31 @@ int main() {
 
   cout << newLine;
 
-  // Game Loop
+  /*
+    Game Loop
+    - Player begins in the town, calling its showLocation function  
+       - If a player enters a shop it will display the options until they leave
+        - When they leave the game will go back to displaying the town
+    - If the player travels to the forest the game will set the current location
+      to the forest and call its showLocation function
+      - If the player travels to the town it will display the town and update current location
+      - If the player explores the forest will create new enemies and possibly spawn treasure
+      - If the player opens the treasure they will gain cash if the treasure exists
+      - If the player chooses to view enemy it will list the enemies
+        - The player can choose to fight an enemy
+          - This will enter a battle loop until the player or enemy dies, or the player chooses to leave
+          - When they leave they will return to the view enemies display
+        - The player can choose to leave
+        - When they leave the game will display the forest again
+      - If the player travels back to the town they can travel to the Arena
+        - If the player travels to the town it will display the town
+        - If the player chooses to view their stats it will display their stats
+          - The player can change their resistance
+          - When they leave they will return to the arena
+        - If the player chooses to fight they will enter battle
+          - Every 2 enemies killed in the arena a boss will spawn
+        - When the battle is over and the player is not dead they will return to the arena   
+  */
   ChampionsOfSand.setCurrentLocation(ChampionsOfSand.viewLocations()[0]);
 
   while (ChampionsOfSand.isGameRunning() == true) {

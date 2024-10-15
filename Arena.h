@@ -12,18 +12,19 @@ class Game;
 
 class Arena : public Location {
  private:
-  Enemy *Opponent;
+  // Arena variables
+  Enemy *Opponent; 
   int EnemiesDefeated = 0;
 
  public:
-  Arena();
-  Arena(string name, string description, string asciiDescription);
-  ~Arena() {};
+  Arena(); // Default constructor
+  Arena(string name, string description, string asciiDescription); // Specific constructor
+  ~Arena() {}; // Destructor
   void travelToLocation(Game &game, Location *location, Player *player,
-                        int numBossesDefeated);
-  void showLocation(Game &game, Player *player, int numBossesDefeated);
-  void viewPlayerStats(Game &game, Player *player, int numBossesDefeated);
-  void callForBattle(Game &game, Player *player, int numBossesDefeated);
+                        int numBossesDefeated); // Allows the player to travel between locations
+  void showLocation(Game &game, Player *player, int numBossesDefeated); // Displays the location
+  void viewPlayerStats(Game &game, Player *player, int numBossesDefeated); // Displays player stats
+  void callForBattle(Game &game, Player *player, int numBossesDefeated); // Calls for battle
 };
 
 #endif

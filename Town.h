@@ -14,13 +14,13 @@ class Player;
 
 class Town : public Location {
  public:
-  ~Town() {};
-  Town();
-  Town(string name, string description, string asciiDescription);
+  ~Town() {}; // Destructor
+  Town(); // Constructor
+  Town(string name, string description, string asciiDescription); // Specific constructor
   void travelToLocation(Game &game, Location *location, Player *player,
-                        int numBossesDefeated);
-  void enterShop(Shop &shopName, Player *player, Game &game, int type);
-  void showLocation(Game &game, Player *player, int numBossesDefeated);
+                        int numBossesDefeated); // Allows player to travel to forest or arena
+  void enterShop(Shop &shopName, Player *player, Game &game, int type); // Allows user to enter shop
+  void showLocation(Game &game, Player *player, int numBossesDefeated); // Displays town
 };
 
 #endif

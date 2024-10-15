@@ -29,7 +29,7 @@ void Game::initialiseShops() {
   "potions and enchanted scrolls, each ready to bestow powerful \nbuffs and magical" 
   "enhancements on brave travelers.";
   
-  // Ascii Art
+  // Ascii Art - Not used but could be added easily with how code is structured
   string attackShopAscii = "";
   string buffShopAscii = "";
 
@@ -38,6 +38,7 @@ void Game::initialiseShops() {
   attackShop = Shop(numBossesDefeated,"Steel & Sorcery","Timmy", attackShopDescription, attackShopAscii,1);
   buffShop = Shop(numBossesDefeated,"Charms & Brews","Rufus",buffShopDescription,buffShopAscii,2);
 
+  // Set Shops* to point to the two shops
   Shops = new Shop[2];
   Shops[0] = attackShop;
   Shops[1] = buffShop;
@@ -66,6 +67,7 @@ void Game::initialiseLocations() {
   Forest* ForestName = new Forest("Shadowleaf Woods",forestDescription,forestAscii);
   Arena* ArenaName = new Arena("The Colosseum of Champions",arenaDescription,arenaAscii);
 
+  // Set Location * array to locations
   Locations = new Location*[3]; 
   Locations[0] = TownName;
   Locations[1] = ForestName;
@@ -134,7 +136,9 @@ void Game::exitGame() {
 }
 
 bool Game::loadGame(Player *player, int &numBossesDefeated, string fileName) { 
+    // Add .txt to end
     fileName = fileName + ".txt";
+    // Open file for writing
     ifstream playerFileIn(fileName);
 
     // Create temporary variables
@@ -191,6 +195,7 @@ bool Game::loadGame(Player *player, int &numBossesDefeated, string fileName) {
         int damageOrBuff = 0, itemChallengeRating = 0;
         bool isBuff = false;
 
+        // Read in items
         for (int i = 0; i < inventorySize; i++) {
           itemName = "";
           damageTypeOrNameOfStat = "";
@@ -238,6 +243,8 @@ void Game::endGame() {
 
 // Public functions
 void Game::travel(Location *destination) {
+  // Set current location stored in game to input location
+  // Ensures main loop calls correct showLocation function
   this->currentLocation = destination;
 }
 
@@ -263,6 +270,7 @@ bool Game::isGameRunning()
 }
 
 int Game::cinChecker(int lowerParameter, int upperParameter, int userDecision) {
+  // Checks if cin is correct based on parameters
   string divider =
   "+------------------------------------------------------------------+";
   while (userDecision < lowerParameter || userDecision > upperParameter || cin.fail() == true) {

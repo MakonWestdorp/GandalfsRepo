@@ -5,7 +5,8 @@
 #include "Player.h"
 
 Location::Location()
-{
+{   
+    // Set values to "No _"
     this->name = "No name";
     this->description = "No description";
     this->asciiDescription = "No ascii description";
@@ -13,6 +14,7 @@ Location::Location()
 
 Location::Location(string name, string description, string asciiDescription)
 {
+    // Set values to input
     this->name = name;
     this->description = description; 
     this->asciiDescription = asciiDescription;   
@@ -35,6 +37,7 @@ void Location::showLocation(Game &game, Player *player, int numBossesDefeated)
 
 void Location::travelToLocation(Game& game, Location *destination,Player *player, int numBossesDefeated)
 {   
+    // Virtual travel to location function
     game.travel(destination);
     game.viewCurrentLocation()->showLocation(game,player,numBossesDefeated);
 }
