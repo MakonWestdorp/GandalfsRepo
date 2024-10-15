@@ -38,7 +38,7 @@ Player::Player() {
     while (true) {
       cin >> UserInput;
 
-      if (cin.fail() || UserInput < 0 ||
+      if (cin.fail() || UserInput < 1 ||
           UserInput > NumberOfPointsToDistrubute) {
         cin.clear();             // Clear the error flags
         cin.ignore(1000, '\n');  // Ignore the rest of the invalid input
