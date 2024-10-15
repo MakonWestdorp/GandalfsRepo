@@ -10,6 +10,7 @@
 // Include libraries for pause and namepsaces
 #include <chrono>
 #include <thread>
+using namespace std;
 using namespace chrono;
 using namespace this_thread;
 
@@ -49,7 +50,7 @@ void Forest::showLocation(Game &game, Player *player, int numBossesDefeated) {
   Location::showLocation(game, player, numBossesDefeated);
   cout << "1. Travel to Town" << endl
        << "2. Search for enemies and treasure" << endl
-       << "3. Search for treasure" << endl
+       << "3. Open treasure" << endl
        << "4. View Enemies" << endl
        << divider << endl;
   cin >> userDecision;
@@ -140,9 +141,11 @@ void Forest::explore(int numBossesDefeated) {
 }
 
 void Forest::openTreasure(Player *player, int numBossesDefeated) {
+int cashGained = 0;
   if (treasure == true) {
-    player->setCashOnHand((player->getCashOnHand() + 5 * numBossesDefeated) + (rand() % 10) + 1);
-    cout << 5 * numBossesDefeated << " coins collected!" << endl;
+    cashGained = (5 * numBossesDefeated) + (rand() % 10) + 1;
+    player->setCashOnHand(cashGained);
+    cout << cashGained << " coins collected!" << endl;
     treasure = false;
   } else {
     cout << "There is no treasure..." << endl;

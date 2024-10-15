@@ -206,6 +206,16 @@ int Player::TakeTurn(Enemy* Target, int CurrentRound, bool& KeepFighting) {
     }
   }
   cout << CurrentInventorySize + 3 << ". Leave Fight" << endl;
+
+  cout << divider << endl
+       << "Player Stats | HP " << getHP() << " | STR " << getSTR() << " | DEF "
+       << getDEF() << " | MAG " << getMAG() << endl
+       << divider << endl
+       << "Enemy Stats | HP " << Target->getHP() << " | STR "
+       << Target->getSTR() << " | DEF " << Target->getDEF() << " | MAG "
+       << Target->getMAG() << endl
+       << divider << endl;
+
   int UserInput = 0;
   cin >> UserInput;
 
