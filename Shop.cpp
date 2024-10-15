@@ -155,15 +155,15 @@ bool Shop::showShopInterface(Player *player, Game &game, int type) {
   if (userDecision <= inventorySize &&
       userDecision > 0) {  // If input matches item number buy item
     cout << purchaseItem(userDecision, player) << endl << divider << endl;
-    sleep_for(seconds(2));
+    sleep_for(seconds(1));
     return true;                       // User will stay in the shop
   } else if (userDecision == count) {  // If input matches leave shop option
     cout << "Have a good day!" << endl << divider << endl;
-    sleep_for(seconds(2));
+    sleep_for(seconds(1));
     return false;  // User will leave
   } else {         // If input matches niether of the above
     cout << "I think you mispoke" << endl << divider << endl;
-    sleep_for(seconds(2));
+    sleep_for(seconds(1));
     return true;  // User will stay
   }
 }
