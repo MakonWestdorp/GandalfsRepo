@@ -9,6 +9,7 @@ class Enemy : public Entity {
   string getName();
   int getChallengeRating();
   void TakeTurn(Entity* Target, int CurrentRound);
+  ~Enemy() {};
 
  protected:
   const string prefixes[10] = {"Dark",  "Flame",  "Shadow", "Frost", "Venom",

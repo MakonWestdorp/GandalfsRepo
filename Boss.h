@@ -8,6 +8,7 @@ class Boss : public Enemy {
   void TakeTurn(Entity* Target, int CurrentRound);
   Boss();
   Boss(int NumBossesDefeated);
+  ~Boss() {};
 
  private:
   BuffItem BossBuffItem;

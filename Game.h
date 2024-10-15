@@ -41,6 +41,7 @@ class Game {
   Arena ArenaName;
 
  public:
+  ~Game() {};
   Game();                      // Default constructor
   void initialiseShops();      // Initialises shops
   void initialiseLocations();  // Initialises locations

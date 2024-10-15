@@ -4,6 +4,7 @@
 #include "Entity.h"
 class BuffItem : public BaseItem {
  public:
+  ~BuffItem() {};
   using BaseItem::UseItem;
   BuffItem() : BaseItem() {}
   BuffItem(int NumBossesDefeated);

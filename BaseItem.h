@@ -22,6 +22,8 @@ class BaseItem {
   bool IsBuff;
 
  public:
+  virtual ~BaseItem() = 0;
+  BaseItem::~BaseItem() {};  // Needed as destructor is pure virtual.
   virtual void UseItem(Entity* Target) = 0;
   BaseItem();
   BaseItem(int NumBossesDefeated);  // Defeault Constructor

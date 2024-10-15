@@ -48,6 +48,7 @@ class Entity {
   void setMAG(int InputMAG);
   void setName(string InputName);
   void setRes(string InputName);
+  ~Entity() {};
 
  protected:
   int ChallengeRating;
