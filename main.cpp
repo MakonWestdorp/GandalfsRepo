@@ -33,6 +33,7 @@ int main() {
   string fileName = "";
   string divider =
       "+------------------------------------------------------------------+";
+  string newLine = string(25,'\n');
   bool newGame = false;
 
   // Initialies shops and locations
@@ -40,7 +41,8 @@ int main() {
   ChampionsOfSand.initialiseLocations();
 
   // Start Game menu
-  cout << divider << endl
+  
+  cout << newLine << divider << endl
        << "Champions of Sand!" << endl
        << divider << endl
        << "1. Start a new game" << endl
@@ -85,7 +87,7 @@ int main() {
   }
 
   // Tutorial
-  cout << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl;
+  cout << newLine;
   cout << divider << endl << "Do you wish to view the tutorial?" 
        << endl << divider << endl << "1. Yes I do" << endl 
        << "2. No I do not" << endl;
@@ -94,68 +96,85 @@ int main() {
   userDecision = ChampionsOfSand.cinChecker(1,2,userDecision);
   if (userDecision == 1) {
     cout << divider << endl 
-    << "Welcome to Champions of Sand! A terminal turn based based fantasy fighting game developed in C++!" << endl
-    << divider << endl << "To begin a new game you will need to assign points to your stats; health," 
-    "strength, defence, and magic, and choose your resistance" << endl << endl
+    << "Welcome to Champions of Sand! A terminal turn based " 
+    << endl << "fantasy fighting game developed in C++!" << endl << divider << endl 
+    << "To begin a new game you will need to assign points to your stats;" << endl
+    << "health, strength, defence, and magic, and choose your resistance" << endl << endl
     << "Press enter when you are ready to learn about your players stats" << endl << divider;
 
     cin.get(); // Wait for the user to press enter
+    cout << newLine;
 
-    cout << endl << endl << divider << endl 
+    cout << divider << endl 
     << "Health is your life points, if they reach 0 your game will be over" << endl
-    << "Strength is your damage, the higher it is the stronger your weapons and attacks" << endl
-    << "Defence helps keep you alive, the higher it is the less damage you'll take" << endl
+    << "Strength is your damage, the higher it is the stronger your weapons"
+    << endl << "and attacks" << endl
+    << "Defence helps keep you alive, the higher it is the less damage" << endl << 
+    "you'll take" << endl
     << "" << endl
-    << "Resistance protects you against the damage types of the game; Magic, Slashing, Piercing and Bludgeoning." << endl
-    << endl << "Press enter when you are ready to learn about the games locations; Town, Forest and Arena" << endl;
+    << "Resistance protects you against the damage types of the game;" << endl 
+    <<"Magic, Slashing, Piercing and Bludgeoning." << endl
+    << endl << "Press enter when you are ready to learn about the games locations;" << endl 
+    << "Town, Forest and Arena" << endl;
 
     cin.get(); // Wait for enter
+    cout << newLine;
 
-    cout << endl << endl << divider << endl 
-    << "The Town is the centre of the game. Here you can access the shops, travel to the forest" << endl
-    << "or the Arena, view the attack or buff item shops, save the game, and exit the game." << endl
-    << "The forest is where you set off in search of enemies and treasure. Here you can " << endl
-    << "Fight limitless enemies for cash, or search for treasure to gain even more cash." << endl
-    << "The Arena is the centre of battle within the game. Here you can fight enemies, or bosses " << endl
-    << "that spawn every 2 enemies killed in the arena. You can also view your stas and" << endl
-    << "change your players resistence here" << endl << endl
+    cout << divider << endl 
+    << "The Town is the centre of the game. Here you can access the shops," << endl 
+    << "travel to the forest or the Arena, view the attack or buff item shops, " << endl
+    << "save the game, and exit the game." << endl
+    << "The forest is where you set off in search of enemies and treasure." << endl 
+    << "Here you can Fight limitless enemies for cash, or search for treasure to " << endl
+    << "The Arena is the centre of battle within the game. Here you can" << endl 
+    <<"fight enemies, or bosses that spawn every 2 enemies killed in the arena." << endl
+    << "You can also view your stas and change your players resistence here" << endl << endl
     << "Press enter when you are ready to learn about the games shops and items" << endl;
 
     cin.get(); // Wait for enter
+    cout << newLine;
 
-    cout << endl << endl << divider << endl
-    << "Shops are where you purchase attack and buff items for your player to use in battle." << endl
-    << "Here your cash can be spent on attack items to help you deal damage in battle, " << endl
-    << "with each weapon having a different damage type to assist you against certain enemies." << endl
-    << "Or you can spend your cash on buff items to temporarily boost your stats within battle. " << endl
+    cout << divider << endl
+    << "Shops are where you purchase attack and buff items for your player to use." << endl
+    << "Here you can buy attack items to help you deal damage in battle, " << endl
+    << "with each weapon having a different damage type to deal more damage" << endl
+    << "if an enemy is weak to that damage type." << endl
+    << "Or you can spend your cash on buff items to temporarily boost" << endl 
+    << "your stats within battle. " << endl
     << endl << "Press enter when you are ready to learn about battle." << endl;
 
     cin.get(); // Wait for enter
+    cout << newLine;
 
-    cout << endl << endl << divider << endl
-    << "As mentioned previously combat occurs in turns, with the player going first." << endl
-    << "During your turn you can choose to attack using your base strength and magic stats" << endl
-    << "attack using your items to deal extra damage, or use your buff items to temporarily " << endl
-    << "improve your stats. " << endl << "Within the game you will come across something known" 
-    "as Challenge Rating (CR)."  << endl << "For players and enemies this is an average of your stats" 
-    ", giving you an indication of how strong you or your opponent is." << endl << endl
+    cout << divider << endl
+    << "As mentioned previously combat occurs in turns, with the player's first." << endl
+    << "During your turn you can attack using your base strength and magic stats," << endl
+    << "attack using your items to deal extra damage, or use your buff items to " << endl
+    << "temporarily improve your stats. " << endl 
+    << "Within the game you will come across something known as Challenge Rating/CR."  << endl 
+    << "For players and enemies this is an average of your stats, " << endl
+    << "giving you an indication of how strong you or your opponent is." << endl << endl
     << "Press enter to learn how to navigate the game" << endl;
 
-    cin.get(); // Wait for enetr
+    cin.get(); // Wait for enter
+    cout << newLine;
 
     cout << endl << endl << divider << endl
-    << "This game uses numerical inputs to allow the player to choose what they wish to do." << endl
-    << "To prevent unexpected errors or inputs please only enter a value when the game says to." << endl 
-    << "For the best experience we recommend you move the terminal into a new window by" << endl
-    << "pressing zsh in the top right corner of your terminal, and zoom as needed" << endl
+    << "This game uses numerical inputs to allow the player to interact with the game" << endl
+    << "To prevent unexpected errors or inputs please only enter a value prompted to." << endl 
+    << "For the best experience we recommend you move the terminal into a new window" << endl
+    << "by pressing zsh in the top right corner of your terminal, and zoom as needed" << endl
     << endl << "Press enter to begin the game. Have fun!" << endl;
 
     cin.get(); // Wait for enter
+    cout << newLine;
   } 
  
   if (newGame) {
     player = new Player(); // If new game true enter character creator
   }
+
+  cout << newLine;
 
   // Game Loop
   ChampionsOfSand.setCurrentLocation(ChampionsOfSand.viewLocations()[0]);
