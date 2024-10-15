@@ -15,8 +15,8 @@ void Boss::TakeTurn(Entity* Target, int CurrentRound) {
 }
 
 Boss::Boss(int NumBossesDefeated) {
-  BossAttackItem = AttackItem(NumBossesDefeated);
-  BossBuffItem = BuffItem(NumBossesDefeated);
+  BuffItem BossBuffItem = BuffItem(NumBossesDeafeated);
+  AttackItem BossAttackItem = AttackItem(NumBossesDeafeated);
   Inventory[0] = &BossBuffItem;
   Inventory[1] = &BossAttackItem;
   healthPoints = 20;

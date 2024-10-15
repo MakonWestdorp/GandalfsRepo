@@ -1,0 +1,38 @@
+Name:
+Timmy
+Health:
+15
+Strength:
+5
+Defence:
+5
+Magic:
+5
+Resistance:
+Piercing
+Bosses_defeated:
+0
+Cash_On_Hand:
+4
+Challenge_Rating:
+7
+Player_Inventory_Size
+3
+Item_1
+Katana of Doom
+6
+Slashing
+6
+0
+Item_2
+Katana of Destruction
+9
+Piercing
+9
+0
+Item_3
+Staff of the Dragon
+9
+Slashing
+9
+0
