@@ -160,12 +160,14 @@ void Forest::viewEnemies(Game &game, Player *player, int numBossesDefeated) {
   for (int i = 0; i < 5; i++) {
     if (enemies[i]->GetIsAlive()) {
       cout << i + 1 << " " << enemies[i]->getName()
-           << " | Challenge rating : " << enemies[i]->getChallengeRating()
-           << " | Status: Alive" << endl;
+           << " | CR : " << enemies[i]->getChallengeRating()
+           << " | Status: Alive" 
+           << " | Res: " << enemies[i]->getRes() << endl;
     } else {
       cout << i + 1 << " " << enemies[i]->getName()
-           << " | Challenge rating : " << enemies[i]->getChallengeRating()
-           << " | Status: Dead" << endl;
+           << " | CR : " << enemies[i]->getChallengeRating()
+           << " | Status: Dead" << endl
+           << " | Res: " << enemies[i]->getRes() << endl;
     }
   }
   cout << "6. Return to the main paths safety" << endl << divider << endl;
