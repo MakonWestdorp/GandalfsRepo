@@ -102,6 +102,10 @@ void Forest::callForBattle(Game &game, Player *player, Enemy *enemy,
       break;
     } else {
       enemy->TakeTurn(player, currentRound);
+      if (player->GetIsAlive() == false) {
+        break;
+        game.endGame();
+      }
     }
     currentRound++;
     sleep_for(seconds(1));
@@ -111,7 +115,9 @@ void Forest::callForBattle(Game &game, Player *player, Enemy *enemy,
     cout << "You died!" << endl;
     game.endGame();
   }
-  cout << "You killed " << enemy->getName() << endl;
+  if (player->GetIsAlive() == true) {
+    cout << "You killed " << enemy->getName() << endl;
+  }
   sleep_for(seconds(1));
 }
 

@@ -36,8 +36,10 @@ void Entity::takeDamage(int Damage, string DamageType) {
     cout << this->getName() << " is resistant to " << Resistance << " damage!"
          << endl;
   }
-  int DefenceChange = rand() % (defence / 2) + defence / 4;
-  Damage -= DefenceChange;
+  Damage -= this->getDEF();
+  if (Damage < 0) {
+    Damage = 2;
+  }
   this->healthPoints = healthPoints - Damage;
   // Check to see if Target is dead.
   if (healthPoints <= 0) {
@@ -50,7 +52,7 @@ void Entity::Attack(Entity* Target) {
 }
 
 void Entity::Attack(Entity* Target, int damage, string damageType) {
-  Target->takeDamage(damage, damageType);
+  Target->takeDamage((rand() % (damage)) + 1, damageType);
 }
 
 void Entity::takeTurn(Entity* Target) { Attack(Target); }

@@ -60,7 +60,7 @@ void Arena::showLocation(Game &game, Player *player, int numBossesDefeated) {
   cin >> userDecision;
 
   // Checking if cin failed
-  userDecision = game.cinChecker(1,4,userDecision);
+  userDecision = game.cinChecker(1, 4, userDecision);
   cout << divider << endl;
 
   // Processes users decision
@@ -106,7 +106,7 @@ void Arena::viewPlayerStats(Game &game, Player *player, int numBossesDefeated) {
        << divider << endl;
   cin >> userDecision;
   cout << divider << endl;
-  userDecision = game.cinChecker(1,3,userDecision);
+  userDecision = game.cinChecker(1, 3, userDecision);
 
   switch (userDecision) {
     case 1:
@@ -121,7 +121,14 @@ void Arena::viewPlayerStats(Game &game, Player *player, int numBossesDefeated) {
       break;
     case 3:
       sleep_for(seconds(1));
-      cout << endl << endl << endl << endl << endl << endl << endl << divider << endl;
+      cout << endl
+           << endl
+           << endl
+           << endl
+           << endl
+           << endl
+           << endl
+           << divider << endl;
       userDecision = 0;
       cout << "Change resistance to: " << endl
            << "1. Magic" << endl
@@ -131,7 +138,7 @@ void Arena::viewPlayerStats(Game &game, Player *player, int numBossesDefeated) {
            << "5. Return to Arena" << endl
            << divider << endl;
       cin >> userDecision;
-      userDecision = game.cinChecker(1,5,userDecision);
+      userDecision = game.cinChecker(1, 5, userDecision);
       cout << userDecision << endl;
       switch (userDecision) {
         case 1:
@@ -158,7 +165,8 @@ void Arena::viewPlayerStats(Game &game, Player *player, int numBossesDefeated) {
           cout << "Returning to Arena" << endl;
           sleep_for(seconds(1));
         default:
-          sleep_for(seconds(1)); // Shouldn't occur, if default occurs player will just be sent back to the arena
+          sleep_for(seconds(1));  // Shouldn't occur, if default occurs player
+                                  // will just be sent back to the arena
       }
 
     default:
@@ -179,11 +187,13 @@ void Arena::callForBattle(Game &game, Player *player, int numBossesDefeated) {
   }
   int currentRound = 0;
   bool keepFighting = true;
+  string divider =
+      "+------------------------------------------------------------------+";
   while (player->GetIsAlive() == true && Opponent->GetIsAlive() == true &&
          keepFighting == true) {
     Location::showLocation(game, player, numBossesDefeated);
     player->TakeTurn(Opponent, currentRound, keepFighting);
-    if (player->GetIsAlive()) {
+    if (player->GetIsAlive() == false) {
       game.endGame();
     } else if (keepFighting == false) {
       break;
@@ -191,16 +201,27 @@ void Arena::callForBattle(Game &game, Player *player, int numBossesDefeated) {
       break;
     } else {
       Opponent->TakeTurn(player, currentRound);
+      if (player->GetIsAlive() == false) {
+        break;
+        game.endGame();
+      }
     }
     currentRound++;
+    sleep_for(seconds(1));
+    cout << divider << endl;
   }
-
   if (player->GetIsAlive() == false) {
+    cout << "You died!" << endl;
     game.endGame();
-  } else if (Opponent->GetIsAlive() == false) {
+  }
+  if (player->GetIsAlive() == true) {
+    cout << "You killed " << Opponent->getName() << endl;
+  }
+  sleep_for(seconds(1));
+  if (Opponent->GetIsAlive() == false) {
     Opponent = new Enemy(numBossesDefeated);
     EnemiesDefeated++;
-    game.viewShops()[0].updateShop(numBossesDefeated,1);
-    game.viewShops()[1].updateShop(numBossesDefeated,2);
+    game.viewShops()[0].updateShop(numBossesDefeated, 1);
+    game.viewShops()[1].updateShop(numBossesDefeated, 2);
   }
 }
