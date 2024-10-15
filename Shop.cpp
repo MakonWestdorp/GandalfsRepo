@@ -170,9 +170,9 @@ bool Shop::showShopInterface(Player *player, Game &game, int type) {
 
 void Shop::updateShop(int numBossesDefeated, int type) {
   // Delete old inventory
-  // delete this->inventory;
-  // delete this->prices;
-  // delete this->forSaleStatus;
+  delete this->inventory;
+  delete this->prices;
+  delete this->forSaleStatus;
 
   // Generate inventory depending on type
   if (type == 1) {  // If type = 1 the shop will have an attack item inventory

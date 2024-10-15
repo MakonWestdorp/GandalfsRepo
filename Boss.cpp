@@ -19,10 +19,10 @@ Boss::Boss(int NumBossesDefeated) {
   BossBuffItem = BuffItem(NumBossesDefeated);
   Inventory[0] = &BossBuffItem;
   Inventory[1] = &BossAttackItem;
-  healthPoints = NumBossesDeafeated * 5 + 20;
-  strength = NumBossesDeafeated * 5 + 20;
-  defence = NumBossesDeafeated * 5 + 20;
-  magic = NumBossesDeafeated * 5 + 20;
+  healthPoints = 20;
+  strength = 20;
+  defence = 20;
+  magic = 20;
   isAlive = true;
   name = "Boss: " + RandomEnemyName();
   ChallengeRating = healthPoints + strength + defence + magic;
