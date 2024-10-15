@@ -162,42 +162,54 @@ int Player::TakeTurn(Enemy* Target, int CurrentRound, bool& KeepFighting) {
        << divider << endl;
 
   cout << "1. Attack normally" << endl;
+  cout << "2. Attack using Magic." << endl;
   if (CurrentInventorySize != 0) {
     for (int i = 0; i < CurrentInventorySize; i++) {
       if (Inventory[i]->getIsBuff() == true) {
-        cout << i + 2 << ". Use Item: " << Inventory[i]->getName()
+        cout << i + 3 << ". Use Item: " << Inventory[i]->getName()
              << " | Item Type:" << "Buff" << endl;
       } else {
-        cout << i + 2 << ". Use Item: " << Inventory[i]->getName()
+        cout << i + 3 << ". Use Item: " << Inventory[i]->getName()
              << " | Item Type:" << "Attack" << endl;
       }
     }
   }
-  cout << CurrentInventorySize + 2 << ". Leave Fight" << endl;
+  cout << CurrentInventorySize + 3 << ". Leave Fight" << endl;
   int UserInput = 0;
   cin >> UserInput;
 
   // Check if input is correct
-  while (cin.fail() || UserInput < 1 || UserInput > CurrentInventorySize + 3) {
+  while (cin.fail() || UserInput < 1 || UserInput > CurrentInventorySize + 4) {
     cin.clear();  // clear the error flag
     cin.ignore(1000, '\n');
     cout << "That doesnt look right! Please enter a number between 1 and "
-         << CurrentInventorySize + 3 << ": ";
+         << CurrentInventorySize + 4 << ": ";
     cin >> UserInput;
   }
 
   if (UserInput == 1) {
+    cout << "You are punching " << Target->getName() << endl;
     Attack(Target);
     // Attack
-  } else if (UserInput == CurrentInventorySize + 2) {
+  } else if (UserInput == 2) {
+    cout << "You are using magic to hurt " << Target->getName() << endl;
+    Attack(Target, rand() % magic + 1, "Magic");
+  }
+  if (UserInput == CurrentInventorySize + 3) {
     KeepFighting = false;
     // Leave
-  } else if (UserInput > 1 && (UserInput - 2) <= CurrentInventorySize) {
-    if (Inventory[UserInput - 2]->getIsBuff() == true) {
-      BuffItem* buffItem = dynamic_cast<BuffItem*>(Inventory[UserInput - 2]);
+  } else if (UserInput > 2 && (UserInput - 2) <= CurrentInventorySize) {
+    if (Inventory[UserInput - 3]->getIsBuff() == true) {
+      cout << "You are using your " << Inventory[UserInput - 3]->getName()
+           << " to buff your "
+           << Inventory[UserInput - 3]->getDamageOrNameStat() << " by "
+           << Inventory[UserInput - 3]->getDamageOrBuff() << " points!" << endl;
+      BuffItem* buffItem = dynamic_cast<BuffItem*>(Inventory[UserInput - 3]);
       buffItem->UseItem(this, "Apply");
     } else {
-      Inventory[UserInput - 2]->UseItem(Target);
+      cout << "You are using your " << Inventory[UserInput - 3]->getName()
+           << " to attack " << Target->getName() << endl;
+      Inventory[UserInput - 3]->UseItem(Target);
     }
   }
 
