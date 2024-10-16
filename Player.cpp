@@ -95,7 +95,7 @@ Player::Player() {
     defence += UserInput;
     NumberOfPointsToDistrubute = NumberOfPointsToDistrubute - UserInput;
     cout << "You have: " << NumberOfPointsToDistrubute
-         << "left to distribute to your stats." << endl;
+         << " left to distribute to your stats." << endl;
     cout << "How many points would you like to allocate to Magic?" << endl;
     // READ IN USER INPUT FOR MAG;
     while (true) {
@@ -116,7 +116,7 @@ Player::Player() {
     magic += UserInput;
     NumberOfPointsToDistrubute = NumberOfPointsToDistrubute - UserInput;
     cout << "You have: " << NumberOfPointsToDistrubute
-         << "left to distribute to your stats." << endl;
+         << " left to distribute to your stats." << endl;
     if (NumberOfPointsToDistrubute == 0) {
       break;
     }
