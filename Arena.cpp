@@ -1,5 +1,6 @@
 // Include classes
 #include "Arena.h"
+
 #include "Boss.h"
 #include "Forest.h"
 #include "Game.h"
@@ -105,24 +106,24 @@ void Arena::viewPlayerStats(Game &game, Player *player, int numBossesDefeated) {
        << "2. Travel to Town" << endl
        << "3. Change player Resistance" << endl
        << divider << endl;
-  
+
   // Prompt for input
   cin >> userDecision;
   cout << divider << endl;
-  userDecision = game.cinChecker(1, 3, userDecision); // Check input
+  userDecision = game.cinChecker(1, 3, userDecision);  // Check input
 
-  switch (userDecision) { // Process input
-    case 1: // Return to Arena
+  switch (userDecision) {  // Process input
+    case 1:                // Return to Arena
       cout << "Returning to Arena" << endl << divider << endl;
       sleep_for(seconds(1));
       break;
-    case 2: // Travel to town
+    case 2:  // Travel to town
       cout << "Traveling to Town" << endl << divider << endl;
       sleep_for(seconds(1));
       travelToLocation(game, game.viewLocations()[0], player,
                        numBossesDefeated);
       break;
-    case 3: // Change resistance
+    case 3:  // Change resistance
       sleep_for(seconds(1));
       cout << endl
            << endl
@@ -131,9 +132,9 @@ void Arena::viewPlayerStats(Game &game, Player *player, int numBossesDefeated) {
            << endl
            << endl
            << endl
-           << divider << endl; // Spacing
+           << divider << endl;  // Spacing
 
-      userDecision = 0; // Set back to 0 for safety
+      userDecision = 0;  // Set back to 0 for safety
 
       // Output options
       cout << "Change resistance to: " << endl
@@ -143,12 +144,12 @@ void Arena::viewPlayerStats(Game &game, Player *player, int numBossesDefeated) {
            << "4. Slashing" << endl
            << "5. Return to Arena" << endl
            << divider << endl;
-      
+
       // Prompt for and process options
       cin >> userDecision;
       userDecision = game.cinChecker(1, 5, userDecision);
       cout << userDecision << endl;
-      switch (userDecision) { // Set to input type
+      switch (userDecision) {  // Set to input type
         case 1:
           player->setRes("Magic");
           cout << "Resistance set to Magic" << endl;
@@ -190,7 +191,7 @@ void Arena::viewPlayerStats(Game &game, Player *player, int numBossesDefeated) {
 
 void Arena::callForBattle(Game &game, Player *player, int numBossesDefeated) {
   // Summon a boss if two enemies has been killed
-  if (EnemiesDefeated % 2 == 0 && EnemiesDefeated != 0) {
+  if (EnemiesDefeated % 10 == 0 && EnemiesDefeated != 0) {
     Boss CurrentBoss = Boss(numBossesDefeated);
     Opponent = &CurrentBoss;
   }
@@ -200,25 +201,27 @@ void Arena::callForBattle(Game &game, Player *player, int numBossesDefeated) {
   string divider =
       "+------------------------------------------------------------------+";
 
-  // Whilst player and enemy are alive, and player wants to keep fighting run loop
+  // Whilst player and enemy are alive, and player wants to keep fighting run
+  // loop
   while (player->GetIsAlive() == true && Opponent->GetIsAlive() == true &&
          keepFighting == true) {
-    Location::showLocation(game, player, numBossesDefeated); // Show Arena description
+    Location::showLocation(game, player,
+                           numBossesDefeated);  // Show Arena description
     player->TakeTurn(Opponent, currentRound, keepFighting);
-    if (player->GetIsAlive() == false) { 
-      game.endGame(); // End game if player is dead
+    if (player->GetIsAlive() == false) {
+      game.endGame();  // End game if player is dead
     } else if (keepFighting == false) {
-      break; // If player doesn't wish to fight exit loop and battle
+      break;  // If player doesn't wish to fight exit loop and battle
     } else if (Opponent->GetIsAlive() == false) {
-      break; // If enemy has died exit loop before enemies turn
+      break;  // If enemy has died exit loop before enemies turn
     } else {
-      Opponent->TakeTurn(player, currentRound); //
+      Opponent->TakeTurn(player, currentRound);  //
       if (player->GetIsAlive() == false) {
-        break; // If player has died exit loop and battle
-        game.endGame(); // End Game
+        break;           // If player has died exit loop and battle
+        game.endGame();  // End Game
       }
     }
-    currentRound++; // Increase round
+    currentRound++;  // Increase round
     sleep_for(seconds(1));
     cout << divider << endl;
   }

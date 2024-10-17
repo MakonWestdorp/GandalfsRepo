@@ -12,5 +12,7 @@ class Boss : public Enemy {
 
  private:
   BaseItem** Inventory = new BaseItem*[2];
+  BuffItem BossBuffItem;
+  AttackItem BossAttackItem;
 };
 #endif

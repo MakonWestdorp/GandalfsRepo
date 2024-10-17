@@ -1,7 +1,7 @@
 #include "BuffItem.h"
 
 BuffItem::BuffItem(int NumBossesDefeated) {
-  DamageOrBuff = DamageOrBuff % 5 * NumBossesDefeated + rand() % 5;
+  DamageOrBuff = DamageOrBuff % 5 * NumBossesDefeated + rand() % 5 + 1;
   ChallengeRating = DamageOrBuff;
   DamageTypeOrNameOfStat = getRandomElement(nameOfStats, nameOfStatsSize);
   setIsBool(true);

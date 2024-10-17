@@ -1,5 +1,6 @@
 // Include classes
 #include "Forest.h"
+
 #include "Arena.h"
 #include "Enemy.h"
 #include "Entity.h"
@@ -49,7 +50,8 @@ void Forest::showLocation(Game &game, Player *player, int numBossesDefeated) {
   string divider =
       "+------------------------------------------------------------------+";
   int userDecision = 0;
-  Location::showLocation(game, player, numBossesDefeated); // Displays default location
+  Location::showLocation(game, player,
+                         numBossesDefeated);  // Displays default location
   // Displays options
   cout << "1. Travel to Town" << endl
        << "2. Search for enemies and treasure" << endl
@@ -60,27 +62,27 @@ void Forest::showLocation(Game &game, Player *player, int numBossesDefeated) {
   userDecision = game.cinChecker(1, 4, userDecision);
   cout << divider << endl;
 
-  switch (userDecision) { // Proccess options
-    case 1: // Travel to Town
+  switch (userDecision) {  // Proccess options
+    case 1:                // Travel to Town
       sleep_for(seconds(1));
       travelToLocation(game, game.viewLocations()[0], player,
                        numBossesDefeated);
       break;
-    case 2: // Create new enemies and possibly treasure
+    case 2:  // Create new enemies and possibly treasure
       explore(numBossesDefeated);
       cout << divider << endl;
       sleep_for(seconds(1));
       break;
-    case 3: // Open treasure if there is treasure
+    case 3:  // Open treasure if there is treasure
       openTreasure(player, numBossesDefeated);
       cout << divider << endl;
       sleep_for(seconds(1));
       break;
-    case 4: // Displays enemies
+    case 4:  // Displays enemies
       sleep_for(seconds(1));
       viewEnemies(game, player, numBossesDefeated);
       break;
-    default: // Shouldnt occur, will return player to forest
+    default:  // Shouldnt occur, will return player to forest
       sleep_for(seconds(1));
       cout << "You seem lost. Perhaps you should stay where you are" << endl
            << divider << endl;
@@ -91,26 +93,28 @@ void Forest::showLocation(Game &game, Player *player, int numBossesDefeated) {
 void Forest::callForBattle(Game &game, Player *player, Enemy *enemy,
                            int numBossesDefeated) {
   // Initialise variables for this function
-  int currentRound = 0;
+  int currentRound = 1;
   bool keepFighting = true;
   string divider =
       "+------------------------------------------------------------------+";
 
-  // Whilst player and enemy are alive, and player wants to keep fighting run loop
+  // Whilst player and enemy are alive, and player wants to keep fighting run
+  // loop
   while (player->GetIsAlive() == true && enemy->GetIsAlive() == true &&
          keepFighting == true) {
-    Location::showLocation(game, player, numBossesDefeated); // Show forest description
+    Location::showLocation(game, player,
+                           numBossesDefeated);  // Show forest description
     player->TakeTurn(enemy, currentRound, keepFighting);
     if (player->GetIsAlive() == false) {
-      game.endGame(); // End game if player is dead
+      game.endGame();  // End game if player is dead
     } else if (keepFighting == false) {
-      break; // If player doesn't wish to fight exit loop and battle
+      break;  // If player doesn't wish to fight exit loop and battle
     } else if (enemy->GetIsAlive() == false) {
-      break; // If enemy has died exit loop before enemies turn
+      break;  // If enemy has died exit loop before enemies turn
     } else {
       enemy->TakeTurn(player, currentRound);
       if (player->GetIsAlive() == false) {
-        break; // If player has died exit loop and battle
+        break;  // If player has died exit loop and battle
         game.endGame();
       }
     }
@@ -118,7 +122,7 @@ void Forest::callForBattle(Game &game, Player *player, Enemy *enemy,
     sleep_for(seconds(1));
     cout << divider << endl;
   }
-  
+
   // Output battle result
   if (player->GetIsAlive() == false) {
     cout << "You died!" << endl;
@@ -153,7 +157,8 @@ void Forest::openTreasure(Player *player, int numBossesDefeated) {
   if (treasure == true) {
     // Generate number of cash found
     cashGained = (5 * numBossesDefeated) + (rand() % 10) + 1;
-    player->setCashOnHand(player->getCashOnHand() + cashGained); // Add to players inventory
+    player->setCashOnHand(player->getCashOnHand() +
+                          cashGained);  // Add to players inventory
     cout << cashGained << " coins collected!" << endl;
     treasure = false;
   } else {
@@ -198,7 +203,7 @@ void Forest::viewEnemies(Game &game, Player *player, int numBossesDefeated) {
   cout << divider << endl;
 
   // Process user decision
-  if (userDecision > 0 && userDecision <= 5 && 
+  if (userDecision > 0 && userDecision <= 5 &&
       enemies[userDecision - 1]->GetIsAlive()) {
     // Fight the chosen enemy
     callForBattle(game, player, enemies[userDecision - 1], numBossesDefeated);
@@ -209,11 +214,12 @@ void Forest::viewEnemies(Game &game, Player *player, int numBossesDefeated) {
     sleep_for(seconds(1));
     viewEnemies(game, player, numBossesDefeated);
   } else if (userDecision == 6) {
-    // Allow player to leave, the game will continue on with the main forest loop
+    // Allow player to leave, the game will continue on with the main forest
+    // loop
     cout << "You return to the safety of the main path" << endl
          << divider << endl;
     sleep_for(seconds(1));
-  } else { // If none of the above are called return player to main forest loop
+  } else {  // If none of the above are called return player to main forest loop
     cout << "You get lost, returning to the main path a while later" << endl
          << divider << endl;
     sleep_for(seconds(1));
