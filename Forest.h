@@ -24,8 +24,8 @@ class Forest : public Location {
   Forest(); // Constructor
   Forest(string name, string description, string asciiDescription); // Specific constructor
   void travelToLocation(Game &game, Location *location, Player *player,
-                        int numBossesDefeated); // Allows player to travel to other locations
-  void showLocation(Game &game, Player *player, int numBossesDefeated); // Displays Forest
+                        int numBossesDefeated) override; // Allows player to travel to other locations
+  void showLocation(Game &game, Player *player, int numBossesDefeated) override; // Displays Forest
   void callForBattle(Game &game, Player *player, Enemy *enemy, 
                      int numBossesDefeated); // Calls for battle
   void explore(int numBossesDefeated); // Loads new enemies and possibly treasure

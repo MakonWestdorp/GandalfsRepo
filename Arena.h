@@ -21,8 +21,8 @@ class Arena : public Location {
   Arena(string name, string description, string asciiDescription); // Specific constructor
   ~Arena() {}; // Destructor
   void travelToLocation(Game &game, Location *location, Player *player,
-                        int numBossesDefeated); // Allows the player to travel between locations
-  void showLocation(Game &game, Player *player, int numBossesDefeated); // Displays the location
+                        int numBossesDefeated) override; // Allows the player to travel between locations
+  void showLocation(Game &game, Player *player, int numBossesDefeated) override; // Displays the location
   void viewPlayerStats(Game &game, Player *player, int numBossesDefeated); // Displays player stats
   void callForBattle(Game &game, Player *player, int numBossesDefeated); // Calls for battle
 };
