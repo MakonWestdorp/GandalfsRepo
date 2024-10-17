@@ -276,7 +276,7 @@ int Game::cinChecker(int lowerParameter, int upperParameter, int userDecision) {
   while (userDecision < lowerParameter || userDecision > upperParameter || cin.fail() == true) {
     cin.clear();
     cin.ignore(1000, '\n');
-    cout << "Invalid input. Please try again" << endl << divider << endl;
+    cout << "Seems you mispoke. Please try again" << endl << divider << endl;
     cin >> userDecision;
   }
 
