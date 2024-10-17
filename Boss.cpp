@@ -2,27 +2,25 @@
 
 #include <iostream>
 void Boss::TakeTurn(Entity* Target, int CurrentRound) {
-  if (CurrentRound % 4 == 0) {
+  if (CurrentRound % 4 == 0 && CurrentRound != 1) {
     cout << "Boss is healing itself!" << endl;
-    healthPoints += 20;
+    healthPoints += 5;
   }
-  cout << "Boss is using " << Inventory[1]->getName() << " to attack you!"
+  cout << "Boss is using " << BossAttackItem.getName() << " to attack you!"
        << endl;
-  Inventory[1]->UseItem(Target);
-  cout << "Boss is using " << Inventory[0]->getName() << " to buff itself"
+  BossAttackItem.UseItem(Target);
+  cout << "Boss is using " << BossBuffItem.getName() << " to buff itself"
        << endl;
-  Inventory[0]->UseItem(this);
+  BossBuffItem.UseItem(this);
 }
 
 Boss::Boss(int NumBossesDefeated) {
   BuffItem BossBuffItem = BuffItem(NumBossesDeafeated);
   AttackItem BossAttackItem = AttackItem(NumBossesDeafeated);
-  Inventory[0] = &BossBuffItem;
-  Inventory[1] = &BossAttackItem;
-  healthPoints = 20;
-  strength = 20;
-  defence = 20;
-  magic = 20;
+  healthPoints = 10 + rand() % 10;
+  strength = 10 + rand() % 10;
+  defence = 10 + rand() % 10;
+  magic = 10 + rand() % 10;
   isAlive = true;
   name = "Boss: " + RandomEnemyName();
   ChallengeRating = healthPoints + strength + defence + magic;

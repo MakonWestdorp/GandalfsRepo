@@ -11,7 +11,6 @@ class Boss : public Enemy {
   ~Boss() {};
 
  private:
-  BaseItem** Inventory = new BaseItem*[2];
   BuffItem BossBuffItem;
   AttackItem BossAttackItem;
 };

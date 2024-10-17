@@ -190,55 +190,106 @@ void Arena::viewPlayerStats(Game &game, Player *player, int numBossesDefeated) {
 }
 
 void Arena::callForBattle(Game &game, Player *player, int numBossesDefeated) {
+  int InitialPlayerHP = player->getHP();
   // Summon a boss if two enemies has been killed
-  if (EnemiesDefeated % 10 == 0 && EnemiesDefeated != 0) {
-    Boss CurrentBoss = Boss(numBossesDefeated);
-    Opponent = &CurrentBoss;
-  }
-  // Intialise variables needed for this function
-  int currentRound = 0;
-  bool keepFighting = true;
-  string divider =
-      "+------------------------------------------------------------------+";
+  if (EnemiesDefeated % 2 == 0 && EnemiesDefeated != 0) {
+    // BOSS COMBAT
+    Boss MyBoss = Boss(numBossesDefeated);
+    Boss *CurrentBoss = &MyBoss;
+    // Intialise variables needed for this function
+    int currentRound = 0;
+    bool keepFighting = true;
+    string divider =
+        "+------------------------------------------------------------------+";
 
-  // Whilst player and enemy are alive, and player wants to keep fighting run
-  // loop
-  while (player->GetIsAlive() == true && Opponent->GetIsAlive() == true &&
-         keepFighting == true) {
-    Location::showLocation(game, player,
-                           numBossesDefeated);  // Show Arena description
-    player->TakeTurn(Opponent, currentRound, keepFighting);
-    if (player->GetIsAlive() == false) {
-      game.endGame();  // End game if player is dead
-    } else if (keepFighting == false) {
-      break;  // If player doesn't wish to fight exit loop and battle
-    } else if (Opponent->GetIsAlive() == false) {
-      break;  // If enemy has died exit loop before enemies turn
-    } else {
-      Opponent->TakeTurn(player, currentRound);  //
+    // Whilst player and enemy are alive, and player wants to keep fighting run
+    // loop
+    while (player->GetIsAlive() == true && CurrentBoss->GetIsAlive() == true &&
+           keepFighting == true) {
+      Location::showLocation(game, player,
+                             numBossesDefeated);  // Show Arena description
+      player->TakeTurn(CurrentBoss, currentRound, keepFighting);
       if (player->GetIsAlive() == false) {
-        break;           // If player has died exit loop and battle
-        game.endGame();  // End Game
+        game.endGame();  // End game if player is dead
+      } else if (keepFighting == false) {
+        break;  // If player doesn't wish to fight exit loop and battle
+      } else if (CurrentBoss->GetIsAlive() == false) {
+        break;  // If enemy has died exit loop before enemies turn
+      } else {
+        CurrentBoss->TakeTurn(player, currentRound);  //
+        if (player->GetIsAlive() == false) {
+          break;           // If player has died exit loop and battle
+          game.endGame();  // End Game
+        }
       }
+      currentRound++;  // Increase round
+      sleep_for(seconds(1));
+      cout << divider << endl;
     }
-    currentRound++;  // Increase round
+    // Output result
+    if (player->GetIsAlive() == false) {
+      cout << "You died!" << endl;
+      game.endGame();
+    }
+    if (player->GetIsAlive() == true && keepFighting == true) {
+      cout << "You killed " << CurrentBoss->getName() << endl;
+    }
     sleep_for(seconds(1));
-    cout << divider << endl;
-  }
-  // Output result
-  if (player->GetIsAlive() == false) {
-    cout << "You died!" << endl;
-    game.endGame();
-  }
-  if (player->GetIsAlive() == true) {
-    cout << "You killed " << Opponent->getName() << endl;
-  }
-  sleep_for(seconds(1));
-  if (Opponent->GetIsAlive() == false) {
-    // Create new enemy and update shops
-    Opponent = new Enemy(numBossesDefeated);
-    EnemiesDefeated++;
-    game.viewShops()[0].updateShop(numBossesDefeated, 1);
-    game.viewShops()[1].updateShop(numBossesDefeated, 2);
+    if (CurrentBoss->GetIsAlive() == false) {
+      // Create new enemy and update shops
+      Opponent = new Enemy(numBossesDefeated);
+      EnemiesDefeated++;
+      game.viewShops()[0].updateShop(numBossesDefeated, 1);
+      game.viewShops()[1].updateShop(numBossesDefeated, 2);
+    }
+    player->setHP(InitialPlayerHP);
+  } else {
+    // Intialise variables needed for this function
+    int currentRound = 0;
+    bool keepFighting = true;
+    string divider =
+        "+------------------------------------------------------------------+";
+
+    // Whilst player and enemy are alive, and player wants to keep fighting run
+    // loop
+    while (player->GetIsAlive() == true && Opponent->GetIsAlive() == true &&
+           keepFighting == true) {
+      Location::showLocation(game, player,
+                             numBossesDefeated);  // Show Arena description
+      player->TakeTurn(Opponent, currentRound, keepFighting);
+      if (player->GetIsAlive() == false) {
+        game.endGame();  // End game if player is dead
+      } else if (keepFighting == false) {
+        break;  // If player doesn't wish to fight exit loop and battle
+      } else if (Opponent->GetIsAlive() == false) {
+        break;  // If enemy has died exit loop before enemies turn
+      } else {
+        Opponent->TakeTurn(player, currentRound);  //
+        if (player->GetIsAlive() == false) {
+          break;           // If player has died exit loop and battle
+          game.endGame();  // End Game
+        }
+      }
+      currentRound++;  // Increase round
+      sleep_for(seconds(1));
+      cout << divider << endl;
+    }
+    // Output result
+    if (player->GetIsAlive() == false) {
+      cout << "You died!" << endl;
+      game.endGame();
+    }
+    if (player->GetIsAlive() == true && keepFighting == true) {
+      cout << "You killed " << Opponent->getName() << endl;
+    }
+    sleep_for(seconds(1));
+    if (Opponent->GetIsAlive() == false) {
+      // Create new enemy and update shops
+      Opponent = new Enemy(numBossesDefeated);
+      EnemiesDefeated++;
+      game.viewShops()[0].updateShop(numBossesDefeated, 1);
+      game.viewShops()[1].updateShop(numBossesDefeated, 2);
+    }
+    player->setHP(InitialPlayerHP);
   }
 }
