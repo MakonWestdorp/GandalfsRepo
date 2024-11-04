@@ -1,0 +1,50 @@
+Name:
+Timmy
+Health:
+25
+Strength:
+0
+Defence:
+5
+Magic:
+0
+Resistance:
+Magic
+Bosses_defeated:
+0
+Cash_On_Hand:
+6
+Challenge_Rating:
+7
+Player_Inventory_Size
+5
+Item_1
+Axe of Thunder
+8
+Magic
+8
+0
+Item_2
+Staff of Vengeance
+5
+Bludgeoning
+5
+0
+Item_3
+Nunchucks of Vengeance
+7
+Magic
+7
+0
+Item_4
+Talisman of the Tiger
+3
+HP
+3
+1
+Item_5
+Charm of the Tiger
+5
+HP
+5
+1
